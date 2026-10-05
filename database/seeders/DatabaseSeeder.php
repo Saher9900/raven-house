@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create admin user
-        User::factory()->create([
+        User::create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'phone_number' => '01282236170',
@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Create manager user
-        User::factory()->create([
+        User::create([
             'name' => 'Manager User',
             'email' => 'manager@example.com',
             'phone_number' => '01282236170',
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Create normal user
-        User::factory()->create([
+        User::create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'phone_number' => '01282236170',
