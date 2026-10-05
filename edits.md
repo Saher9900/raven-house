@@ -1,0 +1,2 @@
+- logo images URL
+- add missing columns in the products table
