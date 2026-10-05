@@ -17,6 +17,7 @@
     <div class="card bg-raven-surface border-0 shadow-lg" style="max-width: 600px;">
         <div class="card-body p-5">
             <form action="{{ route('admin.sunglasses-categories.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="mb-4">
                     <label for="name" class="form-label text-white fw-semibold">Category Name</label>
                     <input type="text" class="form-control bg-dark border-secondary text-white @error('name') is-invalid @enderror"
