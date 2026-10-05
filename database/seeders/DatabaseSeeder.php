@@ -16,35 +16,35 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create admin user
-        User::factory()->create([
+        User::create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
-            'password' => bcrypt('password123'),
+            'password' => bcrypt('123123123'),
             'role' => 'admin',
         ]);
 
         // Create manager user
-        User::factory()->create([
+        User::create([
             'name' => 'Manager User',
             'email' => 'manager@example.com',
-            'password' => bcrypt('password123'),
+            'password' => bcrypt('123123123'),
             'role' => 'manager',
         ]);
 
         // Create normal user
-        User::factory()->create([
+        User::create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => bcrypt('password123'),
+            'password' => bcrypt('123123123'),
             'role' => 'normal_user',
         ]);
 
-        $this->call([
-            PerfumesCategorySeeder::class,
-            SunglassesCategorySeeder::class,
-            PerfumeSeeder::class,
-            SunglassesSeeder::class,
-            ImageSeeder::class,
-        ]);
+        // $this->call([
+        //     PerfumesCategorySeeder::class,
+        //     SunglassesCategorySeeder::class,
+        //     PerfumeSeeder::class,
+        //     SunglassesSeeder::class,
+        //     ImageSeeder::class,
+        // ]);
     }
 }
