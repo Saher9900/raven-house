@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use RuntimeException;
 
 class ImageService
 {
@@ -11,6 +12,10 @@ class ImageService
     {
         $filename = time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
         $path = Storage::disk('public')->putFileAs("images/{$directory}", $file, $filename);
+
+        if ($path === false) {
+            throw new RuntimeException('Failed to store uploaded image on the public disk.');
+        }
 
         return '/storage/'.$path;
     }

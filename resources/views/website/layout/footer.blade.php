@@ -3,7 +3,7 @@
          <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
              <div class="text-center text-md-start">
                  <a href="index.html" class="d-inline-block text-decoration-none">
-                     <img src="{{ asset('storage/images/logo.png') }}" alt="Raven House" class="site-logo site-logo--footer" width="76"
+                     <img src="{{ asset('images/logo.png') }}" alt="Raven House" class="site-logo site-logo--footer" width="76"
                          height="76" />
                  </a>
                  <p class="footer-tagline mt-2 mb-0">

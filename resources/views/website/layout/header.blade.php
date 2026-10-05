@@ -31,10 +31,10 @@
     <nav id="site-header" class="navbar navbar-expand-lg navbar-dark fixed-top navbar-raven bg-raven py-3">
         <div class="container">
             <a class="navbar-brand site-brand-lockup me-0" href="{{ route('home') }}">
-                <img src="{{ asset('storage/images/logo.png') }}" alt="" class="site-logo site-logo--emblem" width="96"
+                <img src="{{ asset('images/logo.png') }}" alt="" class="site-logo site-logo--emblem" width="96"
                     height="96" aria-hidden="true" />
                 <span class="site-brand-divider" aria-hidden="true"></span>
-                <img src="{{ asset('storage/images/logo-details.png') }}" alt="Raven House — Perfume &amp; Sunglasses"
+                <img src="{{ asset('images/logo-details.png') }}" alt="Raven House — Perfume &amp; Sunglasses"
                     class="site-logo site-logo--details" width="196" height="88" />
             </a>
             <button class="navbar-toggler navbar-toggler-raven" type="button" data-bs-toggle="offcanvas"
@@ -76,10 +76,10 @@
         aria-labelledby="mobileMenuLabel">
         <div class="offcanvas-header border-bottom border-raven">
             <a href="{{ route('home') }}" class="site-brand-lockup site-brand-lockup--compact mb-0" id="mobileMenuLabel">
-                <img src="{{ asset('storage/images/logo.png') }}" alt="" class="site-logo site-logo--emblem" width="48"
+                <img src="{{ asset('images/logo.png') }}" alt="" class="site-logo site-logo--emblem" width="48"
                     height="48" aria-hidden="true" />
                 <span class="site-brand-divider" aria-hidden="true"></span>
-                <img src="{{ asset('storage/images/logo-details.png') }}" alt="Raven House" class="site-logo site-logo--details" width="140"
+                <img src="{{ asset('images/logo-details.png') }}" alt="Raven House" class="site-logo site-logo--details" width="140"
                     height="64" />
             </a>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
