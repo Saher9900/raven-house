@@ -19,24 +19,30 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
+            'phone_number' => '01282236170',
             'password' => bcrypt('123123123'),
             'role' => 'admin',
+            'shipping_address' => 'Zagazig'
         ]);
 
         // Create manager user
         User::factory()->create([
             'name' => 'Manager User',
             'email' => 'manager@example.com',
+            'phone_number' => '01282236170',
             'password' => bcrypt('123123123'),
             'role' => 'manager',
+            'shipping_address' => 'Zagazig'
         ]);
 
         // Create normal user
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'phone_number' => '01282236170',
             'password' => bcrypt('123123123'),
             'role' => 'normal_user',
+            'shipping_address' => 'Zagazig'
         ]);
 
         // $this->call([
