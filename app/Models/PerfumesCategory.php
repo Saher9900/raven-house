@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 class PerfumesCategory extends Model
 {
@@ -28,6 +29,10 @@ class PerfumesCategory extends Model
 
         if (str_starts_with($value, '/images/')) {
             return '/storage'.$value;
+        }
+
+        if (str_starts_with($value, 'images/')) {
+            return Storage::disk('s3')->url($value);
         }
 
         return $value;

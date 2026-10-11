@@ -104,7 +104,7 @@ class SunglassesAdminController extends Controller
         // Delete all associated images
         foreach ($sunglasses->images as $image) {
             if ($image->image_path !== $this->imageService->getDefaultImage('product')) {
-                $this->imageService->deleteImage($image->image_path);
+                $this->imageService->deleteImage($image->getRawOriginal('image_path'));
             }
             $image->delete();
         }

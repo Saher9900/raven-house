@@ -66,8 +66,9 @@ class PerfumeCategoryController extends Controller
         // Handle image upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             // Delete old image if it's not a default
-            if ($perfumeCategory->image && $perfumeCategory->image !== $this->imageService->getDefaultImage('category')) {
-                $this->imageService->deleteImage($perfumeCategory->image);
+            $currentImage = $perfumeCategory->getRawOriginal('image');
+            if ($currentImage && $currentImage !== $this->imageService->getDefaultImage('category')) {
+                $this->imageService->deleteImage($currentImage);
             }
 
             $imagePath = $this->imageService->storeImage($request->file('image'), 'categories');
@@ -80,8 +81,9 @@ class PerfumeCategoryController extends Controller
     public function destroy(PerfumesCategory $perfumeCategory)
     {
         // Delete image if it's not a default
-        if ($perfumeCategory->image && $perfumeCategory->image !== $this->imageService->getDefaultImage('category')) {
-            $this->imageService->deleteImage($perfumeCategory->image);
+        $currentImage = $perfumeCategory->getRawOriginal('image');
+        if ($currentImage && $currentImage !== $this->imageService->getDefaultImage('category')) {
+            $this->imageService->deleteImage($currentImage);
         }
 
         $perfumeCategory->delete();
@@ -89,4 +91,3 @@ class PerfumeCategoryController extends Controller
         return redirect()->route('admin.perfume-categories.index')->with('success', 'Category deleted successfully.');
     }
 }
-

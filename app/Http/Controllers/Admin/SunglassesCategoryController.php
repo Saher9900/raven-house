@@ -66,8 +66,9 @@ class SunglassesCategoryController extends Controller
         // Handle image upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             // Delete old image if it's not a default
-            if ($sunglassesCategory->image && $sunglassesCategory->image !== $this->imageService->getDefaultImage('category')) {
-                $this->imageService->deleteImage($sunglassesCategory->image);
+            $currentImage = $sunglassesCategory->getRawOriginal('image');
+            if ($currentImage && $currentImage !== $this->imageService->getDefaultImage('category')) {
+                $this->imageService->deleteImage($currentImage);
             }
 
             $imagePath = $this->imageService->storeImage($request->file('image'), 'categories');
@@ -80,8 +81,9 @@ class SunglassesCategoryController extends Controller
     public function destroy(SunglassesCategory $sunglassesCategory)
     {
         // Delete image if it's not a default
-        if ($sunglassesCategory->image && $sunglassesCategory->image !== $this->imageService->getDefaultImage('category')) {
-            $this->imageService->deleteImage($sunglassesCategory->image);
+        $currentImage = $sunglassesCategory->getRawOriginal('image');
+        if ($currentImage && $currentImage !== $this->imageService->getDefaultImage('category')) {
+            $this->imageService->deleteImage($currentImage);
         }
 
         $sunglassesCategory->delete();
@@ -89,4 +91,3 @@ class SunglassesCategoryController extends Controller
         return redirect()->route('admin.sunglasses-categories.index')->with('success', 'Category deleted successfully.');
     }
 }
-

@@ -104,7 +104,7 @@ class PerfumeAdminController extends Controller
         // Delete all associated images
         foreach ($perfume->images as $image) {
             if ($image->image_path !== $this->imageService->getDefaultImage('product')) {
-                $this->imageService->deleteImage($image->image_path);
+                $this->imageService->deleteImage($image->getRawOriginal('image_path'));
             }
             $image->delete();
         }
