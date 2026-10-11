@@ -44,6 +44,8 @@ class SunglassesController extends Controller
             ->limit(6)
             ->get();
         
+        $runslasses = App\Models\Sunglasses::findOrFail(10);
+        
         return view('website.pages.sunglasses.show', compact('sunglasses', 'relatedProducts'));
     }
 }
