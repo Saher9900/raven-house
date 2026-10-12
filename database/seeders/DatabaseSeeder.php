@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
-    // public function run(): void
-    // {
+    public function run(): void
+    {
     //     // Create admin user
     //     User::create([
     //         'name' => 'Admin User',
