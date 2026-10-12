@@ -1,0 +1,27 @@
+**Things to Do**
+
+- domain
+
+- content of each section
+
+- tutorial on how to deal with the dashboard
+
+**Things to Add later**
+
+- payment gateway
+
+- 
+
+------------------
+
+- remove the star from the lienin logo
+- translation page
+- about us -> the Arabic words sent in whatsapp
+- home heading info -> تفاصيل تُختار بعناية، لتعكس شخصية استثنائية وحضورًا لا يُنسى
+- home heading -> RAVEN HOUSE
+
+A Signature of Presence
+
+- remove upper heading section info
+- translation files
+- 

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Raven House Admin - @yield('title', 'Dashboard')</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
@@ -30,6 +32,15 @@
             background-color: var(--raven-surface);
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
             padding: 15px 0;
+        }
+
+        .navbar-toggler-raven {
+            border-color: rgba(212, 175, 55, 0.4);
+            color: var(--raven-gold);
+        }
+
+        .navbar-toggler-raven:focus {
+            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
         }
 
         .navbar-brand {
@@ -207,10 +218,11 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Raven House Admin</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler navbar-toggler-raven" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -237,6 +249,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.sunglasses-categories.index') }}">Sunglasses Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">View Website</a>
                     </li>
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="POST" style="display: inline;">

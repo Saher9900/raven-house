@@ -67,6 +67,18 @@ it('blocks normal users from accessing the admin panel', function () {
         ->assertForbidden();
 });
 
+it('provides admins a link back to the public website', function () {
+    $admin = User::factory()->admin()->create();
+
+    $this->actingAs($admin)
+        ->get(route('admin.dashboard'))
+        ->assertOk()
+        ->assertSee('href="'.route('home').'"', false)
+        ->assertSee('View Website')
+        ->assertSee('class="navbar navbar-expand-lg navbar-dark"', false)
+        ->assertSee('class="navbar-toggler navbar-toggler-raven"', false);
+});
+
 it('redirects authenticated users away from login and register pages', function () {
     $user = User::factory()->create();
 
