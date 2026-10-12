@@ -7,6 +7,7 @@ use App\Models\Sunglasses;
 use App\Models\SunglassesCategory;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
+use RuntimeException;
 
 class SunglassesAdminController extends Controller
 {
@@ -109,7 +110,10 @@ class SunglassesAdminController extends Controller
             $image->delete();
         }
 
-        $sunglasses->delete();
+        $sunglassesId = $sunglasses->getKey();
+        if (! $sunglasses->delete() || Sunglasses::query()->whereKey($sunglassesId)->exists()) {
+            throw new RuntimeException('Failed to delete sunglasses product from the database.');
+        }
 
         return redirect()->route('admin.sunglasses.index')->with('success', 'Sunglasses deleted successfully.');
     }

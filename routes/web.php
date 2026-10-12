@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('cart/{cartItem}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
-    
+
     Route::patch('profile/address', [ProfileController::class, 'updateAddress'])->name('profile.update-address');
 });
 
@@ -66,7 +66,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('perfume-categories', PerfumeCategoryController::class);
 
     // Sunglasses Management - Admin and Manager
-    Route::resource('sunglasses', SunglassesAdminController::class);
+    Route::resource('sunglasses', SunglassesAdminController::class)
+        ->parameters(['sunglasses' => 'sunglasses']);
     Route::resource('sunglasses-categories', SunglassesCategoryController::class);
 
     // Image Management
