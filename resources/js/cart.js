@@ -1,6 +1,15 @@
 const formatMoney = (amount) =>
     `$${Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
+const escapeHtml = (value) =>
+    String(value).replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;",
+    })[character]);
+
 const getConfig = () => {
     const body = document.body;
 
@@ -8,7 +17,7 @@ const getConfig = () => {
         indexUrl: body.dataset.cartIndex ?? null,
         storeUrl: body.dataset.cartStore ?? null,
         checkoutUrl: body.dataset.checkoutStore ?? null,
-        loginUrl: body.dataset.loginUrl ?? null,
+        authenticated: body.dataset.authenticated === "true",
     };
 };
 
@@ -43,16 +52,18 @@ const showToast = (message, isError = false) => {
 };
 
 const updateBadges = (count) => {
-    ["cart-count-badge", "cart-count-badge-mobile"].forEach((id) => {
-        const badge = document.getElementById(id);
+    const badge = document.getElementById("cart-count-badge");
 
-        if (!badge) {
-            return;
-        }
+    if (!badge) {
+        return;
+    }
 
-        badge.textContent = String(count);
-        badge.hidden = count < 1;
-    });
+    badge.textContent = String(count);
+    badge.hidden = count < 1;
+    badge.parentElement.setAttribute(
+        "aria-label",
+        `Open shopping cart, ${count} ${count === 1 ? "item" : "items"}`,
+    );
 };
 
 const renderCart = (payload) => {
@@ -82,38 +93,52 @@ const renderCart = (payload) => {
     emptyState.classList.add("d-none");
     content.classList.remove("d-none");
 
-    itemsContainer.innerHTML = payload.items
-        .map(
-            (item) => `
-            <tr data-cart-item-id="${item.id}">
-                <td>
-                    <div class="d-flex align-items-center gap-3">
-                        ${
-                            item.image
-                                ? `<img src="${item.image}" alt="${item.name}" class="cart-item-image rounded-3">`
-                                : `<div class="cart-item-placeholder rounded-3"></div>`
-                        }
-                        <div>
-                            <p class="text-white mb-0 fw-semibold">${item.name}</p>
-                            <p class="text-muted-raven small mb-0">${item.product_type}${item.brand ? ` · ${item.brand}` : ""}</p>
+    itemsContainer.innerHTML = payload.items.map((item) => {
+        const itemId = escapeHtml(item.id);
+        const name = escapeHtml(item.name);
+        const image = item.image
+            ? `<img src="${escapeHtml(item.image)}" alt="${name}" class="cart-item-image rounded-3">`
+            : `<div class="cart-item-placeholder rounded-3"></div>`;
+        const description = [item.product_type, item.brand].filter(Boolean).map(escapeHtml).join(" · ");
+
+        return `
+            <article class="cart-item-card">
+                <div class="d-flex gap-3">
+                    ${image}
+                    <div class="flex-grow-1 min-w-0">
+                        <div class="d-flex justify-content-between align-items-start gap-2">
+                            <div class="min-w-0">
+                                <h3 class="cart-item-name">${name}</h3>
+                                <p class="cart-item-description">${description}</p>
+                            </div>
+                            <button type="button" class="cart-remove-btn" data-cart-item-id="${itemId}"
+                                aria-label="Remove ${name} from cart" title="Remove item">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                                    <path d="M4 7h16M10 11v6m4-6v6M5 7l1 13h12l1-13M9 7V4h6v3" />
+                                </svg>
+                            </button>
                         </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="cart-quantity-control">
+                                <button type="button" class="cart-quantity-step" data-cart-step="-1"
+                                    data-cart-item-id="${itemId}" aria-label="Decrease quantity of ${name}"
+                                    ${item.quantity <= 1 ? "disabled" : ""}>−</button>
+                                <input type="number" min="1" max="${item.stock}" value="${item.quantity}"
+                                    class="form-control cart-qty-input" data-cart-item-id="${itemId}"
+                                    aria-label="Quantity of ${name}">
+                                <button type="button" class="cart-quantity-step" data-cart-step="1"
+                                    data-cart-item-id="${itemId}" aria-label="Increase quantity of ${name}"
+                                    ${item.quantity >= item.stock ? "disabled" : ""}>+</button>
+                            </div>
+                            <span class="text-gold fw-semibold">${formatMoney(item.subtotal)}</span>
+                        </div>
+                        <p class="cart-item-unit-price">${formatMoney(item.unit_price)} each</p>
                     </div>
-                </td>
-                <td class="text-gold">${formatMoney(item.unit_price)}</td>
-                <td>
-                    <input type="number" min="1" max="${item.stock}" value="${item.quantity}"
-                        class="form-control input-dark rounded-3 cart-qty-input" style="width: 5rem"
-                        data-cart-item-id="${item.id}">
-                </td>
-                <td class="text-gold fw-semibold cart-item-subtotal">${formatMoney(item.subtotal)}</td>
-                <td>
-                    <button type="button" class="btn btn-filter btn-sm rounded-pill cart-remove-btn"
-                        data-cart-item-id="${item.id}">Remove</button>
-                </td>
-            </tr>
-        `,
-        )
-        .join("");
+                </div>
+            </article>
+        `;
+    }).join("");
 
     if (totalEl) {
         totalEl.textContent = formatMoney(payload.total ?? 0);
@@ -132,12 +157,10 @@ const fetchCart = async () => {
 };
 
 const addToCart = async (productType, productId) => {
-    const { storeUrl, loginUrl } = getConfig();
+    const { storeUrl } = getConfig();
 
     if (!storeUrl) {
-        window.location.href = loginUrl ?? "/login";
-
-        return;
+        throw new Error("Cart is unavailable.");
     }
 
     const { data } = await window.axios.post(storeUrl, {
@@ -148,6 +171,7 @@ const addToCart = async (productType, productId) => {
 
     renderCart(data);
     showToast(data.message ?? "Product added to cart.");
+    window.bootstrap.Offcanvas.getOrCreateInstance(document.getElementById("cartDrawer")).show();
 };
 
 const updateCartItem = async (cartItemId, quantity) => {
@@ -170,28 +194,27 @@ const removeCartItem = async (cartItemId) => {
     showToast(data.message ?? "Item removed.");
 };
 
-const checkout = async (shippingAddress = null) => {
+const checkout = async (customerDetails = {}) => {
     const { checkoutUrl } = getConfig();
 
     if (!checkoutUrl) {
         return;
     }
 
-    const { data } = await window.axios.post(checkoutUrl, shippingAddress ? { shipping_address: shippingAddress } : {});
+    const { data } = await window.axios.post(checkoutUrl, customerDetails);
 
     renderCart(data);
     showToast(data.message ?? "Order placed successfully.");
+    window.bootstrap.Modal.getInstance(document.getElementById("addressModal"))?.hide();
+    window.bootstrap.Offcanvas.getInstance(document.getElementById("cartDrawer"))?.hide();
 };
 
 const saveAddress = async (shippingAddress) => {
-    try {
-        const { data } = await window.axios.patch('/profile/address', {
-            shipping_address: shippingAddress,
-        });
-        return data;
-    } catch (error) {
-        throw error;
-    }
+    const { data } = await window.axios.patch('/profile/address', {
+        shipping_address: shippingAddress,
+    });
+
+    return data;
 };
 
 const bindAddressModalEvents = () => {
@@ -200,42 +223,31 @@ const bindAddressModalEvents = () => {
     const addressForm = document.getElementById('addressForm');
     const shippingAddressInput = document.getElementById('shippingAddress');
 
-    if (!addressModal || !saveAddressBtn) {
+    if (!addressModal || !saveAddressBtn || !addressForm) {
         return;
     }
 
     saveAddressBtn.addEventListener('click', async () => {
-        if (!shippingAddressInput.value.trim()) {
-            showToast('Please enter a shipping address.', true);
+        if (!addressForm.reportValidity()) {
             return;
         }
 
         saveAddressBtn.disabled = true;
 
         try {
-            await saveAddress(shippingAddressInput.value);
+            const { authenticated } = getConfig();
 
-            // Close modal
-            const modal = window.bootstrap.Modal.getInstance(addressModal);
-            if (modal) {
-                modal.hide();
-            }
-
-            // Show success and proceed to checkout
-            showToast('Address saved successfully!');
-            await new Promise((resolve) => setTimeout(resolve, 500));
-
-            try {
+            if (authenticated) {
+                await saveAddress(shippingAddressInput.value);
                 await checkout();
-            } catch (error) {
-                showToast(
-                    error.response?.data?.message ?? "Checkout failed.",
-                    true,
-                );
+            } else {
+                const customerDetails = Object.fromEntries(new FormData(addressForm).entries());
+                await checkout(customerDetails);
             }
+
         } catch (error) {
             showToast(
-                error.response?.data?.message ?? "Unable to save address.",
+                error.response?.data?.message ?? "Unable to place your order.",
                 true,
             );
         } finally {
@@ -287,24 +299,50 @@ const bindCartEvents = () => {
             return;
         }
 
+        const quantityStep = event.target.closest(".cart-quantity-step");
+
+        if (quantityStep) {
+            event.preventDefault();
+            const input = document.querySelector(
+                `.cart-qty-input[data-cart-item-id="${CSS.escape(quantityStep.dataset.cartItemId)}"]`,
+            );
+            const nextQuantity = Number(input?.value) + Number(quantityStep.dataset.cartStep);
+
+            if (!input || nextQuantity < 1 || nextQuantity > Number(input.max)) {
+                return;
+            }
+
+            try {
+                await updateCartItem(quantityStep.dataset.cartItemId, nextQuantity);
+            } catch (error) {
+                showToast(error.response?.data?.message ?? "Unable to update quantity.", true);
+            }
+
+            return;
+        }
+
         const checkoutButton = event.target.closest("#checkout-btn");
 
         if (checkoutButton) {
             event.preventDefault();
+
+            if (!getConfig().authenticated) {
+                const addressModal = new window.bootstrap.Modal(document.getElementById('addressModal'));
+                addressModal.show();
+
+                return;
+            }
+
             checkoutButton.disabled = true;
 
             try {
                 await checkout();
             } catch (error) {
                 if (error.response?.status === 422 && error.response?.data?.requires_address) {
-                    showToast(error.response?.data?.message ?? "Please add a shipping address.");
                     const addressModal = new window.bootstrap.Modal(document.getElementById('addressModal'));
                     addressModal.show();
                 } else {
-                    showToast(
-                        error.response?.data?.message ?? "Checkout failed.",
-                        true,
-                    );
+                    showToast(error.response?.data?.message ?? "Checkout failed.", true);
                 }
             } finally {
                 checkoutButton.disabled = false;
@@ -347,5 +385,7 @@ export const initCart = () => {
 
     bindCartEvents();
     bindAddressModalEvents();
-    fetchCart().catch(() => {});
+    fetchCart().catch((error) => {
+        showToast(error.response?.data?.message ?? "Unable to load your cart.", true);
+    });
 };

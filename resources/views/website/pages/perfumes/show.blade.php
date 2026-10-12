@@ -90,21 +90,15 @@
                         @endif
 
                         <!-- Add to Cart -->
-                        @auth
-                            <button type="button"
-                                class="btn btn-gold btn-lg rounded-pill px-5 w-100 add-to-cart-btn"
-                                data-product-type="perfume"
-                                data-product-id="{{ $perfume->id }}"
-                                @disabled($perfume->stock < 1)>
-                                <span class="fs-5">
-                                    {{ $perfume->stock < 1 ? 'Out of Stock' : 'Add to Cart' }}
-                                </span>
-                            </button>
-                        @else
-                            <a href="{{ route('login') }}" class="btn btn-outline-gold btn-lg rounded-pill px-5 w-100">
-                                <span class="fs-5">Login to Add to Cart</span>
-                            </a>
-                        @endauth
+                        <button type="button"
+                            class="btn btn-gold btn-lg rounded-pill px-5 w-100 add-to-cart-btn"
+                            data-product-type="perfume"
+                            data-product-id="{{ $perfume->id }}"
+                            @disabled($perfume->stock < 1)>
+                            <span class="fs-5">
+                                {{ $perfume->stock < 1 ? 'Out of Stock' : 'Add to Cart' }}
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -165,11 +159,16 @@
                                                     </svg>
                                                 </button>
                                             @else
-                                                <a href="{{ route('login') }}" class="btn btn-gold btn-sm rounded-pill">
+                                                <button type="button"
+                                                    class="btn btn-gold btn-sm rounded-pill add-to-cart-btn"
+                                                    data-product-type="perfume"
+                                                    data-product-id="{{ $product->id }}"
+                                                    @disabled($product->stock < 1)
+                                                    title="{{ $product->stock < 1 ? 'Out of Stock' : 'Add to Cart' }}">
                                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
                                                         <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2z"/>
                                                     </svg>
-                                                </a>
+                                                </button>
                                             @endauth
                                         </div>
                                     </div>

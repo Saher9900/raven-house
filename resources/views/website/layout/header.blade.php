@@ -22,15 +22,12 @@
 </head>
 
 <body class="bg-raven page-home"
-    @auth
-        data-cart-index="{{ route('cart.index') }}"
-        data-cart-store="{{ route('cart.store') }}"
-        data-checkout-store="{{ route('checkout.store') }}"
-    @else
-        data-login-url="{{ route('login') }}"
-    @endauth>
+    data-cart-index="{{ route('cart.index') }}"
+    data-cart-store="{{ route('cart.store') }}"
+    data-checkout-store="{{ route('checkout.store') }}"
+    data-authenticated="{{ auth()->check() ? 'true' : 'false' }}">
 
-    <nav id="site-header" class="navbar navbar-expand-lg navbar-dark fixed-top navbar-raven bg-raven py-3">
+    <nav id="site-header" class="navbar navbar-expand-xxl navbar-dark fixed-top navbar-raven bg-raven py-3">
         <div class="container">
             <a class="navbar-brand site-brand-lockup me-0" href="{{ route('home') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="" class="site-logo site-logo--emblem" width="96"
@@ -39,11 +36,21 @@
                 <img src="{{ asset('images/logo-details.png') }}" alt="Raven House — Perfume &amp; Sunglasses"
                     class="site-logo site-logo--details" width="196" height="88" />
             </a>
+            <button type="button" class="btn cart-toggle order-xxl-3" data-bs-toggle="offcanvas"
+                data-bs-target="#cartDrawer" aria-controls="cartDrawer" aria-label="Open shopping cart">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 3h2l2.2 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 2-1.6L22 7H6" />
+                    <circle cx="10" cy="20" r="1" />
+                    <circle cx="18" cy="20" r="1" />
+                </svg>
+                <span class="cart-badge badge rounded-pill" id="cart-count-badge" hidden>0</span>
+            </button>
             <button class="navbar-toggler navbar-toggler-raven" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
+            <div class="collapse navbar-collapse justify-content-end order-xxl-2" id="navbarMain">
                 <ul class="navbar-nav gap-lg-3" aria-label="Main navigation">
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->is('/')) active @endif" href="/">Home</a>
@@ -60,14 +67,6 @@
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->routeIs('contact.page')) active @endif" href="{{ route("contact.page") }}">Contact</a>
                     </li>
-                    @auth
-                        <li class="nav-item">
-                            <a class="nav-link site-nav-link d-flex align-items-center gap-1" href="{{ route('home') }}#cart">
-                                Cart
-                                <span class="cart-badge badge rounded-pill" id="cart-count-badge" hidden>0</span>
-                            </a>
-                        </li>
-                    @endauth
                     @include('website.layout.auth-nav')
                 </ul>
             </div>
@@ -104,14 +103,6 @@
                 <li class="nav-item">
                     <a class="nav-link @if(request()->routeIs('contact.page')) active @endif" href="{{ route("contact.page") }}">Contact</a>
                 </li>
-                @auth
-                    <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center justify-content-center gap-1" href="{{ route('home') }}#cart">
-                            Cart
-                            <span class="cart-badge badge rounded-pill" id="cart-count-badge-mobile" hidden>0</span>
-                        </a>
-                    </li>
-                @endauth
                 @include('website.layout.auth-nav-mobile')
             </ul>
         </div>

@@ -44,8 +44,6 @@
             </div>
         </div>
 
-        @include('website.layout.cart-section')
-
         <section class="quote-luxury">
             <div class="container px-4 text-center reveal">
                 <blockquote>

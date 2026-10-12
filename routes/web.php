@@ -38,13 +38,13 @@ Route::middleware('guest')->group(function () {
 
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-Route::middleware('auth')->group(function () {
-    Route::get('cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('cart', [CartController::class, 'store'])->name('cart.store');
-    Route::patch('cart/{cartItem}', [CartController::class, 'update'])->name('cart.update');
-    Route::delete('cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
-    Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('cart', [CartController::class, 'store'])->name('cart.store');
+Route::patch('cart/{cartItem}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
+Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
+Route::middleware('auth')->group(function () {
     Route::patch('profile/address', [ProfileController::class, 'updateAddress'])->name('profile.update-address');
 });
 
