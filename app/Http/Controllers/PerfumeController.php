@@ -5,13 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Perfume;
 use App\Models\PerfumesCategory;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class PerfumeController extends Controller
 {
     public function index(Request $request): View
     {
+        $validated = $request->validate([
+            'gender' => ['nullable', Rule::in(['men', 'women', 'men & women'])],
+        ]);
+
         $query = Perfume::with(['category', 'images']);
+
+        if (! empty($validated['gender'])) {
+            $query->where('gender', $validated['gender']);
+        }
 
         if ($request->filled('category')) {
             $query->where('perfumes_category_id', $request->integer('category'));
@@ -36,14 +45,14 @@ class PerfumeController extends Controller
     public function show(Perfume $perfume)
     {
         $perfume->load(['category', 'images']);
-        
+
         // Get related products from the same category (excluding current product)
         $relatedProducts = Perfume::where('perfumes_category_id', $perfume->perfumes_category_id)
             ->where('id', '!=', $perfume->id)
             ->with(['category', 'images'])
             ->limit(6)
             ->get();
-        
+
         return view('website.pages.perfumes.show', compact('perfume', 'relatedProducts'));
     }
 }

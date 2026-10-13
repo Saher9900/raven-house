@@ -18,6 +18,15 @@
                     <p class="filter-bar__title mb-0">Refine Collection</p>
                     <div class="row g-4 align-items-end">
                         <div class="col-md-4">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select input-dark rounded-3" id="gender" name="gender">
+                                <option value="">All genders</option>
+                                <option value="men" @selected(request('gender') === 'men')>Men</option>
+                                <option value="women" @selected(request('gender') === 'women')>Women</option>
+                                <option value="men & women" @selected(request('gender') === 'men & women')>Men &amp; Women</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
                             <label for="category" class="form-label">Category</label>
                             <select class="form-select input-dark rounded-3" id="category" name="category">
                                 <option value="">All categories</option>
@@ -50,7 +59,7 @@
                         </div>
                         <div class="col-12 d-flex flex-wrap gap-2 pt-1">
                             <button type="submit" class="btn btn-gold rounded-pill px-4">Apply filters</button>
-                            @if(request()->hasAny(['category', 'name', 'sort']))
+                            @if(request()->hasAny(['gender', 'category', 'name', 'sort']))
                                 <a href="{{ route('perfumes.page') }}"
                                     class="btn btn-filter rounded-pill px-4">Clear filters</a>
                             @endif
