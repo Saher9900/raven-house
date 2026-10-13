@@ -83,10 +83,11 @@
                 <div class="mb-4">
                     <label for="gender" class="form-label text-white fw-semibold">Gender</label>
                     <select class="form-select bg-dark border-secondary text-white @error('gender') is-invalid @enderror"
-                        id="gender" name="gender" required>
-                        <option value="">Select gender</option>
-                        <option value="male" @selected(old('gender') === 'male')>Male</option>
-                        <option value="female" @selected(old('gender') === 'female')>Female</option>
+                        id="gender" name="gender">
+                        <option value="">Not specified</option>
+                        <option value="men" @selected(old('gender') === 'men')>Men</option>
+                        <option value="women" @selected(old('gender') === 'women')>Women</option>
+                        <option value="men & women" @selected(old('gender') === 'men & women')>Men &amp; Women</option>
                     </select>
                     @error('gender')
                         <div class="invalid-feedback">{{ $message }}</div>

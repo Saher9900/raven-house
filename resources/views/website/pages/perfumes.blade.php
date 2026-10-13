@@ -88,7 +88,7 @@
                                         @endif
                                     </div>
                                     <p class="text-muted-raven small mt-2 mb-0">
-                                        Stock: <strong>{{ $perfume->stock }}</strong> | {{ ucfirst($perfume->gender) }}
+                                        Stock: <strong>{{ $perfume->stock }}</strong> | {{ $perfume->gender ? ucwords($perfume->gender) : 'Gender not specified' }}
                                     </p>
                                     <div class="d-flex gap-2 mt-3">
                                         <a href="{{ route('perfumes.show', $perfume) }}" class="btn btn-outline-gold btn-sm rounded-pill flex-grow-1">

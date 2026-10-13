@@ -18,16 +18,16 @@ class SunglassesFactory extends Factory
     public function definition(): array
     {
         $salePrice = fake()->boolean(30) ? $this->faker->randomFloat(2, 50, 150) : null;
-        
+
         return [
             'sunglasses_category_id' => $this->faker->numberBetween(1, 7),
-            'name' => $this->faker->word() . ' ' . $this->faker->word(),
+            'name' => $this->faker->word().' '.$this->faker->word(),
             'price' => $this->faker->randomFloat(2, 100, 350),
             'brand' => $this->faker->randomElement(['Ray-Ban', 'Gucci', 'Prada', 'Tom Ford', 'Burberry', 'Versace']),
             'description' => $this->faker->sentence(),
             'sale' => $salePrice,
             'stock' => $this->faker->numberBetween(0, 100),
-            'gender' => $this->faker->randomElement(['male', 'female']),
+            'gender' => $this->faker->randomElement(['men', 'women', 'men & women', null]),
         ];
     }
 }

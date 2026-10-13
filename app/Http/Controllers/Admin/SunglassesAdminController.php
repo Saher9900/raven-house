@@ -42,7 +42,7 @@ class SunglassesAdminController extends Controller
             'description' => 'nullable|string',
             'sale' => 'nullable|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'gender' => 'required|in:male,female',
+            'gender' => 'nullable|in:men,women,men & women',
             'images.*' => 'nullable|image|max:2048',
         ]);
 
@@ -81,7 +81,7 @@ class SunglassesAdminController extends Controller
             'description' => 'nullable|string',
             'sale' => 'nullable|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'gender' => 'required|in:male,female',
+            'gender' => 'nullable|in:men,women,men & women',
             'images.*' => 'nullable|image|max:2048',
         ]);
 

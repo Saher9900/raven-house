@@ -19,16 +19,16 @@ class PerfumeFactory extends Factory
     public function definition(): array
     {
         $salePrice = fake()->boolean(30) ? $this->faker->randomFloat(2, 50, 150) : null;
-        
+
         return [
             'perfumes_category_id' => PerfumesCategory::factory(),
-            'name' => $this->faker->word() . ' ' . $this->faker->word(),
+            'name' => $this->faker->word().' '.$this->faker->word(),
             'price' => $this->faker->randomFloat(2, 80, 250),
             'brand' => $this->faker->randomElement(['Dior', 'Chanel', 'Guerlain', 'Dolce & Gabbana', 'Tom Ford', 'Hermès']),
             'description' => $this->faker->sentence(),
             'sale' => $salePrice,
             'stock' => $this->faker->numberBetween(0, 100),
-            'gender' => $this->faker->randomElement(['male', 'female']),
+            'gender' => $this->faker->randomElement(['men', 'women', 'men & women', null]),
         ];
     }
 }

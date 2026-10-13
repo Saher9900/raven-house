@@ -61,7 +61,7 @@
                                 <div class="card bg-raven-surface border-gold rounded-3">
                                     <div class="card-body">
                                         <p class="text-gold small text-uppercase mb-2">Gender</p>
-                                        <p class="text-white fw-semibold mb-0">{{ ucfirst($perfume->gender) }}</p>
+                                        <p class="text-white fw-semibold mb-0">{{ $perfume->gender ? ucwords($perfume->gender) : 'Not specified' }}</p>
                                     </div>
                                 </div>
                             </div>

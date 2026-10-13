@@ -38,7 +38,7 @@
                         <td class="text-gold fw-semibold">${{ number_format($glass->price, 2) }}</td>
                         <td>{{ $glass->stock }}</td>
                         <td>
-                            <span class="badge bg-secondary">{{ ucfirst($glass->gender) }}</span>
+                            <span class="badge bg-secondary">{{ $glass->gender ? ucwords($glass->gender) : 'Not specified' }}</span>
                         </td>
                         <td>
                             <a href="{{ route('admin.sunglasses.edit', $glass) }}" class="btn btn-sm btn-outline-gold">Edit</a>
