@@ -13,10 +13,6 @@
                     {{ __('website.home.intro') }}
                 </p>
             </div>
-            <div class="scroll-cue d-none d-md-flex" aria-hidden="true">
-                <span>{{ __('website.home.scroll') }}</span>
-                <div class="scroll-cue-line"></div>
-            </div>
             <div class="position-absolute bottom-0 start-0 w-100 hero-fade-bottom"></div>
         </section>
 
@@ -44,6 +40,18 @@
                 @endfor
             </div>
         </div>
+
+        <section class="why-raven section-luxury">
+            <div class="container text-center">
+                <h2 class="font-display section-title fw-semibold text-white reveal">
+                    {{ __('website.home.why_title') }}
+                </h2>
+                <div class="luxury-divider reveal" aria-hidden="true"><span>◆</span></div>
+                <p class="why-raven__text font-display mx-auto mb-0 reveal reveal-delay-1">
+                    {{ __('website.home.why_text') }}
+                </p>
+            </div>
+        </section>
 
         <section class="home-perfume-cta text-center">
             <a href="{{ route('perfumes.page') }}"

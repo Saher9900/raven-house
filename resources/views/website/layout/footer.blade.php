@@ -14,8 +14,9 @@
                  <a href="{{ route('home') }}">{{ __('website.navigation.home') }}</a>
                  <a href="{{ route('about.page') }}">{{ __('website.navigation.about') }}</a>
                  <a href="{{ route('perfumes.page') }}">{{ __('website.navigation.perfumes') }}</a>
-                 <a href="{{ route('sunglasses.page') }}">{{ __('website.navigation.sunglasses') }}</a>
-                 <a href="{{ route('contact.page') }}">{{ __('website.navigation.contact') }}</a>
+                  <a href="{{ route('sunglasses.page') }}">{{ __('website.navigation.sunglasses') }}</a>
+                  <a href="{{ route('coming-soon.page') }}">{{ __('website.navigation.coming_soon') }}</a>
+                  <a href="{{ route('contact.page') }}">{{ __('website.navigation.contact') }}</a>
              </nav>
          </div>
          <p class="text-center text-secondary small mt-4 mb-0">

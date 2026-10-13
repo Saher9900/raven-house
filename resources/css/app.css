@@ -470,8 +470,9 @@ html[lang="ar"] .font-display {
 
 /* Cinematic home hero */
 .hero-cinema {
-    min-height: min(62vh, 580px);
-    min-height: min(62dvh, 580px);
+    min-height: min(48vh, 460px);
+    min-height: min(48dvh, 460px);
+    padding-top: 7.5rem;
 }
 
 .hero-cinema .hero-title {
@@ -491,8 +492,8 @@ html[lang="ar"] .font-display {
 
 @media (max-width: 767.98px) {
     .hero-cinema {
-        min-height: min(56vh, 460px);
-        min-height: min(56dvh, 460px);
+        min-height: min(44vh, 400px);
+        min-height: min(44dvh, 400px);
     }
 }
 
@@ -528,40 +529,6 @@ html[lang="ar"] .font-display {
     }
     50% {
         transform: translate(20px, -30px) scale(1.05);
-    }
-}
-
-.scroll-cue {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--raven-muted);
-    font-size: 0.65rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    animation: scroll-bounce 2.5s ease-in-out infinite;
-}
-
-.scroll-cue-line {
-    width: 1px;
-    height: 48px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-}
-
-@keyframes scroll-bounce {
-    0%,
-    100% {
-        opacity: 0.5;
-        transform: translateX(-50%) translateY(0);
-    }
-    50% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(8px);
     }
 }
 
@@ -625,7 +592,8 @@ main.pt-5 > .hero-glow:first-child h1 {
 }
 
 .raven-portrait-section {
-    padding-block: clamp(2.5rem, 5vw, 4rem);
+    padding-top: clamp(1.25rem, 3vw, 2.25rem);
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
 .raven-portrait {
@@ -652,6 +620,33 @@ main.pt-5 > .hero-glow:first-child h1 {
     .raven-portrait__image {
         border-radius: 1rem;
     }
+}
+
+/* Why Raven House */
+.why-raven {
+    position: relative;
+    background:
+        radial-gradient(
+            ellipse 80% 60% at 50% 0%,
+            rgba(212, 175, 55, 0.08),
+            transparent 62%
+        ),
+        var(--raven-bg-elevated);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.why-raven__text {
+    max-width: 44rem;
+    font-size: clamp(1.5rem, 3.2vw, 2.15rem);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    color: #ececef;
+}
+
+html[lang="ar"] .why-raven__text {
+    font-size: clamp(1.25rem, 2.6vw, 1.8rem);
+    line-height: 1.9;
 }
 
 .marquee-track {
@@ -1585,8 +1580,7 @@ main.pt-5 > .hero-glow:first-child h1 {
 
 @media (prefers-reduced-motion: reduce) {
     .marquee-track,
-    .hero-orb,
-    .scroll-cue {
+    .hero-orb {
         animation: none;
     }
 

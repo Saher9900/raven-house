@@ -15,6 +15,7 @@ return [
         'women' => 'Women',
         'men_and_women' => 'Men & Women',
         'sunglasses' => 'Sunglasses',
+        'coming_soon' => 'Others',
         'contact' => 'Contact',
         'login' => 'Login',
         'register' => 'Register',
@@ -22,7 +23,6 @@ return [
         'logout' => 'Logout',
     ],
     'home' => [
-        'scroll' => 'Scroll',
         'intro' => 'Details chosen with care, to reflect a distinctive personality and an unforgettable presence.',
         'check_perfumes' => 'Check Our Perfumes',
         'raven_alt' => 'The Raven House raven on the sands of Cairo.',
@@ -30,6 +30,8 @@ return [
         'raven_portrait' => 'A living portrait of the Raven House raven',
         'raven_location' => 'on the sands of Cairo, November 2026',
         'marquee' => 'A signature of presence',
+        'why_title' => 'Why Raven House',
+        'why_text' => 'Because we choose what suits those who don’t seek attention just to leave an impression',
     ],
     'about' => [
         'title' => 'About Raven House',
@@ -38,6 +40,13 @@ return [
         'vision' => 'To present, through RAVEN HOUSE, a concept of luxury that combines refinement with a powerful presence.
 
 We believe that true luxury does not announce itself, and that exceptional presence leaves its mark without seeking to draw attention',
+    ],
+    'coming_soon' => [
+        'eyebrow' => 'A New Chapter',
+        'title' => 'Coming Soon',
+        'intro' => 'Something new is taking shape at Raven House — crafted with the same quiet care. Return soon.',
+        'marquee' => 'Stay Tuned',
+        'back_home' => 'Back to Home',
     ],
     'contact' => [
         'title' => 'Contact Us',

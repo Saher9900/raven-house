@@ -15,7 +15,7 @@
 ------------------
 
 - remove the star from the lienin logo
-- translation page
+- translation page <-------------------------------------
 - about us -> the Arabic words sent in whatsapp
 - home heading info -> تفاصيل تُختار بعناية، لتعكس شخصية استثنائية وحضورًا لا يُنسى
 - home heading -> RAVEN HOUSE
@@ -70,7 +70,7 @@ A Signature of Presence
 ----------new questions to ask-----------
 
 - gender kinds.
-- 
+- available hours for business in contact us page
 
 ------------things to do-------------
 
