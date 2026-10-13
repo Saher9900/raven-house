@@ -14,65 +14,20 @@
 
 ------------------
 
-- remove the star from the lienin logo
-- translation page <-------------------------------------
-- about us -> the Arabic words sent in whatsapp
-- home heading info -> تفاصيل تُختار بعناية، لتعكس شخصية استثنائية وحضورًا لا يُنسى
-- home heading -> RAVEN HOUSE
-
-A Signature of Presence
-
-- remove upper heading section info
-- translation files
-- about us/vision -> OUR VISION
-
-أن نُقدّم من خلال RAVEN HOUSE مفهومًا للفخامة يجمع بين الرقي وقوة الحضور.
-
-نؤمن أن الفخامة الحقيقية لا تُعلن عن نفسها، وأن الحضور الاستثنائي يترك أثره دون أن يسعى إلى لفت الأنظار
-- everything from about us and add  the above words and keep "about raven house" and under it في Raven House
-نصنع امتدادا لشخصيه واحده
-شخصيه تعرف ان الحضور لا يحتاج الي ضجيج ولا تفسير بل الي اختيار صحيح
-
-ولهذا
-كل مانقدمه يحمل الفلسفه نفسها
-- move categories to navebar
-- male and female section added to navebar link choice
-- homepage order->
-	1- Raven House
-	2- تفاصيل تُختار بعناية، لتعكس شخصية متفردة وحضورًا لا يُنسى.
-
-اكتشف مجموعتنا
-	3- image
-	4- 
-انتظرنا حضوره، والتقطنا اللحظة
-
-صورة حيّة لغراب Raven House
-على رمال القاهرة — نوفمبر 
-٢٠٢٦
-
-
-	5- moving bar -> A signature of presence
-- collections -> remove sunglasses cat
-- why raven house -> لأننا نختار ما يليق بمن لا يسعى إلى لفت الأنظار كي يترك أثرًا
-- In the contact page:
-
-	1- remove under contact us text
-	2- visit the boutique (remove)
-	3- reachout: remove all
-	4- keep just face and insta
-	5- remove form
-	6- footer: remove text under logo
-- header in each page removed with it's line
-- add others as a tap
-- remove auth
-
 
 ----------new questions to ask-----------
 
 - gender kinds.
 - available hours for business in contact us page
+- social media and phone number
 
 ------------things to do-------------
 
 - cart order placed message should stay still until user removes it.
 - in the product details page I want the if there are other images for that product to be clickable and show in the big image
+- English translation looks like AI and it's hard words
+- 
+
+-------------things to add later---------
+
+- shipping fee

@@ -1,5 +1,82 @@
 /* @import 'tailwindcss'; */
 
+/* ---------------------------------------------------------------------------
+   Arabic typefaces
+
+   Both are scoped with unicode-range to the Arabic blocks, so Latin copy keeps
+   rendering in Cormorant Garamond / Inter and the browser only falls through to
+   these faces for Arabic characters.
+
+   Display  ->  Amiri                (the Arabic counterpart of Cormorant Garamond)
+   Body/UI  ->  IBM Plex Sans Arabic  (the Arabic counterpart of Inter)
+   --------------------------------------------------------------------------- */
+
+/* Amiri — Regular */
+@font-face {
+    font-family: "Amiri";
+    src: url("/fonts/amiri/Amiri-Regular.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E,
+        U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* Amiri — Bold */
+@font-face {
+    font-family: "Amiri";
+    src: url("/fonts/amiri/Amiri-Bold.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E,
+        U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* IBM Plex Sans Arabic — Regular */
+@font-face {
+    font-family: "IBM Plex Sans Arabic";
+    src: url("/fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Regular.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E,
+        U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* IBM Plex Sans Arabic — Medium */
+@font-face {
+    font-family: "IBM Plex Sans Arabic";
+    src: url("/fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Medium.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E,
+        U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* IBM Plex Sans Arabic — SemiBold */
+@font-face {
+    font-family: "IBM Plex Sans Arabic";
+    src: url("/fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-SemiBold.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E,
+        U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* IBM Plex Sans Arabic — Bold */
+@font-face {
+    font-family: "IBM Plex Sans Arabic";
+    src: url("/fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Bold.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E,
+        U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FEFF;
+}
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -32,7 +109,7 @@ html {
 }
 
 body {
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;
     background-color: var(--raven-bg);
     color: #f4f4f5;
     position: relative;
@@ -63,12 +140,7 @@ body::after {
 }
 
 .font-display {
-    font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-}
-
-html[lang="ar"] body,
-html[lang="ar"] .font-display {
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: "Cormorant Garamond", "Playfair Display", "Amiri", Georgia, serif;
 }
 
 .text-gold {
@@ -368,12 +440,12 @@ html[lang="ar"] .font-display {
 }
 
 .offcanvas-raven .offcanvas-title {
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family: "Cormorant Garamond", "Amiri", Georgia, serif;
     letter-spacing: 0.2em;
 }
 
 .offcanvas-raven .nav-link {
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family: "Cormorant Garamond", "Amiri", Georgia, serif;
     font-size: 1.75rem;
     color: #d4d4d8;
     padding: 0.5rem 0;
@@ -423,7 +495,7 @@ html[lang="ar"] .font-display {
     padding: 0.65rem 1rem;
     border-radius: 0.5rem;
     color: var(--raven-muted);
-    font-family: "Inter", sans-serif;
+    font-family: "Inter", "IBM Plex Sans Arabic", sans-serif;
     font-size: 1rem;
     text-decoration: none;
 }
@@ -657,7 +729,7 @@ html[lang="ar"] .why-raven__text {
 }
 
 .marquee-track span {
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family: "Cormorant Garamond", "Amiri", Georgia, serif;
     font-size: clamp(1rem, 2.5vw, 1.35rem);
     letter-spacing: 0.35em;
     text-transform: uppercase;
@@ -694,7 +766,7 @@ html[lang="ar"] .why-raven__text {
 }
 
 .quote-luxury blockquote {
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family: "Cormorant Garamond", "Amiri", Georgia, serif;
     font-size: clamp(1.75rem, 4vw, 2.75rem);
     font-style: italic;
     font-weight: 400;
@@ -708,7 +780,7 @@ html[lang="ar"] .why-raven__text {
     display: block;
     margin-top: 2rem;
     font-style: normal;
-    font-family: "Inter", sans-serif;
+    font-family: "Inter", "IBM Plex Sans Arabic", sans-serif;
     font-size: 0.7rem;
     letter-spacing: 0.4em;
     text-transform: uppercase;
@@ -724,7 +796,7 @@ html[lang="ar"] .why-raven__text {
 }
 
 .stat-item .stat-number {
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family: "Cormorant Garamond", "Amiri", Georgia, serif;
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 600;
     line-height: 1;
@@ -1672,4 +1744,55 @@ html[lang="ar"] .why-raven__text {
 
 .modal .btn-close:hover {
     filter: brightness(1);
+}
+
+/* ---------------------------------------------------------------------------
+   Arabic typography corrections
+
+   Arabic is a joined (cursive) script. The tracking used across the theme is
+   tuned for uppercase Latin and pulls connected Arabic letters apart, which
+   destroys the word silhouette — so it is neutralised in the Arabic locale.
+   Amiri also sits deeper on the baseline than Cormorant Garamond, so Arabic
+   needs more leading than the Latin layout allows for.
+   --------------------------------------------------------------------------- */
+
+html[lang="ar"] .section-eyebrow,
+html[lang="ar"] .tracking-luxury,
+html[lang="ar"] .tracking-brand,
+html[lang="ar"] .navbar-raven .site-nav-link,
+html[lang="ar"] .offcanvas-raven .offcanvas-title,
+html[lang="ar"] .offcanvas-raven .nav-link,
+html[lang="ar"] .marquee-track span,
+html[lang="ar"] .quote-luxury cite,
+html[lang="ar"] .stat-item .stat-label,
+html[lang="ar"] .modal-body .form-label {
+    letter-spacing: normal;
+}
+
+/* The Latin theme leans on deep descenders and tight leading; loosen it. */
+html[lang="ar"] .hero-cinema .hero-title,
+html[lang="ar"] .section-title {
+    line-height: 1.4;
+}
+
+html[lang="ar"] .offcanvas-raven .nav-link {
+    line-height: 1.6;
+}
+
+/* Amiri's italic is not loaded, so this would be a synthetic oblique. */
+html[lang="ar"] .quote-luxury blockquote {
+    font-style: normal;
+    line-height: 1.75;
+}
+
+html[lang="ar"] p,
+html[lang="ar"] li {
+    line-height: 1.85;
+}
+
+/* The auth pages are the one place a page title sits in the display face while
+   every word around it is body copy, so the Arabic headline keeps the Arabic
+   body face. Latin still renders in Cormorant Garamond via `.font-display`. */
+html[lang="ar"] .auth-title {
+    font-family: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;
 }

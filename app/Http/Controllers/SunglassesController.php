@@ -36,16 +36,14 @@ class SunglassesController extends Controller
     public function show(Sunglasses $sunglasses)
     {
         $sunglasses->load(['category', 'images']);
-        
+
         // Get related products from the same category (excluding current product)
         $relatedProducts = Sunglasses::where('sunglasses_category_id', $sunglasses->sunglasses_category_id)
             ->where('id', '!=', $sunglasses->id)
             ->with(['category', 'images'])
             ->limit(6)
             ->get();
-        
-        $runslasses = App\Models\Sunglasses::findOrFail(10);
-        
+
         return view('website.pages.sunglasses.show', compact('sunglasses', 'relatedProducts'));
     }
 }

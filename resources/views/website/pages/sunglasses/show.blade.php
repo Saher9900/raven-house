@@ -4,7 +4,7 @@
         <section class="pb-5">
             <div class="container">
                 <a href="{{ route('sunglasses.page') }}" class="btn btn-outline-gold rounded-pill px-4 mb-4">
-                    ← Back to Sunglasses
+                    {{ __('website.sunglasses.back') }}
                 </a>
 
                 <div class="row g-5">
@@ -42,7 +42,7 @@
                     <!-- Product Details -->
                     <div class="col-lg-7">
                         <span class="text-gold text-uppercase small opacity-75">
-                            {{ $sunglasses->category?->name ?? 'Uncategorized' }}
+                            {{ $sunglasses->category?->name ?? __('website.product.uncategorized') }}
                         </span>
 
                         <h1 class="font-display display-5 fw-bold text-white mt-3 mb-2">{{ $sunglasses->name }}</h1>
@@ -65,20 +65,25 @@
                             <div class="col-6">
                                 <div class="card bg-raven-surface border-gold rounded-3">
                                     <div class="card-body">
-                                        <p class="text-gold small text-uppercase mb-2">Gender</p>
-                                        <p class="text-white fw-semibold mb-0">{{ $sunglasses->gender ? ucwords($sunglasses->gender) : 'Not specified' }}</p>
+                                        <p class="text-gold small text-uppercase mb-2">{{ __('website.product.gender') }}</p>
+                                        <p class="text-white fw-semibold mb-0">{{ __(match ($sunglasses->gender) {
+                                            'men' => 'website.gender.men',
+                                            'women' => 'website.gender.women',
+                                            'men & women' => 'website.gender.men_and_women',
+                                            default => 'website.gender.not_specified',
+                                        }) }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="card bg-raven-surface border-gold rounded-3">
                                     <div class="card-body">
-                                        <p class="text-gold small text-uppercase mb-2">Stock</p>
+                                        <p class="text-gold small text-uppercase mb-2">{{ __('website.product.stock') }}</p>
                                         <p class="text-white fw-semibold mb-0">
                                             @if($sunglasses->stock > 0)
-                                                {{ $sunglasses->stock }} Available
+                                                {{ $sunglasses->stock }} {{ __('website.product.available') }}
                                             @else
-                                                <span class="text-danger">Out of Stock</span>
+                                                <span class="text-danger">{{ __('website.product.out_of_stock') }}</span>
                                             @endif
                                         </p>
                                     </div>
@@ -89,7 +94,7 @@
                         <!-- Description -->
                         @if($sunglasses->description)
                             <div class="mb-4">
-                                <h5 class="text-gold mb-3">Description</h5>
+                                <h5 class="text-gold mb-3">{{ __('website.product.description') }}</h5>
                                 <p class="text-muted-raven">{{ $sunglasses->description }}</p>
                             </div>
                         @endif
@@ -101,7 +106,7 @@
                             data-product-id="{{ $sunglasses->id }}"
                             @disabled($sunglasses->stock < 1)>
                             <span class="fs-5">
-                                {{ $sunglasses->stock < 1 ? 'Out of Stock' : 'Add to Cart' }}
+                                {{ $sunglasses->stock < 1 ? __('website.product.out_of_stock') : __('website.product.add_to_cart') }}
                             </span>
                         </button>
                     </div>
@@ -114,8 +119,8 @@
             <section class="py-5 section-muted">
                 <div class="container">
                     <div class="text-center mb-5">
-                        <p class="section-eyebrow mb-3">Similar Styles</p>
-                        <h2 class="font-display section-title fw-semibold text-white">Related Sunglasses</h2>
+                        <p class="section-eyebrow mb-3">{{ __('website.sunglasses.similar_eyebrow') }}</p>
+                        <h2 class="font-display section-title fw-semibold text-white">{{ __('website.sunglasses.related_title') }}</h2>
                         <div class="luxury-divider" aria-hidden="true"><span>◆</span></div>
                     </div>
 
@@ -139,7 +144,7 @@
                                     </div>
                                     <div class="p-4">
                                         <span class="text-gold text-uppercase small opacity-75">
-                                            {{ $product->category?->name ?? 'Uncategorized' }}
+                                            {{ $product->category?->name ?? __('website.product.uncategorized') }}
                                         </span>
                                         <h3 class="font-display h5 fw-semibold text-white mt-2">{{ $product->name }}</h3>
                                         <p class="text-secondary small mb-0">{{ $product->brand }}</p>
@@ -155,7 +160,7 @@
                                         </div>
                                         <div class="d-flex gap-2">
                                             <a href="{{ route('sunglasses.show', $product) }}" class="btn btn-outline-gold btn-sm rounded-pill flex-grow-1">
-                                                View Details
+                                                {{ __('website.product.view_details') }}
                                             </a>
                                             @auth
                                                 <button type="button"
@@ -163,7 +168,7 @@
                                                     data-product-type="sunglasses"
                                                     data-product-id="{{ $product->id }}"
                                                     @disabled($product->stock < 1)
-                                                    title="{{ $product->stock < 1 ? 'Out of Stock' : 'Add to Cart' }}">
+                                                    title="{{ $product->stock < 1 ? __('website.product.out_of_stock') : __('website.product.add_to_cart') }}">
                                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
                                                         <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2z"/>
                                                     </svg>
@@ -174,7 +179,7 @@
                                                     data-product-type="sunglasses"
                                                     data-product-id="{{ $product->id }}"
                                                     @disabled($product->stock < 1)
-                                                    title="{{ $product->stock < 1 ? 'Out of Stock' : 'Add to Cart' }}">
+                                                    title="{{ $product->stock < 1 ? __('website.product.out_of_stock') : __('website.product.add_to_cart') }}">
                                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
                                                         <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2z"/>
                                                     </svg>

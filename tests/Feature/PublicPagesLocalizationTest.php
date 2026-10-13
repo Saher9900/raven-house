@@ -1,5 +1,11 @@
 <?php
 
+use App\Models\Perfume;
+use App\Models\Sunglasses;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
+
 it('persists the selected language and renders the arabic about page right to left', function () {
     $this->from(route('about.page'))
         ->post(route('language.update', 'ar'))
@@ -37,7 +43,7 @@ it('shows the updated contact details without the boutique, email, or message fo
     $this->get(route('contact.page'))
         ->assertOk()
         ->assertSee('Reach Out to Us')
-        ->assertSee('+20 106 204 4462')
+        ->assertDontSee('+20 106 204 4462')
         ->assertSee('Available 24 hours')
         ->assertSee('Instagram')
         ->assertSee('Facebook')
@@ -61,4 +67,102 @@ it('switches back to english from the language control', function () {
 it('does not allow unsupported locales', function () {
     $this->post(route('language.update', 'fr'))
         ->assertNotFound();
+});
+
+it('translates the perfume listing chrome but leaves catalogue data untouched', function () {
+    $perfume = Perfume::factory()->create([
+        'name' => 'Noir Absolu',
+        'gender' => 'men',
+        'stock' => 4,
+    ]);
+
+    $this->withSession(['locale' => 'ar'])
+        ->get(route('perfumes.page'))
+        ->assertOk()
+        ->assertSee('العطور')
+        ->assertSee('تصفية المجموعة')
+        ->assertSee('تطبيق التصفية')
+        ->assertSee('أضف إلى السلة')
+        ->assertSee('عرض التفاصيل')
+        ->assertSee('رجال')
+        ->assertSee('المخزون')
+        // Catalogue data is authored once and rendered as stored in every locale.
+        ->assertSee('Noir Absolu')
+        ->assertDontSee('Refine Collection')
+        ->assertDontSee('Apply filters')
+        ->assertDontSee('View Details');
+});
+
+it('does not invite the visitor to a private consultation on the perfume listing', function () {
+    $this->get(route('perfumes.page'))
+        ->assertOk()
+        ->assertDontSee('Interested in a private consultation?')
+        ->assertDontSee('Get in touch');
+});
+
+it('translates the perfume detail page', function () {
+    $perfume = Perfume::factory()->create([
+        'name' => 'Noir Absolu',
+        'gender' => 'women',
+    ]);
+
+    $this->withSession(['locale' => 'ar'])
+        ->get(route('perfumes.show', $perfume))
+        ->assertOk()
+        ->assertSee('→ العودة إلى العطور')
+        ->assertSee('الوصف')
+        ->assertSee('نساء')
+        ->assertSee('أضف إلى السلة')
+        ->assertSee('Noir Absolu')
+        ->assertDontSee('Back to Perfumes')
+        // The template's HTML section comments keep the English labels, so assert on
+        // rendered copy instead: a missing translation key renders as its dotted name.
+        ->assertDontSee('website.');
+});
+
+it('translates the sunglasses coming soon page', function () {
+    $this->withSession(['locale' => 'ar'])
+        ->get(route('sunglasses.page'))
+        ->assertOk()
+        ->assertSee('قريبًا')
+        ->assertDontSee('Coming Soon');
+});
+
+it('translates the sunglasses detail page', function () {
+    $sunglasses = Sunglasses::factory()->create([
+        'name' => 'Aviator Noir',
+        'gender' => 'men & women',
+    ]);
+
+    $this->withSession(['locale' => 'ar'])
+        ->get(route('sunglasses.show', $sunglasses))
+        ->assertOk()
+        ->assertSee('→ العودة إلى النظارات الشمسية')
+        ->assertSee('رجال ونساء')
+        ->assertSee('Aviator Noir')
+        ->assertDontSee('Back to Sunglasses')
+        ->assertDontSee('Not specified');
+});
+
+it('translates the login and register pages', function () {
+    $this->withSession(['locale' => 'ar'])
+        ->get(route('login'))
+        ->assertOk()
+        ->assertSee('أهلًا بعودتك')
+        ->assertSee('البريد الإلكتروني')
+        ->assertSee('كلمة المرور')
+        ->assertSee('تذكرني')
+        ->assertDontSee('Welcome Back')
+        ->assertDontSee('Remember me');
+
+    $this->withSession(['locale' => 'ar'])
+        ->get(route('register'))
+        ->assertOk()
+        ->assertSee('انضم إلى Raven House')
+        ->assertSee('إنشاء حساب')
+        ->assertSee('رقم الهاتف')
+        ->assertSee('تأكيد كلمة المرور')
+        ->assertSee('عنوان الشحن (اختياري)')
+        ->assertDontSee('Join Raven House')
+        ->assertDontSee('Confirm password');
 });
