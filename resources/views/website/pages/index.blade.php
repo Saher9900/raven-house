@@ -12,6 +12,9 @@
                 <p class="hero-lead mx-auto mt-3 mb-0 text-muted-raven reveal reveal-delay-2">
                     {{ __('website.home.intro') }}
                 </p>
+                <a href="{{ route('shop.page') }}" class="btn btn-gold rounded-pill mt-4 reveal reveal-delay-3">
+                    {{ __('website.home.shop_now') }}
+                </a>
             </div>
             <div class="position-absolute bottom-0 start-0 w-100 hero-fade-bottom"></div>
         </section>

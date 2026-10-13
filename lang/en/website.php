@@ -23,6 +23,7 @@ return [
         'logout' => 'Logout',
     ],
     'home' => [
+        'shop_now' => 'Shop Now',
         'intro' => 'Details chosen with care, to reflect a distinctive personality and an unforgettable presence.',
         'check_perfumes' => 'Check Our Perfumes',
         'raven_alt' => 'The Raven House raven on the sands of Cairo.',
@@ -48,6 +49,11 @@ We believe that true luxury does not announce itself, and that exceptional prese
         'marquee' => 'Stay Tuned',
         'back_home' => 'Back to Home',
     ],
+    'shop_gender' => [
+        'title' => 'Choose Your Presence',
+        'intro' => 'Every scent begins with a presence. Choose yours.',
+        'discover' => 'Discover',
+    ],
     'contact' => [
         'title' => 'Contact Us',
         'subtitle' => 'Reach Out to Us',
@@ -59,7 +65,6 @@ We believe that true luxury does not announce itself, and that exceptional prese
         'facebook' => 'Facebook',
     ],
     'footer' => [
-        'tagline' => 'Where vision meets aroma.',
         'copyright' => '© :year Raven House. All rights reserved.',
     ],
 ];

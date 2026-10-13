@@ -1529,14 +1529,6 @@ html[lang="ar"] .why-raven__text {
     color: var(--gold-light);
 }
 
-.footer-tagline {
-    font-family: "Cormorant Garamond", Georgia, serif;
-    font-style: italic;
-    color: var(--raven-muted);
-    font-size: 0.95rem;
-    letter-spacing: 0.05em;
-}
-
 .social-btn {
     width: 2.75rem;
     height: 2.75rem;

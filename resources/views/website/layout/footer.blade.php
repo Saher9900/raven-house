@@ -3,13 +3,10 @@
          <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
              <div class="text-center text-md-start">
                  <a href="{{ route('home') }}" class="d-inline-block text-decoration-none">
-                     <img src="{{ asset('images/logo.png') }}" alt="Raven House" class="site-logo site-logo--footer" width="76"
-                         height="76" />
-                 </a>
-                 <p class="footer-tagline mt-2 mb-0">
-                     {{ __('website.footer.tagline') }}
-                 </p>
-             </div>
+                  <img src="{{ asset('images/logo.png') }}" alt="Raven House" class="site-logo site-logo--footer" width="76"
+                        height="76" />
+                </a>
+            </div>
              <nav class="d-flex flex-wrap justify-content-center gap-3 gap-md-4 small">
                  <a href="{{ route('home') }}">{{ __('website.navigation.home') }}</a>
                  <a href="{{ route('about.page') }}">{{ __('website.navigation.about') }}</a>

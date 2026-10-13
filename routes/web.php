@@ -30,6 +30,7 @@ Route::get('sunglasses/{sunglasses}', [SunglassesController::class, 'show'])->na
 Route::view('contact', 'website.pages.contact')->name('contact.page');
 Route::view('about', 'website.pages.about')->name('about.page');
 Route::view('coming-soon', 'website.pages.coming-soon')->name('coming-soon.page');
+Route::view('shop', 'website.pages.shop-gender')->name('shop.page');
 
 Route::post('language/{locale}', function (Request $request, string $locale): RedirectResponse {
     $request->session()->put('locale', $locale);
