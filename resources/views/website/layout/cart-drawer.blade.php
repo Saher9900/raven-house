@@ -47,35 +47,35 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addressModalLabel">Delivery Information</h5>
+                <h5 class="modal-title" id="addressModalLabel">{{ __('website.checkout.delivery_information') }}</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="addressForm">
                     @guest
                         <div class="mb-3">
-                            <label for="customerName" class="form-label">Full Name</label>
+                            <label for="customerName" class="form-label">{{ __('website.checkout.full_name') }}</label>
                             <input class="form-control rounded-3" id="customerName" name="customer_name" type="text" maxlength="255" required>
                         </div>
                         <div class="mb-3">
-                            <label for="customerPhone" class="form-label">Phone</label>
+                            <label for="customerPhone" class="form-label">{{ __('website.checkout.phone') }}</label>
                             <input class="form-control rounded-3" id="customerPhone" name="customer_phone" type="tel" maxlength="20" required>
                         </div>
                     @endguest
                     <div class="mb-3">
-                        <label for="shippingAddress" class="form-label">Shipping Address</label>
+                        <label for="shippingAddress" class="form-label">{{ __('website.checkout.shipping_address') }}</label>
                         <textarea class="form-control rounded-3" id="shippingAddress" name="shipping_address" rows="4"
-                            placeholder="Enter your full shipping address&#10;(Street, City, State, Zip, Country)" required></textarea>
+                            placeholder="Enter your full shipping address&#10;(Street, City, State, Zip, Country)" required>@auth{{ auth()->user()?->shipping_address }}@endauth</textarea>
                         @auth
-                            <small class="text-muted-raven">This will be saved to your account for future orders.</small>
+                            <small class="text-muted-raven">{{ __('website.checkout.address_hint') }}</small>
                         @endauth
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-gold rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline-gold rounded-pill" data-bs-dismiss="modal">{{ __('website.checkout.cancel') }}</button>
                 <button type="button" class="btn btn-gold rounded-pill" id="saveAddressBtn">
-                    @auth Save & Checkout @else Place Order @endauth
+                    {{ __('website.checkout.continue_to_payment') }}
                 </button>
             </div>
         </div>

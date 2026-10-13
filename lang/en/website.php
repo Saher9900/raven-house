@@ -2,6 +2,9 @@
 
 return [
     'switch_language' => 'العربية',
+    'general' => [
+        'close' => 'Close',
+    ],
     'meta' => [
         'title' => 'Raven House — Luxury Sunglasses & Perfumes',
         'description' => 'Raven House — curated luxury sunglasses and signature fragrances.',
@@ -63,6 +66,32 @@ We believe that true luxury does not announce itself, and that exceptional prese
         'available_24_hours' => 'Available 24 hours',
         'instagram' => 'Instagram',
         'facebook' => 'Facebook',
+    ],
+    'checkout' => [
+        'delivery_information' => 'Delivery Information',
+        'full_name' => 'Full Name',
+        'phone' => 'Phone',
+        'email' => 'Email',
+        'shipping_address' => 'Shipping Address',
+        'address_hint' => 'This will be saved to your account for future orders.',
+        'cancel' => 'Cancel',
+        'continue_to_payment' => 'Continue to Payment',
+        'payment_title' => 'Choose Payment Method',
+        'payment_intro' => 'Select how you would like to pay for your order.',
+        'cash_on_delivery' => 'Cash on Delivery',
+        'cod_description' => 'Pay in cash when your order arrives.',
+        'checkout_btn' => 'Checkout',
+        'review_title' => 'Review Your Order',
+        'review_intro' => 'Confirm your details, then place your order.',
+        'review_errors' => 'Please review the highlighted fields.',
+        'order_summary' => 'Order Summary',
+        'payment_method' => 'Payment Method',
+        'total' => 'Total',
+        'place_order' => 'Place Order',
+        'order_placed' => 'Order placed successfully! Our team will review it shortly.',
+        'requires_delivery' => 'Please provide your delivery information first.',
+        'cart_empty' => 'Your cart is empty.',
+        'insufficient_stock' => ':name only has :stock left in stock.',
     ],
     'footer' => [
         'copyright' => '© :year Raven House. All rights reserved.',

@@ -16,7 +16,7 @@ const getConfig = () => {
     return {
         indexUrl: body.dataset.cartIndex ?? null,
         storeUrl: body.dataset.cartStore ?? null,
-        checkoutUrl: body.dataset.checkoutStore ?? null,
+        deliveryUrl: body.dataset.checkoutDelivery ?? null,
         authenticated: body.dataset.authenticated === "true",
     };
 };
@@ -194,19 +194,16 @@ const removeCartItem = async (cartItemId) => {
     showToast(data.message ?? "Item removed.");
 };
 
-const checkout = async (customerDetails = {}) => {
-    const { checkoutUrl } = getConfig();
+const saveDelivery = async (customerDetails) => {
+    const { deliveryUrl } = getConfig();
 
-    if (!checkoutUrl) {
-        return;
+    if (!deliveryUrl) {
+        throw new Error("Checkout is unavailable.");
     }
 
-    const { data } = await window.axios.post(checkoutUrl, customerDetails);
+    const { data } = await window.axios.post(deliveryUrl, customerDetails);
 
-    renderCart(data);
-    showToast(data.message ?? "Order placed successfully.");
-    window.bootstrap.Modal.getInstance(document.getElementById("addressModal"))?.hide();
-    window.bootstrap.Offcanvas.getInstance(document.getElementById("cartDrawer"))?.hide();
+    window.location.href = data.redirect;
 };
 
 const saveAddress = async (shippingAddress) => {
@@ -221,7 +218,6 @@ const bindAddressModalEvents = () => {
     const addressModal = document.getElementById('addressModal');
     const saveAddressBtn = document.getElementById('saveAddressBtn');
     const addressForm = document.getElementById('addressForm');
-    const shippingAddressInput = document.getElementById('shippingAddress');
 
     if (!addressModal || !saveAddressBtn || !addressForm) {
         return;
@@ -236,21 +232,18 @@ const bindAddressModalEvents = () => {
 
         try {
             const { authenticated } = getConfig();
+            const customerDetails = Object.fromEntries(new FormData(addressForm).entries());
 
             if (authenticated) {
-                await saveAddress(shippingAddressInput.value);
-                await checkout();
-            } else {
-                const customerDetails = Object.fromEntries(new FormData(addressForm).entries());
-                await checkout(customerDetails);
+                await saveAddress(customerDetails.shipping_address);
             }
 
+            await saveDelivery(customerDetails);
         } catch (error) {
             showToast(
-                error.response?.data?.message ?? "Unable to place your order.",
+                error.response?.data?.message ?? "Unable to continue to payment.",
                 true,
             );
-        } finally {
             saveAddressBtn.disabled = false;
         }
     });
@@ -326,27 +319,8 @@ const bindCartEvents = () => {
         if (checkoutButton) {
             event.preventDefault();
 
-            if (!getConfig().authenticated) {
-                const addressModal = new window.bootstrap.Modal(document.getElementById('addressModal'));
-                addressModal.show();
-
-                return;
-            }
-
-            checkoutButton.disabled = true;
-
-            try {
-                await checkout();
-            } catch (error) {
-                if (error.response?.status === 422 && error.response?.data?.requires_address) {
-                    const addressModal = new window.bootstrap.Modal(document.getElementById('addressModal'));
-                    addressModal.show();
-                } else {
-                    showToast(error.response?.data?.message ?? "Checkout failed.", true);
-                }
-            } finally {
-                checkoutButton.disabled = false;
-            }
+            const addressModal = new window.bootstrap.Modal(document.getElementById('addressModal'));
+            addressModal.show();
         }
     });
 

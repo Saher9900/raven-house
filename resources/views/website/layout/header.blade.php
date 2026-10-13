@@ -24,7 +24,7 @@
 <body class="bg-raven page-home"
     data-cart-index="{{ route('cart.index') }}"
     data-cart-store="{{ route('cart.store') }}"
-    data-checkout-store="{{ route('checkout.store') }}"
+    data-checkout-delivery="{{ route('checkout.delivery') }}"
     data-authenticated="{{ auth()->check() ? 'true' : 'false' }}">
 
     <nav id="site-header" class="navbar navbar-expand-xxl navbar-dark fixed-top navbar-raven bg-raven py-3">

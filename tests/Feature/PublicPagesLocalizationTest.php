@@ -24,10 +24,11 @@ it('shows the raven portrait and only the requested signature in the home marque
         ->assertSee('A living portrait of the Raven House raven')
         ->assertSee('A signature of presence')
         ->assertSee('Check Our Perfumes')
+        ->assertSee('Shop Now')
+        ->assertSee('Why Raven House')
         ->assertSee(route('perfumes.page'), false)
         ->assertDontSee('The Raven House Manifesto')
         ->assertDontSee('Our Collections')
-        ->assertDontSee('Why Raven House')
         ->assertDontSee('Begin Your Journey')
         ->assertDontSee('logo-details.png');
 });

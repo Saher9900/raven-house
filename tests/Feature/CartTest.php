@@ -104,8 +104,11 @@ it('updates and removes cart items', function () {
     $this->assertDatabaseMissing('cart_items', ['id' => $cartItem->id]);
 });
 
-it('creates an order in the dashboard when checking out', function () {
-    $user = User::factory()->create(['shipping_address' => '123 Member Street']);
+it('places an order for a member through the payment and review steps', function () {
+    $user = User::factory()->create([
+        'phone_number' => '555-0100',
+        'shipping_address' => '123 Member Street',
+    ]);
     $perfume = Perfume::factory()->create(['stock' => 4, 'price' => 80, 'sale' => 60]);
 
     CartItem::query()->create([
@@ -116,10 +119,32 @@ it('creates an order in the dashboard when checking out', function () {
         'unit_price' => 60,
     ]);
 
-    $response = $this->actingAs($user)->postJson(route('checkout.store'));
+    $this->actingAs($user)
+        ->postJson(route('checkout.delivery'), ['shipping_address' => '123 Member Street'])
+        ->assertOk()
+        ->assertJsonPath('redirect', route('checkout.payment'));
 
-    $response->assertOk()
-        ->assertJsonPath('count', 0);
+    $this->get(route('checkout.payment'))
+        ->assertOk()
+        ->assertSee('Cash on Delivery');
+
+    $this->post(route('checkout.payment-method'), ['payment_method' => 'cod'])
+        ->assertRedirect(route('checkout.review'));
+
+    $this->get(route('checkout.review'))
+        ->assertOk()
+        ->assertSee($perfume->name)
+        ->assertSee('555-0100')
+        ->assertSee('name="payment_method"', false);
+
+    $this->post(route('checkout.store'), [
+        'customer_name' => $user->name,
+        'customer_email' => $user->email,
+        'customer_phone' => '555-0100',
+        'shipping_address' => '123 Member Street',
+        'payment_method' => 'cod',
+    ])->assertRedirect(route('home'))
+        ->assertSessionHas('success');
 
     $order = Order::query()->first();
 
@@ -127,13 +152,14 @@ it('creates an order in the dashboard when checking out', function () {
         ->and($order->user_id)->toBe($user->id)
         ->and((float) $order->total)->toBe(120.0)
         ->and($order->status)->toBe('pending')
+        ->and($order->payment_method)->toBe('cod')
         ->and($order->items)->toHaveCount(1);
 
     expect($perfume->fresh()->stock)->toBe(2);
     expect(CartItem::query()->count())->toBe(0);
 });
 
-it('places an order for a guest using the session cart and submitted contact details', function () {
+it('places an order for a guest through the payment and review steps', function () {
     $perfume = Perfume::factory()->create(['stock' => 4, 'price' => 80, 'sale' => 60]);
 
     $this->postJson(route('cart.store'), [
@@ -142,13 +168,29 @@ it('places an order for a guest using the session cart and submitted contact det
         'quantity' => 2,
     ])->assertOk();
 
-    $response = $this->postJson(route('checkout.store'), [
+    $this->postJson(route('checkout.delivery'), [
         'customer_name' => 'Guest Customer',
         'customer_phone' => '555-0100',
         'shipping_address' => '123 Market Street',
-    ]);
+    ])->assertOk()
+        ->assertJsonPath('redirect', route('checkout.payment'));
 
-    $response->assertOk()->assertJsonPath('count', 0);
+    $this->post(route('checkout.payment-method'), ['payment_method' => 'cod'])
+        ->assertRedirect(route('checkout.review'));
+
+    $this->get(route('checkout.review'))
+        ->assertOk()
+        ->assertSee($perfume->name)
+        ->assertSee('name="payment_method"', false);
+
+    $this->post(route('checkout.store'), [
+        'customer_name' => 'Guest Customer',
+        'customer_email' => null,
+        'customer_phone' => '555-0100',
+        'shipping_address' => '123 Market Street',
+        'payment_method' => 'cod',
+    ])->assertRedirect(route('home'))
+        ->assertSessionHas('success');
 
     $order = Order::query()->first();
 
@@ -159,6 +201,7 @@ it('places an order for a guest using the session cart and submitted contact det
         ->and($order->customer_phone)->toBe('555-0100')
         ->and($order->shipping_address)->toBe('123 Market Street')
         ->and((float) $order->total)->toBe(120.0)
+        ->and($order->payment_method)->toBe('cod')
         ->and($order->items)->toHaveCount(1);
 
     expect($perfume->fresh()->stock)->toBe(2);
@@ -166,7 +209,7 @@ it('places an order for a guest using the session cart and submitted contact det
     $this->getJson(route('cart.index'))->assertJsonPath('count', 0);
 });
 
-it('requires all contact details before placing a guest order', function () {
+it('requires all contact details and a payment method before placing a guest order', function () {
     $perfume = Perfume::factory()->create(['stock' => 2]);
 
     $this->postJson(route('cart.store'), [
@@ -180,10 +223,16 @@ it('requires all contact details before placing a guest order', function () {
             'customer_name',
             'customer_phone',
             'shipping_address',
+            'payment_method',
         ]);
 
     expect(Order::query()->count())->toBe(0)
         ->and($perfume->fresh()->stock)->toBe(2);
+});
+
+it('guards the payment page until delivery details are stored', function () {
+    $this->get(route('checkout.payment'))
+        ->assertRedirect(route('cart.index'));
 });
 
 it('allows admins to view orders in the dashboard', function () {

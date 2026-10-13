@@ -2,6 +2,9 @@
 
 return [
     'switch_language' => 'English',
+    'general' => [
+        'close' => 'إغلاق',
+    ],
     'meta' => [
         'title' => 'Raven House — نظارات فاخرة وعطور مميزة',
         'description' => 'Raven House — نظارات فاخرة مختارة وعطور مميزة.',
@@ -63,6 +66,32 @@ return [
         'available_24_hours' => 'متاحون على مدار ٢٤ ساعة',
         'instagram' => 'إنستغرام',
         'facebook' => 'فيسبوك',
+    ],
+    'checkout' => [
+        'delivery_information' => 'بيانات التوصيل',
+        'full_name' => 'الاسم الكامل',
+        'phone' => 'الهاتف',
+        'email' => 'البريد الإلكتروني',
+        'shipping_address' => 'عنوان الشحن',
+        'address_hint' => 'سيتم حفظ هذا العنوان في حسابك للطلبات القادمة.',
+        'cancel' => 'إلغاء',
+        'continue_to_payment' => 'المتابعة إلى الدفع',
+        'payment_title' => 'اختر طريقة الدفع',
+        'payment_intro' => 'اختر كيفية دفع ثمن طلبك.',
+        'cash_on_delivery' => 'الدفع عند الاستلام',
+        'cod_description' => 'ادفع نقدًا عند وصول طلبك.',
+        'checkout_btn' => 'إتمام الشراء',
+        'review_title' => 'مراجعة طلبك',
+        'review_intro' => 'أكّد بياناتك ثم أتمم طلبك.',
+        'review_errors' => 'يرجى مراجعة الحقول المحددة.',
+        'order_summary' => 'ملخص الطلب',
+        'payment_method' => 'طريقة الدفع',
+        'total' => 'الإجمالي',
+        'place_order' => 'إتمام الطلب',
+        'order_placed' => 'تم إنشاء طلبك بنجاح! سيراجعه فريقنا قريبًا.',
+        'requires_delivery' => 'يرجى إدخال بيانات التوصيل أولًا.',
+        'cart_empty' => 'سلة التسوق فارغة.',
+        'insufficient_stock' => 'المتوفر من :name هو :stock فقط.',
     ],
     'footer' => [
         'copyright' => '© :year Raven House. جميع الحقوق محفوظة.',

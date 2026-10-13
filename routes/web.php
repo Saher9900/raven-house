@@ -52,6 +52,10 @@ Route::get('cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('cart', [CartController::class, 'store'])->name('cart.store');
 Route::patch('cart/{cartItem}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
+Route::get('checkout/payment', [CheckoutController::class, 'showPayment'])->name('checkout.payment');
+Route::post('checkout/payment', [CheckoutController::class, 'savePayment'])->name('checkout.payment-method');
+Route::get('checkout/review', [CheckoutController::class, 'showReview'])->name('checkout.review');
+Route::post('checkout/delivery', [CheckoutController::class, 'saveDelivery'])->name('checkout.delivery');
 Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
 Route::middleware('auth')->group(function () {

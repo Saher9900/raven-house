@@ -1198,6 +1198,11 @@ html[lang="ar"] .why-raven__text {
     color: #ffb4b4;
 }
 
+/* Flash messages — clear the fixed navbar */
+.flash-raven {
+    padding-top: 8.25rem;
+}
+
 .cart-badge {
     position: absolute;
     top: -0.35rem;
@@ -1424,6 +1429,37 @@ html[lang="ar"] .why-raven__text {
 .form-check-input:focus {
     border-color: rgba(212, 175, 55, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.12);
+}
+
+/* Checkout payment options */
+.payment-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.payment-option:hover {
+    border-color: rgba(212, 175, 55, 0.35);
+}
+
+.payment-option:has(.form-check-input:checked) {
+    border-color: rgba(212, 175, 55, 0.55);
+    background: rgba(212, 175, 55, 0.08);
+    box-shadow: 0 0 24px rgba(212, 175, 55, 0.12);
+}
+
+.checkout-form {
+    max-width: 640px;
+    margin-inline: auto;
 }
 
 .input-dark.is-invalid,
