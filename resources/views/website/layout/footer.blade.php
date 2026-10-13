@@ -2,24 +2,24 @@
      <div class="container">
          <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
              <div class="text-center text-md-start">
-                 <a href="index.html" class="d-inline-block text-decoration-none">
+                 <a href="{{ route('home') }}" class="d-inline-block text-decoration-none">
                      <img src="{{ asset('images/logo.png') }}" alt="Raven House" class="site-logo site-logo--footer" width="76"
                          height="76" />
                  </a>
                  <p class="footer-tagline mt-2 mb-0">
-                     Where vision meets aroma.
+                     {{ __('website.footer.tagline') }}
                  </p>
              </div>
              <nav class="d-flex flex-wrap justify-content-center gap-3 gap-md-4 small">
-                 <a href="index.html">Home</a>
-                 <a href="about.html">About Us</a>
-                 <a href="perfumes.html">Perfumes</a>
-                 <a href="sunglasses.html">Sunglasses</a>
-                 <a href="contact.html">Contact</a>
+                 <a href="{{ route('home') }}">{{ __('website.navigation.home') }}</a>
+                 <a href="{{ route('about.page') }}">{{ __('website.navigation.about') }}</a>
+                 <a href="{{ route('perfumes.page') }}">{{ __('website.navigation.perfumes') }}</a>
+                 <a href="{{ route('sunglasses.page') }}">{{ __('website.navigation.sunglasses') }}</a>
+                 <a href="{{ route('contact.page') }}">{{ __('website.navigation.contact') }}</a>
              </nav>
          </div>
          <p class="text-center text-secondary small mt-4 mb-0">
-             &copy; 2026 Raven House. All rights reserved.
+             {{ __('website.footer.copyright', ['year' => now()->year]) }}
          </p>
      </div>
  </footer>

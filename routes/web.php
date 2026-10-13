@@ -15,6 +15,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PerfumeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SunglassesController;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -27,6 +29,12 @@ Route::get('sunglasses/{sunglasses}', [SunglassesController::class, 'show'])->na
 
 Route::view('contact', 'website.pages.contact')->name('contact.page');
 Route::view('about', 'website.pages.about')->name('about.page');
+
+Route::post('language/{locale}', function (Request $request, string $locale): RedirectResponse {
+    $request->session()->put('locale', $locale);
+
+    return redirect()->back();
+})->whereIn('locale', ['en', 'ar'])->name('language.update');
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
