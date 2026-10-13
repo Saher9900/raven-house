@@ -15,9 +15,9 @@
                     <div class="col-md-6 col-lg-5 reveal">
                         <div class="card-raven rounded-4 p-4 p-lg-5 h-100 text-center">
                             <span class="text-gold text-uppercase small">{{ __('website.contact.phone') }}</span>
-                            <p class="font-display h3 fw-semibold mt-3 mb-0">
+                            {{-- <p class="font-display h3 fw-semibold mt-3 mb-0">
                                 <a href="tel:+201062044462" dir="ltr" class="text-gold text-decoration-none">+20 106 204 4462</a>
-                            </p>
+                            </p> --}}
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-5 reveal reveal-delay-1">
