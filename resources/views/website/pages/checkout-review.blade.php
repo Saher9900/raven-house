@@ -30,7 +30,10 @@
                                         type="text" maxlength="255" value="{{ old('customer_name', $details['customer_name'] ?? '') }}" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="customerEmail" class="form-label">{{ __('website.checkout.email') }}</label>
+                                    <label for="customerEmail" class="form-label">
+                                        {{ __('website.checkout.email') }}
+                                        <span class="text-muted-raven fw-normal text-lowercase">({{ __('website.general.optional') }})</span>
+                                    </label>
                                     <input class="form-control input-dark rounded-3 @error('customer_email') is-invalid @enderror" id="customerEmail" name="customer_email"
                                         type="email" maxlength="255" value="{{ old('customer_email', $details['customer_email'] ?? '') }}">
                                 </div>

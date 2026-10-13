@@ -25,6 +25,16 @@ it('filters the perfume collection by gender', function (string $gender) {
     'men and women' => ['men & women'],
 ]);
 
+it('renders an order now button on each perfume card', function () {
+    $perfume = Perfume::factory()->create(['stock' => 3]);
+
+    $this->get(route('perfumes.page'))
+        ->assertOk()
+        ->assertSee('Order Now')
+        ->assertSee('class="btn btn-outline-gold btn-sm rounded-pill w-100 mt-2 order-now-btn"', false)
+        ->assertSee('data-product-id="'.$perfume->id.'"', false);
+});
+
 it('offers gender filtering in both navigation menus', function () {
     $this->get(route('home'))
         ->assertOk()

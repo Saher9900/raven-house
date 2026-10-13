@@ -4,6 +4,8 @@ return [
     'switch_language' => 'English',
     'general' => [
         'close' => 'إغلاق',
+        'order_now' => 'اطلب الآن',
+        'optional' => 'اختياري',
     ],
     'meta' => [
         'title' => 'Raven House — نظارات فاخرة وعطور مميزة',

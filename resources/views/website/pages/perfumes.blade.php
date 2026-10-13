@@ -125,6 +125,13 @@
                                             </button>
                                         @endauth
                                     </div>
+                                    <button type="button"
+                                        class="btn btn-outline-gold btn-sm rounded-pill w-100 mt-2 order-now-btn"
+                                        data-product-type="perfume"
+                                        data-product-id="{{ $perfume->id }}"
+                                        @disabled($perfume->stock < 1)>
+                                        {{ __('website.general.order_now') }}
+                                    </button>
                                 </div>
                             </article>
                         </div>

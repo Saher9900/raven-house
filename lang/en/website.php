@@ -4,6 +4,8 @@ return [
     'switch_language' => 'العربية',
     'general' => [
         'close' => 'Close',
+        'order_now' => 'Order Now',
+        'optional' => 'Optional',
     ],
     'meta' => [
         'title' => 'Raven House — Luxury Sunglasses & Perfumes',

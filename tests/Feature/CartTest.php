@@ -143,7 +143,7 @@ it('places an order for a member through the payment and review steps', function
         'customer_phone' => '555-0100',
         'shipping_address' => '123 Member Street',
         'payment_method' => 'cod',
-    ])->assertRedirect(route('home'))
+    ])->assertRedirect(route('perfumes.page'))
         ->assertSessionHas('success');
 
     $order = Order::query()->first();
@@ -189,7 +189,7 @@ it('places an order for a guest through the payment and review steps', function 
         'customer_phone' => '555-0100',
         'shipping_address' => '123 Market Street',
         'payment_method' => 'cod',
-    ])->assertRedirect(route('home'))
+    ])->assertRedirect(route('perfumes.page'))
         ->assertSessionHas('success');
 
     $order = Order::query()->first();

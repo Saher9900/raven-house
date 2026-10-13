@@ -169,7 +169,7 @@ class CheckoutController extends Controller
         session()->forget('checkout');
 
         return redirect()
-            ->route('home')
+            ->route('perfumes.page')
             ->with('success', __('website.checkout.order_placed'));
     }
 

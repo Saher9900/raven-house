@@ -15,7 +15,7 @@
     @endif
 
     <div class="row g-4 mb-4">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card bg-raven-surface border-gold h-100">
                 <div class="card-body">
                     <h5 class="text-gold">Customer</h5>
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card bg-raven-surface border-gold h-100">
                 <div class="card-body">
                     <h5 class="text-gold">Order Date</h5>
@@ -35,7 +35,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
+            <div class="card bg-raven-surface border-gold h-100">
+                <div class="card-body">
+                    <h5 class="text-gold">Payment Method</h5>
+                    <p class="text-white mb-0">{{ $order->payment_method === 'cod' ? 'Cash on Delivery' : ucfirst($order->payment_method ?? '') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
             <div class="card bg-raven-surface border-gold h-100">
                 <div class="card-body">
                     <h5 class="text-gold">Total</h5>

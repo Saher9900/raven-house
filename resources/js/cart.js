@@ -156,7 +156,7 @@ const fetchCart = async () => {
     renderCart(data);
 };
 
-const addToCart = async (productType, productId) => {
+const addToCart = async (productType, productId, { openDrawer = true } = {}) => {
     const { storeUrl } = getConfig();
 
     if (!storeUrl) {
@@ -171,7 +171,10 @@ const addToCart = async (productType, productId) => {
 
     renderCart(data);
     showToast(data.message ?? "Product added to cart.");
-    window.bootstrap.Offcanvas.getOrCreateInstance(document.getElementById("cartDrawer")).show();
+
+    if (openDrawer) {
+        window.bootstrap.Offcanvas.getOrCreateInstance(document.getElementById("cartDrawer")).show();
+    }
 };
 
 const updateCartItem = async (cartItemId, quantity) => {
@@ -270,6 +273,38 @@ const bindCartEvents = () => {
                     error.response?.data?.message ?? "Unable to add item to cart.",
                     true,
                 );
+            }
+
+            return;
+        }
+
+        const orderNowButton = event.target.closest(".order-now-btn");
+
+        if (orderNowButton) {
+            event.preventDefault();
+
+            if (orderNowButton.disabled) {
+                return;
+            }
+
+            orderNowButton.disabled = true;
+
+            try {
+                await addToCart(
+                    orderNowButton.dataset.productType,
+                    orderNowButton.dataset.productId,
+                    { openDrawer: false },
+                );
+
+                const addressModal = new window.bootstrap.Modal(document.getElementById('addressModal'));
+                addressModal.show();
+            } catch (error) {
+                showToast(
+                    error.response?.data?.message ?? "Unable to add item to cart.",
+                    true,
+                );
+            } finally {
+                orderNowButton.disabled = false;
             }
 
             return;
