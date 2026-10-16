@@ -72,8 +72,12 @@ it('does not allow unsupported locales', function () {
 it('translates the perfume listing chrome but leaves catalogue data untouched', function () {
     $perfume = Perfume::factory()->create([
         'name' => 'Noir Absolu',
-        'gender' => 'men',
+        'perfume_type' => 'fragrance',
         'stock' => 4,
+    ]);
+    Perfume::factory()->create([
+        'name' => 'Gift Set',
+        'perfume_type' => 'box',
     ]);
 
     $this->withSession(['locale' => 'ar'])
@@ -84,8 +88,8 @@ it('translates the perfume listing chrome but leaves catalogue data untouched', 
         ->assertSee('تطبيق التصفية')
         ->assertSee('أضف إلى السلة')
         ->assertSee('عرض التفاصيل')
-        ->assertSee('رجال')
-        ->assertSee('المخزون')
+        ->assertSee('صندوق')
+        ->assertDontSee('المخزون')
         // Catalogue data is authored once and rendered as stored in every locale.
         ->assertSee('Noir Absolu')
         ->assertDontSee('Refine Collection')
@@ -103,7 +107,7 @@ it('does not invite the visitor to a private consultation on the perfume listing
 it('translates the perfume detail page', function () {
     $perfume = Perfume::factory()->create([
         'name' => 'Noir Absolu',
-        'gender' => 'women',
+        'perfume_type' => 'fragrance',
     ]);
 
     $this->withSession(['locale' => 'ar'])
@@ -111,7 +115,8 @@ it('translates the perfume detail page', function () {
         ->assertOk()
         ->assertSee('→ العودة إلى العطور')
         ->assertSee('الوصف')
-        ->assertSee('نساء')
+        ->assertSee('العطور')
+        ->assertSee('نوع العطر')
         ->assertSee('أضف إلى السلة')
         ->assertSee('Noir Absolu')
         ->assertDontSee('Back to Perfumes')
@@ -139,6 +144,7 @@ it('translates the sunglasses detail page', function () {
         ->assertOk()
         ->assertSee('→ العودة إلى النظارات الشمسية')
         ->assertSee('رجال ونساء')
+        ->assertDontSee('المخزون')
         ->assertSee('Aviator Noir')
         ->assertDontSee('Back to Sunglasses')
         ->assertDontSee('Not specified');

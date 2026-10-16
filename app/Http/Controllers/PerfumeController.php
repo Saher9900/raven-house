@@ -13,13 +13,13 @@ class PerfumeController extends Controller
     public function index(Request $request): View
     {
         $validated = $request->validate([
-            'gender' => ['nullable', Rule::in(['men', 'women', 'men & women'])],
+            'perfume_type' => ['nullable', Rule::in(['box', 'fragrance'])],
         ]);
 
         $query = Perfume::with(['category', 'images']);
 
-        if (! empty($validated['gender'])) {
-            $query->where('gender', $validated['gender']);
+        if (! empty($validated['perfume_type'])) {
+            $query->where('perfume_type', $validated['perfume_type']);
         }
 
         if ($request->filled('category')) {

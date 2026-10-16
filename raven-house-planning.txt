@@ -23,10 +23,8 @@
 
 ------------things to do-------------
 
-- cart order placed message should stay still until user removes it.
 - in the product details page I want the if there are other images for that product to be clickable and show in the big image
 - English translation looks like AI and it's hard words
-- 
 
 -------------things to add later---------
 

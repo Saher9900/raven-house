@@ -11,7 +11,7 @@ class Perfume extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['perfumes_category_id', 'name', 'price', 'brand', 'description', 'sale', 'stock', 'gender'];
+    protected $fillable = ['perfumes_category_id', 'name', 'price', 'brand', 'description', 'sale', 'stock', 'perfume_type'];
 
     protected function casts(): array
     {

@@ -38,4 +38,17 @@ class OrderItem extends Model
     {
         return $this->morphTo();
     }
+
+    public function displayProductType(): string
+    {
+        if ($this->product_type !== 'Perfume' || ! $this->productable instanceof Perfume) {
+            return $this->product_type;
+        }
+
+        return match ($this->productable->perfume_type) {
+            'box' => 'Perfume - Box',
+            'fragrance' => 'Perfume - Fragrances',
+            default => $this->product_type,
+        };
+    }
 }

@@ -14,15 +14,9 @@
                     class="card-raven filter-bar rounded-4 p-4 p-lg-5 mb-5">
                     <p class="filter-bar__title mb-0">{{ __('website.perfumes.refine') }}</p>
                     <div class="row g-4 align-items-end">
-                        <div class="col-md-4">
-                            <label for="gender" class="form-label">{{ __('website.perfumes.filter_gender') }}</label>
-                            <select class="form-select input-dark rounded-3" id="gender" name="gender">
-                                <option value="">{{ __('website.perfumes.all_genders') }}</option>
-                                <option value="men" @selected(request('gender') === 'men')>{{ __('website.gender.men') }}</option>
-                                <option value="women" @selected(request('gender') === 'women')>{{ __('website.gender.women') }}</option>
-                                <option value="men & women" @selected(request('gender') === 'men & women')>{{ __('website.gender.men_and_women') }}</option>
-                            </select>
-                        </div>
+                        @if(request()->filled('perfume_type'))
+                            <input type="hidden" name="perfume_type" value="{{ request('perfume_type') }}">
+                        @endif
                         <div class="col-md-4">
                             <label for="category" class="form-label">{{ __('website.perfumes.filter_category') }}</label>
                             <select class="form-select input-dark rounded-3" id="category" name="category">
@@ -56,7 +50,7 @@
                         </div>
                         <div class="col-12 d-flex flex-wrap gap-2 pt-1">
                             <button type="submit" class="btn btn-gold rounded-pill px-4">{{ __('website.perfumes.apply_filters') }}</button>
-                            @if(request()->hasAny(['gender', 'category', 'name', 'sort']))
+                            @if(request()->hasAny(['perfume_type', 'category', 'name', 'sort']))
                                 <a href="{{ route('perfumes.page') }}"
                                     class="btn btn-filter rounded-pill px-4">{{ __('website.perfumes.clear_filters') }}</a>
                             @endif
@@ -94,12 +88,10 @@
                                         @endif
                                     </div>
                                     <p class="text-muted-raven small mt-2 mb-0">
-                                        {{ __('website.product.stock') }}: <strong>{{ $perfume->stock }}</strong> |
-                                        {{ __(match ($perfume->gender) {
-                                            'men' => 'website.gender.men',
-                                            'women' => 'website.gender.women',
-                                            'men & women' => 'website.gender.men_and_women',
-                                            default => 'website.perfumes.gender_unspecified',
+                                        {{ __(match ($perfume->perfume_type) {
+                                            'box' => 'website.perfume_type.box',
+                                            'fragrance' => 'website.perfume_type.fragrance',
+                                            default => 'website.perfumes.type_unspecified',
                                         }) }}
                                     </p>
                                     <div class="d-flex gap-2 mt-3">
@@ -143,7 +135,7 @@
                     @empty
                         <div class="col-12 text-center py-5">
                             <p class="text-muted-raven">
-                                @if(request()->hasAny(['category', 'name', 'sort']))
+                                @if(request()->hasAny(['perfume_type', 'category', 'name', 'sort']))
                                     {{ __('website.perfumes.no_results') }}
                                 @else
                                     {{ __('website.perfumes.no_products') }}

@@ -57,30 +57,15 @@
 
                         <!-- Product Info Cards -->
                         <div class="row g-3 mb-4">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <div class="card bg-raven-surface border-gold rounded-3">
                                     <div class="card-body">
-                                        <p class="text-gold small text-uppercase mb-2">{{ __('website.product.gender') }}</p>
-                                        <p class="text-white fw-semibold mb-0">{{ __(match ($perfume->gender) {
-                                            'men' => 'website.gender.men',
-                                            'women' => 'website.gender.women',
-                                            'men & women' => 'website.gender.men_and_women',
-                                            default => 'website.gender.not_specified',
+                                        <p class="text-gold small text-uppercase mb-2">{{ __('website.product.perfume_type') }}</p>
+                                        <p class="text-white fw-semibold mb-0">{{ __(match ($perfume->perfume_type) {
+                                            'box' => 'website.perfume_type.box',
+                                            'fragrance' => 'website.perfume_type.fragrance',
+                                            default => 'website.perfume_type.not_specified',
                                         }) }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="card bg-raven-surface border-gold rounded-3">
-                                    <div class="card-body">
-                                        <p class="text-gold small text-uppercase mb-2">{{ __('website.product.stock') }}</p>
-                                        <p class="text-white fw-semibold mb-0">
-                                            @if($perfume->stock > 0)
-                                                {{ $perfume->stock }} {{ __('website.product.available') }}
-                                            @else
-                                                <span class="text-danger">{{ __('website.product.out_of_stock') }}</span>
-                                            @endif
-                                        </p>
                                     </div>
                                 </div>
                             </div>

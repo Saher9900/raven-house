@@ -28,7 +28,7 @@ class PerfumeFactory extends Factory
             'description' => $this->faker->sentence(),
             'sale' => $salePrice,
             'stock' => $this->faker->numberBetween(0, 100),
-            'gender' => $this->faker->randomElement(['men', 'women', 'men & women', null]),
+            'perfume_type' => $this->faker->randomElement(['box', 'fragrance', null]),
         ];
     }
 }

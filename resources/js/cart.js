@@ -124,12 +124,12 @@ const renderCart = (payload) => {
                                 <button type="button" class="cart-quantity-step" data-cart-step="-1"
                                     data-cart-item-id="${itemId}" aria-label="Decrease quantity of ${name}"
                                     ${item.quantity <= 1 ? "disabled" : ""}>−</button>
-                                <input type="number" min="1" max="${item.stock}" value="${item.quantity}"
+                                <input type="number" min="1" max="99" value="${item.quantity}"
                                     class="form-control cart-qty-input" data-cart-item-id="${itemId}"
                                     aria-label="Quantity of ${name}">
                                 <button type="button" class="cart-quantity-step" data-cart-step="1"
                                     data-cart-item-id="${itemId}" aria-label="Increase quantity of ${name}"
-                                    ${item.quantity >= item.stock ? "disabled" : ""}>+</button>
+                                    ${item.quantity >= 99 ? "disabled" : ""}>+</button>
                             </div>
                             <span class="text-gold fw-semibold">${formatMoney(item.subtotal)}</span>
                         </div>

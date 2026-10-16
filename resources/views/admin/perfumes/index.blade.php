@@ -24,7 +24,7 @@
                     <th>Brand</th>
                     <th>Price</th>
                     <th>Stock</th>
-                    <th>Gender</th>
+                    <th>Perfume Type</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -38,7 +38,7 @@
                         <td class="text-gold fw-semibold">${{ number_format($perfume->price, 2) }}</td>
                         <td>{{ $perfume->stock }}</td>
                         <td>
-                            <span class="badge bg-secondary">{{ $perfume->gender ? ucwords($perfume->gender) : 'Not specified' }}</span>
+                            <span class="badge bg-secondary">{{ $perfume->perfume_type ? ucwords($perfume->perfume_type) : 'Not specified' }}</span>
                         </td>
                         <td>
                             <a href="{{ route('admin.perfumes.edit', $perfume) }}" class="btn btn-sm btn-outline-gold">Edit</a>

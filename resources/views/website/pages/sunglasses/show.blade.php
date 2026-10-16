@@ -75,20 +75,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="card bg-raven-surface border-gold rounded-3">
-                                    <div class="card-body">
-                                        <p class="text-gold small text-uppercase mb-2">{{ __('website.product.stock') }}</p>
-                                        <p class="text-white fw-semibold mb-0">
-                                            @if($sunglasses->stock > 0)
-                                                {{ $sunglasses->stock }} {{ __('website.product.available') }}
-                                            @else
-                                                <span class="text-danger">{{ __('website.product.out_of_stock') }}</span>
-                                            @endif
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <!-- Description -->

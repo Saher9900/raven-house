@@ -81,15 +81,14 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="gender" class="form-label text-white fw-semibold">Gender</label>
-                    <select class="form-select bg-dark border-secondary text-white @error('gender') is-invalid @enderror"
-                        id="gender" name="gender">
+                    <label for="perfume_type" class="form-label text-white fw-semibold">Perfume Type</label>
+                    <select class="form-select bg-dark border-secondary text-white @error('perfume_type') is-invalid @enderror"
+                        id="perfume_type" name="perfume_type">
                         <option value="">Not specified</option>
-                        <option value="men" @selected(old('gender') === 'men')>Men</option>
-                        <option value="women" @selected(old('gender') === 'women')>Women</option>
-                        <option value="men & women" @selected(old('gender') === 'men & women')>Men &amp; Women</option>
+                        <option value="box" @selected(old('perfume_type') === 'box')>Box</option>
+                        <option value="fragrance" @selected(old('perfume_type') === 'fragrance')>Fragrances</option>
                     </select>
-                    @error('gender')
+                    @error('perfume_type')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

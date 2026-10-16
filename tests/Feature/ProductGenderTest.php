@@ -9,52 +9,70 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-it('allows the new nullable gender values for both product types and rejects legacy values', function () {
+it('allows only perfume type values for perfumes', function () {
     $admin = User::factory()->admin()->create();
-    $products = [
-        [
-            Perfume::class,
-            PerfumesCategory::factory()->create()->id,
-            'perfumes_category_id',
-            'perfumes',
-        ],
-        [
-            Sunglasses::class,
-            SunglassesCategory::factory()->create()->id,
-            'sunglasses_category_id',
-            'sunglasses',
-        ],
+    $category = PerfumesCategory::factory()->create();
+    $perfume = Perfume::factory()->create([
+        'perfumes_category_id' => $category->id,
+        'perfume_type' => null,
+    ]);
+
+    $data = [
+        'perfumes_category_id' => $category->id,
+        'name' => $perfume->name,
+        'price' => $perfume->price,
+        'brand' => $perfume->brand,
+        'description' => $perfume->description,
+        'sale' => $perfume->sale,
+        'stock' => $perfume->stock,
     ];
 
-    foreach ($products as [$model, $categoryId, $categoryColumn, $routePrefix]) {
-        $product = $model::factory()->create([
-            $categoryColumn => $categoryId,
-            'gender' => null,
-        ]);
-
-        $data = [
-            $categoryColumn => $categoryId,
-            'name' => $product->name,
-            'price' => $product->price,
-            'brand' => $product->brand,
-            'description' => $product->description,
-            'sale' => $product->sale,
-            'stock' => $product->stock,
-        ];
-
-        foreach (['men', 'women', 'men & women', null] as $gender) {
-            $this->actingAs($admin)
-                ->put(route("admin.{$routePrefix}.update", $product), [...$data, 'gender' => $gender])
-                ->assertRedirect(route("admin.{$routePrefix}.index"));
-
-            $this->assertDatabaseHas($product->getTable(), [
-                'id' => $product->id,
-                'gender' => $gender,
-            ]);
-        }
-
+    foreach (['box', 'fragrance', null] as $type) {
         $this->actingAs($admin)
-            ->put(route("admin.{$routePrefix}.update", $product), [...$data, 'gender' => 'male'])
-            ->assertSessionHasErrors('gender');
+            ->put(route('admin.perfumes.update', $perfume), [...$data, 'perfume_type' => $type])
+            ->assertRedirect(route('admin.perfumes.index'));
+
+        $this->assertDatabaseHas('perfumes', [
+            'id' => $perfume->id,
+            'perfume_type' => $type,
+        ]);
     }
+
+    $this->actingAs($admin)
+        ->put(route('admin.perfumes.update', $perfume), [...$data, 'perfume_type' => 'men'])
+        ->assertSessionHasErrors('perfume_type');
+});
+
+it('keeps the existing nullable gender values for sunglasses', function () {
+    $admin = User::factory()->admin()->create();
+    $category = SunglassesCategory::factory()->create();
+    $sunglasses = Sunglasses::factory()->create([
+        'sunglasses_category_id' => $category->id,
+        'gender' => null,
+    ]);
+
+    $data = [
+        'sunglasses_category_id' => $category->id,
+        'name' => $sunglasses->name,
+        'price' => $sunglasses->price,
+        'brand' => $sunglasses->brand,
+        'description' => $sunglasses->description,
+        'sale' => $sunglasses->sale,
+        'stock' => $sunglasses->stock,
+    ];
+
+    foreach (['men', 'women', 'men & women', null] as $gender) {
+        $this->actingAs($admin)
+            ->put(route('admin.sunglasses.update', $sunglasses), [...$data, 'gender' => $gender])
+            ->assertRedirect(route('admin.sunglasses.index'));
+
+        $this->assertDatabaseHas('sunglasses', [
+            'id' => $sunglasses->id,
+            'gender' => $gender,
+        ]);
+    }
+
+    $this->actingAs($admin)
+        ->put(route('admin.sunglasses.update', $sunglasses), [...$data, 'gender' => 'male'])
+        ->assertSessionHasErrors('gender');
 });

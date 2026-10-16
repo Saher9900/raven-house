@@ -103,7 +103,7 @@
                 @foreach ($order->items as $item)
                     <tr>
                         <td class="text-white fw-semibold">{{ $item->product_name }}</td>
-                        <td>{{ $item->product_type }}</td>
+                        <td>{{ $item->displayProductType() }}</td>
                         <td>{{ $item->product_brand ?? '-' }}</td>
                         <td class="text-gold">${{ number_format($item->unit_price, 2) }}</td>
                         <td>{{ $item->quantity }}</td>

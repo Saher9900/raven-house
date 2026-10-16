@@ -3,6 +3,7 @@
 use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\Perfume;
+use App\Models\Sunglasses;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -19,7 +20,8 @@ it('allows guests to manage a session-backed cart without creating database cart
 
     $response->assertOk()
         ->assertJsonPath('count', 2)
-        ->assertJsonPath('items.0.id', "perfume-{$perfume->id}");
+        ->assertJsonPath('items.0.id', "perfume-{$perfume->id}")
+        ->assertJsonMissingPath('items.0.stock');
 
     $this->assertDatabaseCount('cart_items', 0);
 
@@ -109,7 +111,12 @@ it('places an order for a member through the payment and review steps', function
         'phone_number' => '555-0100',
         'shipping_address' => '123 Member Street',
     ]);
-    $perfume = Perfume::factory()->create(['stock' => 4, 'price' => 80, 'sale' => 60]);
+    $perfume = Perfume::factory()->create([
+        'stock' => 4,
+        'price' => 80,
+        'sale' => 60,
+        'perfume_type' => 'box',
+    ]);
 
     CartItem::query()->create([
         'user_id' => $user->id,
@@ -155,6 +162,7 @@ it('places an order for a member through the payment and review steps', function
         ->and($order->payment_method)->toBe('cod')
         ->and($order->items)->toHaveCount(1);
 
+    expect($order->items->first()->product_type)->toBe('Perfume - Box');
     expect($perfume->fresh()->stock)->toBe(2);
     expect(CartItem::query()->count())->toBe(0);
 });
@@ -238,7 +246,7 @@ it('guards the payment page until delivery details are stored', function () {
 it('allows admins to view orders in the dashboard', function () {
     $admin = User::factory()->admin()->create();
     $customer = User::factory()->create();
-    $perfume = Perfume::factory()->create();
+    $perfume = Perfume::factory()->create(['perfume_type' => 'fragrance']);
 
     $order = Order::query()->create([
         'user_id' => $customer->id,
@@ -264,4 +272,21 @@ it('allows admins to view orders in the dashboard', function () {
         ->assertOk()
         ->assertSee((string) $order->id)
         ->assertSee($customer->name);
+
+    $sunglasses = Sunglasses::factory()->create();
+    $order->items()->create([
+        'productable_type' => Sunglasses::class,
+        'productable_id' => $sunglasses->id,
+        'product_name' => $sunglasses->name,
+        'product_brand' => $sunglasses->brand,
+        'product_type' => 'Sunglasses',
+        'quantity' => 1,
+        'unit_price' => 80,
+        'subtotal' => 80,
+    ]);
+
+    $this->get(route('admin.orders.show', $order))
+        ->assertOk()
+        ->assertSee('Perfume - Fragrances')
+        ->assertSee('Sunglasses');
 });

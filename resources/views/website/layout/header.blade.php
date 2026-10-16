@@ -60,9 +60,8 @@
                             type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ __('website.navigation.perfumes') }}</button>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-raven">
                             <li><a class="dropdown-item" href="{{ route('perfumes.page') }}">{{ __('website.navigation.all_perfumes') }}</a></li>
-                            <li><a class="dropdown-item" href="{{ route('perfumes.page', ['gender' => 'men']) }}">{{ __('website.navigation.men') }}</a></li>
-                            <li><a class="dropdown-item" href="{{ route('perfumes.page', ['gender' => 'women']) }}">{{ __('website.navigation.women') }}</a></li>
-                            <li><a class="dropdown-item" href="{{ route('perfumes.page', ['gender' => 'men & women']) }}">{{ __('website.navigation.men_and_women') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('perfumes.page', ['perfume_type' => 'box']) }}">{{ __('website.navigation.boxes') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('perfumes.page', ['perfume_type' => 'fragrance']) }}">{{ __('website.navigation.fragrances') }}</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -116,9 +115,8 @@
                     <div class="collapse" id="mobilePerfumeOptions">
                         <ul class="mobile-perfume-nav__options">
                             <li><a href="{{ route('perfumes.page') }}">{{ __('website.navigation.all_perfumes') }}</a></li>
-                            <li><a href="{{ route('perfumes.page', ['gender' => 'men']) }}">{{ __('website.navigation.men') }}</a></li>
-                            <li><a href="{{ route('perfumes.page', ['gender' => 'women']) }}">{{ __('website.navigation.women') }}</a></li>
-                            <li><a href="{{ route('perfumes.page', ['gender' => 'men & women']) }}">{{ __('website.navigation.men_and_women') }}</a></li>
+                            <li><a href="{{ route('perfumes.page', ['perfume_type' => 'box']) }}">{{ __('website.navigation.boxes') }}</a></li>
+                            <li><a href="{{ route('perfumes.page', ['perfume_type' => 'fragrance']) }}">{{ __('website.navigation.fragrances') }}</a></li>
                         </ul>
                     </div>
                 </li>

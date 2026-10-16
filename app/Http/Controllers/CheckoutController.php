@@ -135,7 +135,7 @@ class CheckoutController extends Controller
                     'productable_id' => $product->id,
                     'product_name' => $product->name,
                     'product_brand' => $product->brand,
-                    'product_type' => $product->productTypeLabel(),
+                    'product_type' => $this->orderProductTypeLabel($product),
                     'quantity' => $quantity,
                     'unit_price' => $unitPrice,
                     'subtotal' => $subtotal,
@@ -219,5 +219,18 @@ class CheckoutController extends Controller
             ),
             2,
         );
+    }
+
+    private function orderProductTypeLabel(Perfume|Sunglasses $product): string
+    {
+        if ($product instanceof Perfume) {
+            return 'Perfume'.match ($product->perfume_type) {
+                'box' => ' - Box',
+                'fragrance' => ' - Fragrances',
+                default => '',
+            };
+        }
+
+        return $product->productTypeLabel();
     }
 }

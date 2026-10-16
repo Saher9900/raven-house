@@ -41,7 +41,7 @@ class PerfumeAdminController extends Controller
             'description' => 'nullable|string',
             'sale' => 'nullable|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'gender' => 'nullable|in:men,women,men & women',
+            'perfume_type' => 'nullable|in:box,fragrance',
             'images.*' => 'nullable|image|max:2048',
         ]);
 
@@ -80,7 +80,7 @@ class PerfumeAdminController extends Controller
             'description' => 'nullable|string',
             'sale' => 'nullable|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'gender' => 'nullable|in:men,women,men & women',
+            'perfume_type' => 'nullable|in:box,fragrance',
             'images.*' => 'nullable|image|max:2048',
         ]);
 

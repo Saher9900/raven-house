@@ -254,7 +254,6 @@ class CartController extends Controller
             'quantity' => $quantity,
             'unit_price' => $unitPrice,
             'subtotal' => round($unitPrice * $quantity, 2),
-            'stock' => $product->stock,
         ];
     }
 
