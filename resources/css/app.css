@@ -617,6 +617,7 @@ main.pt-5 > .hero-glow:first-child h1 {
 
 /* Marquee strip */
 .marquee-luxury {
+    direction: ltr;
     border-top: 1px solid rgba(212, 175, 55, 0.15);
     border-bottom: 1px solid rgba(212, 175, 55, 0.15);
     background: linear-gradient(
@@ -723,9 +724,17 @@ html[lang="ar"] .why-raven__text {
 
 .marquee-track {
     display: flex;
-    gap: 4rem;
-    animation: marquee 15s linear infinite;
+    direction: ltr;
+    width: max-content;
+    animation: marquee 250s linear infinite;
     white-space: nowrap;
+}
+
+.marquee-group {
+    display: flex;
+    flex: none;
+    gap: 4rem;
+    padding-inline-end: 4rem;
 }
 
 .marquee-track span {
@@ -739,7 +748,7 @@ html[lang="ar"] .why-raven__text {
 
 .marquee-track span::after {
     content: "◆";
-    margin-left: 4rem;
+    margin-inline-start: 4rem;
     font-size: 0.5em;
     vertical-align: middle;
     opacity: 0.6;
@@ -1783,6 +1792,12 @@ html[lang="ar"] .quote-luxury cite,
 html[lang="ar"] .stat-item .stat-label,
 html[lang="ar"] .modal-body .form-label {
     letter-spacing: normal;
+}
+
+html[lang="ar"] .marquee-track span {
+    direction: rtl;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.6;
 }
 
 /* The Latin theme leans on deep descenders and tight leading; loosen it. */

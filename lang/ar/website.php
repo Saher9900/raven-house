@@ -37,7 +37,7 @@ return [
         'raven_arrival' => 'انتظرنا حضوره، والتقطنا اللحظة.',
         'raven_portrait' => 'صورة حيّة لغراب Raven House',
         'raven_location' => 'على رمال القاهرة — نوفمبر ٢٠٢٦',
-        'marquee' => 'أثر للحضور',
+        'marquee' => 'اكتشف عالم  Raven House',
         'why_title' => 'لماذا Raven House',
         'why_text' => 'لأننا نختار ما يليق بمن لا يسعى إلى لفت الأنظار كي يترك أثرًا',
     ],

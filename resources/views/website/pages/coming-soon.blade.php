@@ -15,8 +15,12 @@
 
         <div class="marquee-luxury" aria-hidden="true">
             <div class="marquee-track">
-                @for($index = 0; $index < 8; $index++)
-                    <span>{{ __('website.coming_soon.marquee') }}</span>
+                @for($group = 0; $group < 2; $group++)
+                    <div class="marquee-group">
+                        @for($index = 0; $index < 12; $index++)
+                            <span>{{ __('website.coming_soon.marquee') }}</span>
+                        @endfor
+                    </div>
                 @endfor
             </div>
         </div>
