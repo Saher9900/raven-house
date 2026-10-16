@@ -3,6 +3,30 @@ import { initCart } from "./cart";
 
 document.addEventListener("DOMContentLoaded", () => {
     initCart();
+
+    document.addEventListener("click", (event) => {
+        const thumbnail = event.target.closest("[data-gallery-image]");
+
+        if (!thumbnail) {
+            return;
+        }
+
+        const mainImage = document.getElementById(thumbnail.dataset.galleryTarget);
+
+        if (!mainImage) {
+            return;
+        }
+
+        mainImage.src = thumbnail.dataset.galleryImage;
+        mainImage.alt = thumbnail.dataset.galleryAlt;
+
+        document
+            .querySelectorAll(`[data-gallery-target="${thumbnail.dataset.galleryTarget}"]`)
+            .forEach((button) => {
+                button.setAttribute("aria-pressed", String(button === thumbnail));
+            });
+    });
+
     const header = document.getElementById("site-header");
     if (header) {
         const onScroll = () => {

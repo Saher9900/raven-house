@@ -2,10 +2,6 @@
 
 - domain
 
-- content of each section
-
-- tutorial on how to deal with the dashboard
-
 **Things to Add later**
 
 - payment gateway
@@ -20,6 +16,7 @@
 - gender kinds.
 - available hours for business in contact us page
 - social media and phone number
+- the out of stock thing
 
 ------------things to do-------------
 

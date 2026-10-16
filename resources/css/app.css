@@ -996,6 +996,22 @@ html[lang="ar"] .why-raven__text {
     object-position: center;
 }
 
+.product-gallery-thumbnail {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    background: rgba(20, 20, 24, 0.8);
+    cursor: pointer;
+}
+
+.product-gallery-thumbnail[aria-pressed="true"],
+.product-gallery-thumbnail:focus-visible {
+    border-color: #d4af37;
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
+}
+
 .product-visual::after {
     content: "";
     position: absolute;

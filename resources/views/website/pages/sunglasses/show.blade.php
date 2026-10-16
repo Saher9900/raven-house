@@ -12,7 +12,7 @@
                     <div class="col-lg-5">
                         <div class="product-visual product-detail-visual rounded-4 overflow-hidden mb-4 bg-raven-surface d-flex align-items-center justify-content-center p-4">
                             @if($sunglasses->images->first())
-                                <img src="{{ asset($sunglasses->images->first()->image_path) }}" alt="{{ $sunglasses->name }}"
+                                <img id="sunglasses-product-image" src="{{ asset($sunglasses->images->first()->image_path) }}" alt="{{ $sunglasses->name }}"
                                     class="w-100 h-100 product-detail-image">
                             @else
                                 <svg class="w-100 text-gold opacity-50" style="max-width:200px" viewBox="0 0 120 40"
@@ -29,10 +29,17 @@
                             <div class="row g-3">
                                 @foreach($sunglasses->images as $image)
                                     <div class="col-4">
-                                        <div class="rounded-3 overflow-hidden cursor-pointer bg-raven-surface d-flex align-items-center justify-content-center" style="height: 100px;">
-                                            <img src="{{ asset($image->image_path) }}" alt="{{ $sunglasses->name }}"
+                                        <button type="button"
+                                            class="product-gallery-thumbnail rounded-3 overflow-hidden"
+                                            style="height: 100px;"
+                                            data-gallery-image="{{ asset($image->image_path) }}"
+                                            data-gallery-alt="{{ $sunglasses->name }}"
+                                            data-gallery-target="sunglasses-product-image"
+                                            aria-label="Show image {{ $loop->iteration }} of {{ $sunglasses->name }}"
+                                            aria-pressed="{{ $loop->first ? 'true' : 'false' }}">
+                                            <img src="{{ asset($image->image_path) }}" alt=""
                                                 class="w-100 h-100 object-fit-cover">
-                                        </div>
+                                        </button>
                                     </div>
                                 @endforeach
                             </div>

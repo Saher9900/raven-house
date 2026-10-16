@@ -13,7 +13,7 @@
                         <div class="product-visual product-detail-visual d-flex align-items-center justify-content-center rounded-4 overflow-hidden mb-4"
                             style="background: linear-gradient(to bottom, rgba(69,26,3,0.4), #09090b);">
                             @if($perfume->images->first())
-                                <img src="{{ asset($perfume->images->first()->image_path) }}" alt="{{ $perfume->name }}"
+                                <img id="perfume-product-image" src="{{ asset($perfume->images->first()->image_path) }}" alt="{{ $perfume->name }}"
                                     class="w-100 h-100 product-detail-image">
                             @else
                                 <div class="perfume-bottle"></div>
@@ -24,10 +24,17 @@
                             <div class="row g-3">
                                 @foreach($perfume->images as $image)
                                     <div class="col-4">
-                                        <div class="rounded-3 overflow-hidden cursor-pointer" style="height: 100px; background: rgba(20,20,24,0.8);">
-                                            <img src="{{ asset($image->image_path) }}" alt="{{ $perfume->name }}"
+                                        <button type="button"
+                                            class="product-gallery-thumbnail rounded-3 overflow-hidden"
+                                            style="height: 100px;"
+                                            data-gallery-image="{{ asset($image->image_path) }}"
+                                            data-gallery-alt="{{ $perfume->name }}"
+                                            data-gallery-target="perfume-product-image"
+                                            aria-label="Show image {{ $loop->iteration }} of {{ $perfume->name }}"
+                                            aria-pressed="{{ $loop->first ? 'true' : 'false' }}">
+                                            <img src="{{ asset($image->image_path) }}" alt=""
                                                 class="w-100 h-100 object-fit-cover">
-                                        </div>
+                                        </button>
                                     </div>
                                 @endforeach
                             </div>
