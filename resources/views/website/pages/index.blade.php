@@ -48,18 +48,6 @@
             </div>
         </div>
 
-        <section class="why-raven section-luxury">
-            <div class="container text-center">
-                <h2 class="font-display section-title fw-semibold text-white reveal">
-                    {{ __('website.home.why_title') }}
-                </h2>
-                <div class="luxury-divider reveal" aria-hidden="true"><span>◆</span></div>
-                <p class="why-raven__text font-display mx-auto mb-0 reveal reveal-delay-1">
-                    {{ __('website.home.why_text') }}
-                </p>
-            </div>
-        </section>
-
         <section class="home-perfume-cta text-center">
             <a href="{{ route('perfumes.page') }}"
                 class="btn btn-gold home-perfume-cta__button rounded-pill">

@@ -97,8 +97,8 @@
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body d-flex align-items-center justify-content-center">
-            <ul class="nav flex-column text-center gap-3 w-100" aria-label="Mobile navigation">
+        <div class="offcanvas-body mobile-menu-body">
+            <ul class="nav flex-column mobile-menu-nav" aria-label="Mobile navigation">
                 <li class="nav-item">
                     <a class="nav-link @if(request()->is('/')) active @endif" href="/">{{ __('website.navigation.home') }}</a>
                 </li>

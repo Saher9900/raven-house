@@ -29,14 +29,34 @@ it('shows the raven portrait and only the requested signature in the home marque
         ->assertSee('We waited for his arrival, and captured the moment.')
         ->assertSee('A living portrait of the Raven House raven')
         ->assertSee('A signature of presence')
-        ->assertSee('Check Our Perfumes')
+        ->assertSee('Discover the World of Raven House')
         ->assertSee('Shop Now')
-        ->assertSee('Why Raven House')
+        ->assertDontSee('Why Raven House')
         ->assertSee(route('perfumes.page'), false)
         ->assertDontSee('The Raven House Manifesto')
         ->assertDontSee('Our Collections')
         ->assertDontSee('Begin Your Journey')
         ->assertDontSee('logo-details.png');
+});
+
+it('shows the raven story, vision, and why Raven House only on the about page', function () {
+    $this->get(route('about.page'))
+        ->assertOk()
+        ->assertSee('Why the Raven?')
+        ->assertSee('Our Vision')
+        ->assertSee('Why Raven House')
+        ->assertSee('about-hero__title', false)
+        ->assertSee('about-vision__card', false)
+        ->assertSee('reveal-delay-3', false);
+
+    $this->withSession(['locale' => 'ar'])
+        ->get(route('about.page'))
+        ->assertOk()
+        ->assertSee('لماذا الغراب؟')
+        ->assertSee('رؤيتنا')
+        ->assertSee('لماذا Raven House')
+        ->assertSee('الغراب لا يمتلك مخالب النسر')
+        ->assertSee('لكل رجل شخصية تستحق أن تنعكس في أدق تفاصيله');
 });
 
 it('shows the updated contact details without the boutique, email, or message form', function () {

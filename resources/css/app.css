@@ -435,8 +435,22 @@ body::after {
 
 /* Offcanvas */
 .offcanvas-raven {
+    --bs-offcanvas-width: min(88vw, 24rem);
     background-color: rgba(6, 6, 8, 0.98) !important;
     border-left: 1px solid rgba(212, 175, 55, 0.15);
+    box-shadow: -24px 0 70px rgba(0, 0, 0, 0.48);
+}
+
+.offcanvas-raven .offcanvas-header {
+    justify-content: space-between;
+    min-height: 5.5rem;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(110deg, rgba(212, 175, 55, 0.06), transparent 70%);
+}
+
+.offcanvas-raven .offcanvas-header .btn-close {
+    flex: 0 0 auto;
+    margin: 0;
 }
 
 .offcanvas-raven .offcanvas-title {
@@ -444,27 +458,60 @@ body::after {
     letter-spacing: 0.2em;
 }
 
+.mobile-menu-body {
+    display: flex;
+    align-items: stretch;
+    padding: 1.25rem clamp(1.25rem, 6vw, 2rem);
+}
+
+.mobile-menu-nav {
+    align-content: start;
+    width: 100%;
+    gap: 0.35rem;
+    text-align: start;
+}
+
+.mobile-menu-nav > .nav-item {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
 .offcanvas-raven .nav-link {
-    font-family: "Cormorant Garamond", "Amiri", Georgia, serif;
-    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.75rem 0.85rem;
+    border: 0;
+    border-radius: 0.7rem;
+    font-family: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
     color: #d4d4d8;
-    padding: 0.5rem 0;
-    letter-spacing: 0.05em;
+    letter-spacing: 0;
+    text-align: start;
+    line-height: 1.5;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        padding 0.2s ease;
 }
 
 .offcanvas-raven .nav-link:hover,
 .offcanvas-raven .nav-link.active {
+    background: rgba(212, 175, 55, 0.08);
     color: var(--gold-light);
 }
 
+.mobile-menu-nav > .nav-item > .nav-link:hover,
+.mobile-menu-nav > .nav-item > .nav-link:focus-visible {
+    padding-inline-start: 1.1rem;
+}
+
 .mobile-perfume-nav__toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    width: 100%;
     background: transparent;
-    border: 0;
+    justify-content: space-between;
+    gap: 0.75rem;
 }
 
 .mobile-perfume-nav__chevron {
@@ -482,28 +529,54 @@ body::after {
 
 .mobile-perfume-nav__options {
     display: grid;
-    gap: 0.25rem;
-    margin: 0.25rem 0 0;
-    padding: 0.5rem 0 0.5rem 1rem;
-    border-left: 1px solid rgba(212, 175, 55, 0.35);
+    gap: 0.15rem;
+    margin: 0.25rem 0 0.6rem;
+    padding: 0.35rem 0.65rem 0.35rem 0;
+    border-inline-start: 1px solid rgba(212, 175, 55, 0.35);
     list-style: none;
-    text-align: left;
+    text-align: start;
 }
 
 .mobile-perfume-nav__options a {
     display: block;
-    padding: 0.65rem 1rem;
+    padding: 0.55rem 0.85rem;
     border-radius: 0.5rem;
     color: var(--raven-muted);
     font-family: "Inter", "IBM Plex Sans Arabic", sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
     text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
 }
 
 .mobile-perfume-nav__options a:hover,
 .mobile-perfume-nav__options a:focus {
     background: rgba(212, 175, 55, 0.12);
     color: var(--gold-light);
+}
+
+.mobile-menu-nav > .nav-item:last-child {
+    margin-top: 0.75rem;
+    border-bottom: 0;
+}
+
+.language-switch__button--mobile {
+    width: auto;
+    min-width: 7.5rem;
+    font-size: 0.9rem;
+    padding: 0.65rem 1.25rem;
+}
+
+html[lang="ar"] .offcanvas-raven .nav-link {
+    font-family: "IBM Plex Sans Arabic", "Inter", system-ui, sans-serif;
+    font-size: 1.08rem;
+    line-height: 1.65;
+}
+
+html[lang="ar"] .mobile-perfume-nav__toggle {
+    justify-content: space-between;
 }
 
 /* Hero — shared */
@@ -643,6 +716,7 @@ main.pt-5 > .hero-glow:first-child h1 {
     min-height: 4rem;
     padding: 1.15rem clamp(2rem, 6vw, 4rem) !important;
     font-size: clamp(0.85rem, 2vw, 1rem);
+    /* font-size: 20px; */
     letter-spacing: 0.12em;
     box-shadow:
         0 8px 32px rgba(212, 175, 55, 0.28),
@@ -720,6 +794,151 @@ main.pt-5 > .hero-glow:first-child h1 {
 html[lang="ar"] .why-raven__text {
     font-size: clamp(1.25rem, 2.6vw, 1.8rem);
     line-height: 1.9;
+}
+
+.about-page {
+    overflow: hidden;
+}
+
+.about-hero {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(7rem, 15vw, 10rem) 0 clamp(5rem, 10vw, 7rem);
+}
+
+.about-hero::before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 50%;
+    width: min(72rem, 120vw);
+    height: 100%;
+    content: "";
+    transform: translateX(-50%);
+    background: radial-gradient(
+        ellipse at 50% 5%,
+        rgba(212, 175, 55, 0.11),
+        rgba(12, 12, 15, 0.2) 42%,
+        transparent 72%
+    );
+    pointer-events: none;
+}
+
+.about-hero__content {
+    max-width: 940px;
+}
+
+.about-hero__title {
+    font-size: clamp(3.25rem, 8vw, 6rem);
+    line-height: 1.12;
+    text-wrap: balance;
+}
+
+.about-hero .luxury-divider {
+    margin-top: 2rem;
+    margin-bottom: 2.25rem;
+}
+
+.about-hero__copy {
+    max-width: 760px;
+}
+
+.about-copy {
+    margin-bottom: 1.25rem;
+    color: #c4c4cc;
+    font-size: clamp(1rem, 1.7vw, 1.15rem);
+    line-height: 1.95;
+    text-wrap: pretty;
+}
+
+.about-copy:last-child {
+    margin-bottom: 0;
+}
+
+.about-vision__card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(1.5rem, 5vw, 4.5rem);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    background:
+        radial-gradient(
+            ellipse at 100% 0%,
+            rgba(212, 175, 55, 0.09),
+            transparent 48%
+        ),
+        linear-gradient(145deg, rgba(25, 25, 30, 0.94), rgba(12, 12, 15, 0.92));
+    box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.about-vision__index {
+    position: absolute;
+    z-index: -1;
+    top: -2.5rem;
+    inset-inline-end: 1.5rem;
+    color: rgba(212, 175, 55, 0.055);
+    font-family: "Cormorant Garamond", "Amiri", Georgia, serif;
+    font-size: clamp(10rem, 24vw, 19rem);
+    line-height: 1;
+    pointer-events: none;
+}
+
+.about-section-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.2;
+}
+
+.about-vision__copy .about-copy {
+    max-width: 54rem;
+}
+
+.about-why__text {
+    position: relative;
+    max-width: 50rem;
+    padding-inline: clamp(1rem, 5vw, 4rem);
+}
+
+.about-why__text::before,
+.about-why__text::after {
+    position: absolute;
+    color: rgba(212, 175, 55, 0.32);
+    font-family: "Cormorant Garamond", "Amiri", Georgia, serif;
+    font-size: clamp(3rem, 7vw, 5rem);
+    line-height: 1;
+}
+
+.about-why__text::before {
+    content: "“";
+    inset-inline-start: 0;
+    top: -0.5rem;
+}
+
+.about-why__text::after {
+    content: "”";
+    inset-inline-end: 0;
+    bottom: -1.5rem;
+}
+
+html[lang="ar"] .about-copy {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    line-height: 2.1;
+}
+
+html[lang="ar"] .about-hero__title,
+html[lang="ar"] .about-section-title {
+    line-height: 1.45;
+}
+
+@media (max-width: 767.98px) {
+    .about-hero {
+        padding-top: 6rem;
+    }
+
+    .about-vision__card {
+        padding: 1.5rem;
+    }
 }
 
 .marquee-track {

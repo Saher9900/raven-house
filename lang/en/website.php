@@ -32,7 +32,7 @@ return [
     'home' => [
         'shop_now' => 'Shop Now',
         'intro' => 'Details chosen with care, to reflect a distinctive personality and an unforgettable presence.',
-        'check_perfumes' => 'Check Our Perfumes',
+        'check_perfumes' => 'Discover the World of Raven House',
         'raven_alt' => 'The Raven House raven on the sands of Cairo.',
         'raven_arrival' => 'We waited for his arrival, and captured the moment.',
         'raven_portrait' => 'A living portrait of the Raven House raven',
@@ -42,12 +42,22 @@ return [
         'why_text' => 'Because we choose what suits those who don’t seek attention just to leave an impression',
     ],
     'about' => [
-        'title' => 'About Raven House',
-        'intro' => 'At Raven House, we create an extension of a single personality. A personality that knows presence needs no noise and no explanation, only the right choice. That is why everything we offer carries the same philosophy.',
-        'vision_title' => 'Our Vision',
-        'vision' => 'To present, through RAVEN HOUSE, a concept of luxury that combines refinement with a powerful presence.
+        'title' => 'Why the Raven?',
+        'intro' => 'Because strength is not measured by size, and presence is not bestowed by a crown.
 
-We believe that true luxury does not announce itself, and that exceptional presence leaves its mark without seeking to draw attention',
+The raven has neither the eagle’s talons nor the lion’s roar, yet it possesses what strength alone cannot provide: exceptional intelligence and the ability to adapt where others cannot.
+
+It needs no bright colors to draw attention; black alone is enough to give it its identity.
+
+And so, Raven House was born:
+
+Independence of character and a presence that commands attention without asking permission.',
+        'vision_title' => 'Our Vision',
+        'vision' => 'At Raven House, we do not believe luxury is merely appearance, or that distinction and presence come from following what everyone else chooses.
+
+We believe every man has a character that deserves to be reflected in the finest details, and that his choices are more than purchases: they are an extension of his identity and a quiet expression of his taste.
+
+That is why we do not simply offer products. We curate details that give their owner a distinctive character and a different kind of presence, without the need for display.',
     ],
     'coming_soon' => [
         'eyebrow' => 'A New Chapter',
