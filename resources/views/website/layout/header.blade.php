@@ -98,7 +98,7 @@
                 aria-label="Close"></button>
         </div>
         <div class="offcanvas-body mobile-menu-body">
-            <ul class="nav flex-column mobile-menu-nav" aria-label="Mobile navigation">
+            <ul class="mobile-menu-nav" aria-label="Mobile navigation">
                 <li class="nav-item">
                     <a class="nav-link @if(request()->is('/')) active @endif" href="/">{{ __('website.navigation.home') }}</a>
                 </li>
@@ -130,14 +130,12 @@
                     <a class="nav-link @if(request()->routeIs('contact.page')) active @endif" href="{{ route("contact.page") }}">{{ __('website.navigation.contact') }}</a>
                 </li>
                 @include('website.layout.auth-nav-mobile')
-                <li class="nav-item mt-3">
-                    <form action="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="language-switch__button language-switch__button--mobile">
-                            {{ __('website.switch_language') }}
-                        </button>
-                    </form>
-                </li>
             </ul>
+            <form class="mobile-language-switch" action="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}" method="POST">
+                @csrf
+                <button type="submit" class="language-switch__button language-switch__button--mobile">
+                    {{ __('website.switch_language') }}
+                </button>
+            </form>
         </div>
     </div>
