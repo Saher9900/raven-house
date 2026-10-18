@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     centeredSlides: false,
                 },
             },
-            loop: false,
+            loop: true,
             rewind: productCount > 1,
             speed: 700,
             threshold: 8,
