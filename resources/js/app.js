@@ -43,14 +43,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll("[data-featured-products-swiper]").forEach((element) => {
         const section = element.closest(".featured-products");
-        const productCount = element.querySelectorAll(".swiper-slide").length;
+        const originalSlides = [...element.querySelectorAll(".swiper-slide")];
+        const productCount = originalSlides.length;
+        const maxSlidesPerView = 2;
+        const slidesPerGroup = 1;
+        const loopAdditionalSlides = productCount > 1 ? 1 : 0;
+        const minimumLoopSlides =
+            maxSlidesPerView + slidesPerGroup + loopAdditionalSlides;
         const prefersReducedMotion = window.matchMedia(
             "(prefers-reduced-motion: reduce)",
         ).matches;
 
-        new Swiper(element, {
+        if (productCount > 1 && productCount < minimumLoopSlides) {
+            originalSlides.forEach((originalSlide) => {
+                const clone = originalSlide.cloneNode(true);
+
+                clone.setAttribute("aria-hidden", "true");
+                clone.setAttribute("data-featured-loop-copy", "");
+                clone
+                    .querySelectorAll("a, button, input, select, textarea, [tabindex]")
+                    .forEach((interactiveElement) =>
+                        interactiveElement.setAttribute("tabindex", "-1"),
+                    );
+                element.querySelector(".swiper-wrapper").append(clone);
+            });
+        }
+
+        const swiper = new Swiper(element, {
             modules: [Autoplay, Navigation, Pagination],
             slidesPerView: 1,
+            slidesPerGroup,
             centeredSlides: true,
             breakpoints: {
                 768: {
@@ -58,7 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     centeredSlides: false,
                 },
             },
-            loop: true,
+            loop: productCount > 1,
+            loopAdditionalSlides,
             speed: 700,
             threshold: 8,
             touchAngle: 45,
@@ -77,8 +100,28 @@ document.addEventListener("DOMContentLoaded", () => {
             pagination: {
                 el: section.querySelector("[data-featured-products-pagination]"),
                 clickable: true,
+                renderBullet: (index, className) =>
+                    index < productCount
+                        ? `<span class="${className}" data-featured-page="${index}"></span>`
+                        : "",
             },
         });
+
+        const updateActivePage = () => {
+            const activePage = swiper.realIndex % productCount;
+
+            section
+                .querySelectorAll("[data-featured-page]")
+                .forEach((bullet, index) => {
+                    bullet.classList.toggle(
+                        "swiper-pagination-bullet-active",
+                        index === activePage,
+                    );
+                });
+        };
+
+        swiper.on("realIndexChange", updateActivePage);
+        updateActivePage();
     });
 
     const revealEls = document.querySelectorAll(".reveal");
