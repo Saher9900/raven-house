@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
             },
             loop: true,
-            rewind: productCount > 1,
             speed: 700,
             threshold: 8,
             touchAngle: 45,
