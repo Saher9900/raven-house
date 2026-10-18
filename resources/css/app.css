@@ -791,6 +791,9 @@ html[dir="rtl"] [data-featured-direction="-1"] svg {
     height: auto;
     justify-content: center;
     padding: 0.25rem 0.15rem 1.5rem;
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .featured-product-card {
