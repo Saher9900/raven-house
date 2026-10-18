@@ -63,11 +63,15 @@
                             <div class="featured-products__controls">
                                 <button type="button" class="featured-products__control" data-featured-direction="-1"
                                     aria-label="{{ __('website.home.previous_products') }}">
-                                    <span aria-hidden="true">←</span>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
                                 </button>
                                 <button type="button" class="featured-products__control" data-featured-direction="1"
                                     aria-label="{{ __('website.home.next_products') }}">
-                                    <span aria-hidden="true">→</span>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
                                 </button>
                             </div>
                         @endif
@@ -84,7 +88,7 @@
                                         <a href="{{ $featuredProduct->perfume ? route('perfumes.show', $product) : route('sunglasses.show', $product) }}"
                                             class="featured-product-card__link">
                                             <div class="featured-product-card__image">
-                                                <img src="{{ $productImage }}" alt="{{ $product->name }}" loading="lazy">
+                                                <img src="{{ $productImage }}" alt="{{ $product->name }}" draggable="false">
                                             </div>
                                             <div class="featured-product-card__content">
                                                 <span class="featured-product-card__type">

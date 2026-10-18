@@ -58,8 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     centeredSlides: false,
                 },
             },
-            loop: productCount > 1,
+            loop: false,
+            rewind: productCount > 1,
             speed: 700,
+            threshold: 8,
+            touchAngle: 45,
             autoplay:
                 productCount > 1 && !prefersReducedMotion
                     ? {
