@@ -130,6 +130,17 @@
                     <a href="{{ route('admin.orders.index') }}" class="btn btn-outline-gold btn-sm">View Orders</a>
                 </div>
             </div>
+
+            <!-- Featured Products -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card bg-raven-surface border-gold h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-gold">Featured Products</h5>
+                        <p class="text-muted-raven">Choose products to showcase on the homepage</p>
+                        <a href="{{ route('admin.featured-products.index') }}" class="btn btn-outline-gold btn-sm">Manage</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

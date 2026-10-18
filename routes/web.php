@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FeaturedProductController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PerfumeAdminController;
@@ -65,6 +66,12 @@ Route::middleware('auth')->group(function () {
 // Admin Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('featured-products', [FeaturedProductController::class, 'index'])->name('featured-products.index');
+    Route::post('featured-products', [FeaturedProductController::class, 'store'])->name('featured-products.store');
+    Route::patch('featured-products/{featuredProduct}/position', [FeaturedProductController::class, 'move'])
+        ->name('featured-products.move');
+    Route::delete('featured-products/{featuredProduct}', [FeaturedProductController::class, 'destroy'])
+        ->name('featured-products.destroy');
 
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');

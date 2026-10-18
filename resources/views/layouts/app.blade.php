@@ -251,6 +251,9 @@
                         <a class="nav-link" href="{{ route('admin.sunglasses-categories.index') }}">Sunglasses Categories</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.featured-products.index') }}">Featured Products</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">View Website</a>
                     </li>
                     <li class="nav-item">

@@ -1,5 +1,10 @@
 import "./bootstrap";
 import { initCart } from "./cart";
+import Swiper from "swiper";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 document.addEventListener("DOMContentLoaded", () => {
     initCart();
@@ -35,6 +40,44 @@ document.addEventListener("DOMContentLoaded", () => {
         onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
     }
+
+    document.querySelectorAll("[data-featured-products-swiper]").forEach((element) => {
+        const section = element.closest(".featured-products");
+        const productCount = element.querySelectorAll(".swiper-slide").length;
+        const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        new Swiper(element, {
+            modules: [Autoplay, Navigation, Pagination],
+            slidesPerView: 1,
+            centeredSlides: true,
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    centeredSlides: false,
+                },
+            },
+            loop: productCount > 1,
+            speed: 700,
+            autoplay:
+                productCount > 1 && !prefersReducedMotion
+                    ? {
+                          delay: 4000,
+                          disableOnInteraction: false,
+                          pauseOnMouseEnter: true,
+                      }
+                    : false,
+            navigation: {
+                prevEl: section.querySelector('[data-featured-direction="-1"]'),
+                nextEl: section.querySelector('[data-featured-direction="1"]'),
+            },
+            pagination: {
+                el: section.querySelector("[data-featured-products-pagination]"),
+                clickable: true,
+            },
+        });
+    });
 
     const revealEls = document.querySelectorAll(".reveal");
     if (
