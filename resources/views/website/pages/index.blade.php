@@ -6,7 +6,7 @@
             <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
             <div class="position-absolute top-0 start-0 w-100 h-100 hero-pattern"></div>
             <div class="container position-relative z-1 text-center py-5">
-                <h1 class="font-display hero-title fw-bold text-white lh-sm mb-0 reveal reveal-delay-1">
+                <h1 class="font-display font-brand-display hero-title fw-bold text-white lh-sm mb-0 reveal reveal-delay-1">
                     <span class="logo-gold">Raven House</span>
                 </h1>
                 {{-- <p class="hero-lead mx-auto mt-3 mb-0 text-muted-raven reveal reveal-delay-2">

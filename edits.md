@@ -8,7 +8,7 @@
 
 _رئيتنا_
 
-* rmove OI from it.
+<!-- * rmove OI from it. -->
 
 _others_
 
