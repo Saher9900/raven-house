@@ -288,33 +288,12 @@ body::after {
     }
 }
 
-/* Ornamental dividers */
-.luxury-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-    margin: 1.5rem auto;
-    max-width: 280px;
-}
-
-.luxury-divider::before,
-.luxury-divider::after {
-    content: "";
-    flex: 1;
+/* Minimal section divider */
+.section-divider {
+    width: 3rem;
     height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(212, 175, 55, 0.5),
-        transparent
-    );
-}
-
-.luxury-divider span {
-    color: var(--gold);
-    font-size: 0.45rem;
-    letter-spacing: 0.2em;
+    margin: 1.5rem auto;
+    background: rgba(212, 175, 55, 0.5);
 }
 
 .section-eyebrow {
@@ -1054,7 +1033,7 @@ html[lang="ar"] .why-raven__text {
     text-wrap: balance;
 }
 
-.about-hero .luxury-divider {
+.about-hero .section-divider {
     margin-top: 2rem;
     margin-bottom: 2.25rem;
 }
@@ -1115,30 +1094,7 @@ html[lang="ar"] .why-raven__text {
 }
 
 .about-why__text {
-    position: relative;
     max-width: 50rem;
-    padding-inline: clamp(1rem, 5vw, 4rem);
-}
-
-.about-why__text::before,
-.about-why__text::after {
-    position: absolute;
-    color: rgba(212, 175, 55, 0.32);
-    font-family: "Cormorant Garamond", "Amiri", Georgia, serif;
-    font-size: clamp(3rem, 7vw, 5rem);
-    line-height: 1;
-}
-
-.about-why__text::before {
-    content: "“";
-    inset-inline-start: 0;
-    top: -0.5rem;
-}
-
-.about-why__text::after {
-    content: "”";
-    inset-inline-end: 0;
-    bottom: -1.5rem;
 }
 
 html[lang="ar"] .about-copy {

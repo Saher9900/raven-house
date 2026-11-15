@@ -4,7 +4,7 @@
         <section class="hero-glow page-hero py-5 mt-4">
             <div class="container text-center py-3 reveal">
                 <p class="section-eyebrow">{{ __('website.auth.login_eyebrow') }}</p>
-                <div class="luxury-divider" aria-hidden="true"><span>◆</span></div>
+                <div class="section-divider" aria-hidden="true"></div>
                 <h1 class="font-display auth-title display-4 fw-bold text-white mt-3">{{ __('website.auth.login_title') }}</h1>
                 <p class="text-muted-raven col-lg-6 mx-auto mt-2">{{ __('website.auth.login_intro') }}</p>
             </div>

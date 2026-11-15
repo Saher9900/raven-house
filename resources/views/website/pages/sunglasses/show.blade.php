@@ -114,7 +114,7 @@
                     <div class="text-center mb-5">
                         <p class="section-eyebrow mb-3">{{ __('website.sunglasses.similar_eyebrow') }}</p>
                         <h2 class="font-display section-title fw-semibold text-white">{{ __('website.sunglasses.related_title') }}</h2>
-                        <div class="luxury-divider" aria-hidden="true"><span>◆</span></div>
+                        <div class="section-divider" aria-hidden="true"></div>
                     </div>
 
                     <div class="row g-4">
