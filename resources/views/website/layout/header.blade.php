@@ -9,6 +9,47 @@
     <meta name="description" content="{{ __('website.meta.description') }}" />
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}" />
     <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}" />
+    <script>
+        (() => {
+            const storageKey = "raven-house-loader-shown";
+            const root = document.documentElement;
+            const navigationEntry = performance.getEntriesByType?.("navigation")?.[0];
+            const isReload = navigationEntry?.type === "reload";
+            let hasSeenSite;
+            let canUseSessionStorage = true;
+
+            try {
+                const storage = window.sessionStorage;
+                hasSeenSite = storage.getItem(storageKey) !== null;
+
+                if (!hasSeenSite) {
+                    storage.setItem(storageKey, "1");
+                }
+            } catch (error) {
+                if (
+                    error instanceof DOMException &&
+                    ["SecurityError", "QuotaExceededError"].includes(error.name)
+                ) {
+                    canUseSessionStorage = false;
+                } else {
+                    throw error;
+                }
+            }
+
+            const isFirstEntry = canUseSessionStorage && !hasSeenSite;
+            if (!isFirstEntry && !isReload) {
+                return;
+            }
+
+            root.dataset.siteLoaderStartedAt = String(performance.now());
+            root.classList.add("site-loader-active");
+
+            window.setTimeout(() => {
+                root.classList.remove("site-loader-active", "site-loader-exiting");
+                delete root.dataset.siteLoaderStartedAt;
+            }, 8000);
+        })();
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,6 +67,16 @@
     data-cart-store="{{ route('cart.store') }}"
     data-checkout-delivery="{{ route('checkout.delivery') }}"
     data-authenticated="{{ auth()->check() ? 'true' : 'false' }}">
+
+    <div id="site-loader" class="site-loader" role="status" aria-label="{{ __('website.general.loading') }}">
+        <div class="site-loader__content">
+            <img src="{{ asset('images/logo.png') }}" alt="" width="96" height="96" class="site-loader__logo"
+                aria-hidden="true" />
+            <span class="site-loader__track" aria-hidden="true">
+                <span class="site-loader__progress"></span>
+            </span>
+        </div>
+    </div>
 
     <nav id="site-header" class="navbar navbar-expand-xxl navbar-dark fixed-top navbar-raven bg-raven py-3">
         <div class="container">

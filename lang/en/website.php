@@ -6,6 +6,7 @@ return [
         'close' => 'Close',
         'order_now' => 'Order Now',
         'optional' => 'Optional',
+        'loading' => 'Loading Raven House',
     ],
     'meta' => [
         'title' => 'Raven House — Luxury Sunglasses & Perfumes',

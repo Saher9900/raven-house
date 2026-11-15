@@ -6,6 +6,7 @@ return [
         'close' => 'إغلاق',
         'order_now' => 'اطلب الآن',
         'optional' => 'اختياري',
+        'loading' => 'جارٍ تحميل Raven House',
     ],
     'meta' => [
         'title' => 'Raven House — نظارات فاخرة وعطور مميزة',

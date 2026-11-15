@@ -78,6 +78,86 @@ body {
     max-width: 100%;
 }
 
+.site-loader {
+    position: fixed;
+    z-index: 10000;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background:
+        radial-gradient(
+            ellipse 70% 55% at 50% 42%,
+            rgba(212, 175, 55, 0.08),
+            transparent 70%
+        ),
+        var(--raven-bg);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 350ms ease,
+        visibility 350ms ease;
+}
+
+html.site-loader-active {
+    overflow: hidden;
+}
+
+html.site-loader-active .site-loader {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+html.site-loader-exiting .site-loader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.site-loader__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.site-loader__logo {
+    display: block;
+    width: clamp(5rem, 15vw, 7rem);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.24));
+}
+
+.site-loader__track {
+    display: block;
+    width: 5rem;
+    height: 2px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(212, 175, 55, 0.2);
+}
+
+.site-loader__progress {
+    display: block;
+    width: 40%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+    animation: site-loader-progress 1.2s ease-in-out infinite;
+}
+
+@keyframes site-loader-progress {
+    from {
+        transform: translateX(-120%);
+    }
+    to {
+        transform: translateX(250%);
+    }
+}
+
 /* Subtle film grain & vignette */
 body::before {
     content: "";
@@ -339,8 +419,8 @@ body::after {
 
 .navbar-raven .site-nav-link {
     position: relative;
-    font-size: 0.8rem;
-    font-weight: 500;
+    font-size: 0.9rem;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     background: none;
@@ -462,8 +542,8 @@ html[dir="rtl"] .offcanvas-raven {
     border: 0;
     border-radius: 0.7rem;
     font-family: "Cairo", system-ui, sans-serif;
-    font-size: 1.05rem;
-    font-weight: 500;
+    font-size: 1.15rem;
+    font-weight: 700;
     color: #d4d4d8;
     letter-spacing: 0;
     text-align: start;
@@ -529,6 +609,7 @@ html[dir="rtl"] .offcanvas-raven {
     color: var(--raven-muted);
     font-family: "Cairo", system-ui, sans-serif;
     font-size: 0.95rem;
+    font-weight: 700;
     line-height: 1.5;
     text-decoration: none;
     transition:
@@ -568,7 +649,7 @@ html[dir="rtl"] .offcanvas-raven {
 
 html[lang="ar"] .offcanvas-raven .nav-link {
     font-family: "Cairo", system-ui, sans-serif;
-    font-size: 1.08rem;
+    font-size: 1.15rem;
     line-height: 1.65;
 }
 
@@ -1633,6 +1714,7 @@ html[lang="ar"] .about-section-title {
     color: var(--raven-muted);
     border-radius: 0.35rem;
     font-size: 0.875rem;
+    font-weight: 700;
     padding: 0.5rem 0.85rem;
 }
 
@@ -2064,8 +2146,18 @@ html[lang="ar"] .about-section-title {
 
 @media (prefers-reduced-motion: reduce) {
     .marquee-track,
-    .hero-orb {
+    .hero-orb,
+    .site-loader__progress {
         animation: none;
+    }
+
+    .site-loader {
+        transition: none;
+    }
+
+    .site-loader__progress {
+        width: 100%;
+        background: var(--gold);
     }
 
     .reveal {

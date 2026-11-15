@@ -3,8 +3,8 @@
 ***
 
 <!-- * remove the decorations ("", line under the heading) -->
-* change font to cairo.
-* add loading page before the website opens
+<!-- * change font to cairo. -->
+<!-- * add loading page before the website opens -->
 
 _رئيتنا_
 
