@@ -9,26 +9,10 @@
                 <p class="section-eyebrow mb-3">{{ __('website.coming_soon.eyebrow') }}</p>
                 <h1 class="font-display display-4 fw-bold text-white mt-3">{{ __('website.coming_soon.title') }}</h1>
                 <div class="section-divider" aria-hidden="true"></div>
-                <p class="col-lg-8 mx-auto fs-5 text-muted-raven mt-3 mb-0">{{ __('website.coming_soon.intro') }}</p>
+                <a href="{{ route('home') }}" class="btn btn-outline-gold rounded-pill">
+                    {{ __('website.coming_soon.back_home') }}
+                </a>
             </div>
-        </section>
-
-        <div class="marquee-luxury" aria-hidden="true">
-            <div class="marquee-track">
-                @for($group = 0; $group < 2; $group++)
-                    <div class="marquee-group">
-                        @for($index = 0; $index < 12; $index++)
-                            <span>{{ __('website.coming_soon.marquee') }}</span>
-                        @endfor
-                    </div>
-                @endfor
-            </div>
-        </div>
-
-        <section class="section-luxury text-center">
-            <a href="{{ route('home') }}" class="btn btn-outline-gold rounded-pill">
-                {{ __('website.coming_soon.back_home') }}
-            </a>
         </section>
     </main>
 @endsection

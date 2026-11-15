@@ -106,14 +106,9 @@
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->routeIs('about.page')) active @endif" href="{{ route("about.page") }}">{{ __('website.navigation.about') }}</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <button class="nav-link site-nav-link dropdown-toggle @if(request()->routeIs('perfumes.*')) active @endif"
-                            type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ __('website.navigation.perfumes') }}</button>
-                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-raven">
-                            <li><a class="dropdown-item" href="{{ route('perfumes.page') }}">{{ __('website.navigation.all_perfumes') }}</a></li>
-                            <li><a class="dropdown-item" href="{{ route('perfumes.page', ['perfume_type' => 'box']) }}">{{ __('website.navigation.boxes') }}</a></li>
-                            <li><a class="dropdown-item" href="{{ route('perfumes.page', ['perfume_type' => 'fragrance']) }}">{{ __('website.navigation.fragrances') }}</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link site-nav-link @if(request()->routeIs('perfumes.*')) active @endif"
+                            href="{{ route('perfumes.page') }}">{{ __('website.navigation.perfumes') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->routeIs('sunglasses.page')) active @endif" href="{{ route("sunglasses.page") }}">{{ __('website.navigation.sunglasses') }}</a>
@@ -156,20 +151,9 @@
                 <li class="nav-item">
                     <a class="nav-link @if(request()->routeIs('about.page')) active @endif" href="{{ route("about.page") }}">{{ __('website.navigation.about') }}</a>
                 </li>
-                <li class="nav-item mobile-perfume-nav">
-                    <button class="nav-link mobile-perfume-nav__toggle @if(request()->routeIs('perfumes.*')) active @endif"
-                        type="button" data-bs-toggle="collapse" data-bs-target="#mobilePerfumeOptions"
-                        aria-expanded="false" aria-controls="mobilePerfumeOptions">
-                        {{ __('website.navigation.perfumes') }}
-                        <span class="mobile-perfume-nav__chevron" aria-hidden="true"></span>
-                    </button>
-                    <div class="collapse" id="mobilePerfumeOptions">
-                        <ul class="mobile-perfume-nav__options">
-                            <li><a href="{{ route('perfumes.page') }}">{{ __('website.navigation.all_perfumes') }}</a></li>
-                            <li><a href="{{ route('perfumes.page', ['perfume_type' => 'box']) }}">{{ __('website.navigation.boxes') }}</a></li>
-                            <li><a href="{{ route('perfumes.page', ['perfume_type' => 'fragrance']) }}">{{ __('website.navigation.fragrances') }}</a></li>
-                        </ul>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link @if(request()->routeIs('perfumes.*')) active @endif"
+                        href="{{ route('perfumes.page') }}">{{ __('website.navigation.perfumes') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->routeIs('sunglasses.page')) active @endif" href="{{ route("sunglasses.page") }}">{{ __('website.navigation.sunglasses') }}</a>

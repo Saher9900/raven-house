@@ -67,8 +67,6 @@ That is why we do not simply offer products. We curate details that give their o
     'coming_soon' => [
         'eyebrow' => 'A New Chapter',
         'title' => 'Coming Soon',
-        'intro' => 'Something new is taking shape at Raven House — crafted with the same quiet care. Return soon.',
-        'marquee' => 'Stay Tuned',
         'back_home' => 'Back to Home',
     ],
     'shop_type' => [

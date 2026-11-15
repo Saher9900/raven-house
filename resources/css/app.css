@@ -565,64 +565,6 @@ html[dir="rtl"] .offcanvas-raven {
     padding-inline-start: 1.1rem;
 }
 
-.mobile-perfume-nav {
-    overflow-x: hidden;
-}
-
-.mobile-perfume-nav__toggle {
-    background: transparent;
-    justify-content: space-between;
-    gap: 0.75rem;
-}
-
-.mobile-perfume-nav__chevron {
-    flex-shrink: 0;
-    width: 0.55rem;
-    height: 0.55rem;
-    border-right: 1px solid currentColor;
-    border-bottom: 1px solid currentColor;
-    transform: rotate(45deg) translateY(-0.15rem);
-    transition: transform 0.2s ease;
-}
-
-.mobile-perfume-nav__toggle[aria-expanded="true"] .mobile-perfume-nav__chevron {
-    transform: rotate(225deg) translate(-0.1rem, -0.1rem);
-}
-
-.mobile-perfume-nav__options {
-    display: grid;
-    gap: 0.15rem;
-    margin: 0.25rem 0 0.6rem;
-    padding-block: 0.35rem;
-    padding-inline: 0 0.65rem;
-    max-width: 100%;
-    min-width: 0;
-    border-inline-start: 1px solid rgba(212, 175, 55, 0.35);
-    list-style: none;
-    text-align: start;
-}
-
-.mobile-perfume-nav__options a {
-    display: block;
-    padding: 0.55rem 0.85rem;
-    border-radius: 0.5rem;
-    color: var(--raven-muted);
-    font-family: "Cairo", system-ui, sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    line-height: 1.5;
-    text-decoration: none;
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
-}
-
-.mobile-perfume-nav__options a:hover,
-.mobile-perfume-nav__options a:focus {
-    background: rgba(212, 175, 55, 0.12);
-    color: var(--gold-light);
-}
-
 .mobile-menu-nav > .nav-item:last-child {
     border-bottom: 0;
 }
@@ -651,10 +593,6 @@ html[lang="ar"] .offcanvas-raven .nav-link {
     font-family: "Cairo", system-ui, sans-serif;
     font-size: 1.15rem;
     line-height: 1.65;
-}
-
-html[lang="ar"] .mobile-perfume-nav__toggle {
-    justify-content: space-between;
 }
 
 /* Hero — shared */

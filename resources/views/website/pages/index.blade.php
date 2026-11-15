@@ -15,7 +15,7 @@
                 {{-- <a href="{{ route('shop.page') }}" class="btn btn-gold rounded-pill mt-4 reveal reveal-delay-3">
                     {{ __('website.home.shop_now') }}
                 </a> --}}
-                <a href="{{ route('shop.page') }}" class="btn btn-gold home-perfume-cta__button rounded-pill mt-4 reveal reveal-delay-3">
+                <a href="{{ route('perfumes.page') }}" class="btn btn-gold home-perfume-cta__button rounded-pill mt-4 reveal reveal-delay-3">
                     {{ __('website.home.check_perfumes') }}
                     <span aria-hidden="true">{{ app()->isLocale('ar') ? '←' : '→' }}</span>
                 </a>
@@ -111,7 +111,7 @@
         @endif
 
         <section class="home-perfume-cta text-center">
-            <a href="{{ route('shop.page') }}" class="btn btn-gold home-perfume-cta__button rounded-pill">
+            <a href="{{ route('perfumes.page') }}" class="btn btn-gold home-perfume-cta__button rounded-pill">
                 {{ __('website.home.see_more_products') }}
                 <span aria-hidden="true">{{ app()->isLocale('ar') ? '←' : '→' }}</span>
             </a>

@@ -12,14 +12,13 @@ _رئيتنا_
 
 _others_
 
-* remove all the details in ترقبو
+<!-- * remove all the details in ترقبو -->
 
 _home page_
 
-* when I go to products it gores these immediately.
+<!-- * when I go to products it goes there immediately. -->
 * featured products shouldn't be there when the admin don't have any products added in that section.
 * remove شاهد المزيد من المنتجات
-* 
 
 _navbar_
 
@@ -51,5 +50,4 @@ _buying senario_
 
 * add more things in the nav bar
 * add social media to footer
-* add functionality to social media
-* 
+* add functionality to social media 
