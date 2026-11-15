@@ -84,22 +84,66 @@
                 <img src="{{ asset('images/logo.png') }}" alt="" class="site-logo site-logo--emblem" width="96"
                     height="96" aria-hidden="true" />
             </a>
-            <button type="button" class="btn cart-toggle order-xxl-3" data-bs-toggle="offcanvas"
-                data-bs-target="#cartDrawer" aria-controls="cartDrawer" aria-label="Open shopping cart">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
-                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M3 3h2l2.2 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 2-1.6L22 7H6" />
-                    <circle cx="10" cy="20" r="1" />
-                    <circle cx="18" cy="20" r="1" />
-                </svg>
-                <span class="cart-badge badge rounded-pill" id="cart-count-badge" hidden>0</span>
-            </button>
-            <button class="navbar-toggler navbar-toggler-raven" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end order-xxl-2" id="navbarMain">
-                <ul class="navbar-nav gap-lg-3" aria-label="Main navigation">
+            <div class="navbar-actions order-xxl-3">
+                @guest
+                    <a class="navbar-header-action d-xxl-none" href="{{ route('login') }}"
+                        aria-label="{{ __('website.navigation.login') }}">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="8" r="3.25" />
+                            <path d="M5 20c.7-3.1 3.2-5 7-5s6.3 1.9 7 5" />
+                        </svg>
+                    </a>
+                @elseif(in_array(auth()->user()->role, ['admin', 'manager']))
+                    <a class="navbar-header-action d-xxl-none" href="{{ route('admin.dashboard') }}"
+                        aria-label="{{ __('website.navigation.dashboard') }}">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="8" r="3.25" />
+                            <path d="M5 20c.7-3.1 3.2-5 7-5s6.3 1.9 7 5" />
+                        </svg>
+                    </a>
+                @endguest
+                <form class="navbar-mobile-language-form d-xxl-none"
+                    action="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="navbar-header-action"
+                        aria-label="{{ __('website.switch_language') }}">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M3 12h18M12 3c2.4 2.5 3.5 5.5 3.5 9S14.4 18.5 12 21m0-18c-2.4 2.5-3.5 5.5-3.5 9S9.6 18.5 12 21" />
+                        </svg>
+                    </button>
+                </form>
+                <button type="button" class="btn cart-toggle" data-bs-toggle="offcanvas"
+                    data-bs-target="#cartDrawer" aria-controls="cartDrawer" aria-label="Open shopping cart">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 3h2l2.2 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 2-1.6L22 7H6" />
+                        <circle cx="10" cy="20" r="1" />
+                        <circle cx="18" cy="20" r="1" />
+                    </svg>
+                    <span class="cart-badge badge rounded-pill" id="cart-count-badge" hidden>0</span>
+                </button>
+                <button class="navbar-toggler navbar-toggler-raven d-xxl-none" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <ul class="navbar-nav navbar-desktop-actions d-none d-xxl-flex align-items-center gap-lg-2">
+                    @include('website.layout.auth-nav')
+                    <li class="nav-item">
+                        <form action="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="language-switch__button language-switch__button--desktop">
+                                {{ __('website.switch_language') }}
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse order-xxl-2" id="navbarMain">
+                <ul class="navbar-nav site-nav-links gap-lg-2" aria-label="Main navigation">
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->is('/')) active @endif" href="/">{{ __('website.navigation.home') }}</a>
                     </li>
@@ -118,15 +162,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->routeIs('contact.page')) active @endif" href="{{ route("contact.page") }}">{{ __('website.navigation.contact') }}</a>
-                    </li>
-                    @include('website.layout.auth-nav')
-                    <li class="nav-item">
-                        <form action="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="language-switch__button language-switch__button--desktop">
-                                {{ __('website.switch_language') }}
-                            </button>
-                        </form>
                     </li>
                 </ul>
             </div>

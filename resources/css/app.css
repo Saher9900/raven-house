@@ -258,16 +258,16 @@ body::after {
     transition: height 0.4s var(--luxury-ease);
 }
 
-/* .site-logo--emblem {
+.site-logo--emblem {
     flex-shrink: 0;
-    height: var(--nav-logo-size, 96px);
-    width: var(--nav-logo-size, 96px);
+    height: var(--nav-logo-size, 64px);
+    width: var(--nav-logo-size, 64px);
     filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.45));
     transition:
         height 0.4s var(--luxury-ease),
         width 0.4s var(--luxury-ease),
         filter 0.25s ease;
-} */
+}
 
 /* .site-logo--details {
     flex-shrink: 1;
@@ -322,16 +322,6 @@ body::after {
     filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.35));
 }
 
-@media (max-width: 575.98px) {
-    .navbar-raven {
-        --nav-logo-size: 76px;
-    }
-
-    .navbar-raven.header-scrolled {
-        --nav-logo-size: 56px;
-    }
-}
-
 /* Minimal section divider */
 .section-divider {
     width: 3rem;
@@ -355,10 +345,10 @@ body::after {
 
 /* Navbar */
 .navbar-raven {
-    --nav-logo-size: 96px;
+    --nav-logo-size: 64px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
     transition:
         background 0.4s var(--luxury-ease),
         box-shadow 0.4s var(--luxury-ease),
@@ -367,18 +357,98 @@ body::after {
 }
 
 .navbar-raven.header-scrolled {
-    --nav-logo-size: 64px;
-    padding-top: 0.65rem !important;
-    padding-bottom: 0.65rem !important;
+    --nav-logo-size: 52px;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
     background: rgba(6, 6, 8, 0.88) !important;
     backdrop-filter: blur(20px) saturate(1.2);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     border-bottom-color: rgba(212, 175, 55, 0.12);
 }
 
+@media (max-width: 575.98px) {
+    .navbar-raven {
+        --nav-logo-size: 56px;
+    }
+
+    .navbar-raven.header-scrolled {
+        --nav-logo-size: 48px;
+    }
+}
+
 .navbar-raven .navbar-brand,
 .navbar-raven .site-brand-lockup {
     padding: 0;
+    line-height: 0;
+}
+
+.navbar-raven .navbar-collapse {
+    justify-content: center;
+}
+
+.navbar-raven > .container {
+    position: relative;
+}
+
+@media (min-width: 1400px) {
+    .navbar-raven .site-nav-links {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: max-content;
+        margin: 0;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+}
+
+.navbar-raven .navbar-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.navbar-raven .navbar-header-action {
+    display: inline-flex;
+    flex: 0 0 2.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0;
+    color: var(--champagne);
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 50%;
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.navbar-raven .navbar-header-action svg {
+    width: 18px;
+    height: 18px;
+}
+
+.navbar-raven .navbar-header-action:hover,
+.navbar-raven .navbar-header-action:focus-visible {
+    color: var(--gold-light);
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.65);
+}
+
+.navbar-raven .navbar-header-action:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+
+.navbar-mobile-language-form {
+    margin: 0;
     line-height: 0;
 }
 
@@ -401,8 +471,8 @@ body::after {
     background: transparent;
     border: 1px solid rgba(212, 175, 55, 0.45);
     border-radius: 999px;
-    font-size: 0.8rem;
-    padding: 0.55rem 1rem;
+    font-size: 0.75rem;
+    padding: 0.45rem 0.8rem;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -414,14 +484,14 @@ body::after {
 }
 
 .language-switch__button--desktop {
-    margin-inline-start: 0.5rem;
+    margin-inline-start: 0.35rem;
 }
 
 .navbar-raven .site-nav-link {
     position: relative;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     background: none;
     border: 0;
@@ -445,12 +515,44 @@ body::after {
 }
 
 .navbar-toggler-raven {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.35rem;
     border-color: rgba(212, 175, 55, 0.4);
     color: var(--gold);
 }
 
+.navbar-toggler-raven .navbar-toggler-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
 .navbar-toggler-raven:focus {
     box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+
+@media (max-width: 575.98px) {
+    .navbar-raven .navbar-actions {
+        gap: 0.25rem;
+    }
+
+    .navbar-raven .navbar-header-action,
+    .navbar-raven .cart-toggle,
+    .navbar-raven .navbar-toggler-raven {
+        flex-basis: 2.25rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        min-width: 2.25rem;
+        min-height: 2.25rem;
+    }
+
+    .navbar-raven .navbar-toggler-raven .navbar-toggler-icon {
+        width: 1rem;
+        height: 1rem;
+    }
 }
 
 /* Offcanvas */
@@ -542,7 +644,7 @@ html[dir="rtl"] .offcanvas-raven {
     border: 0;
     border-radius: 0.7rem;
     font-family: "Cairo", system-ui, sans-serif;
-    font-size: 1.15rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #d4d4d8;
     letter-spacing: 0;
@@ -585,13 +687,13 @@ html[dir="rtl"] .offcanvas-raven {
     width: auto;
     max-width: 100%;
     min-width: 0;
-    font-size: 0.9rem;
-    padding: 0.65rem 1.25rem;
+    font-size: 0.85rem;
+    padding: 0.55rem 1rem;
 }
 
 html[lang="ar"] .offcanvas-raven .nav-link {
     font-family: "Cairo", system-ui, sans-serif;
-    font-size: 1.15rem;
+    font-size: 1rem;
     line-height: 1.65;
 }
 
@@ -717,11 +819,6 @@ main.pt-5 > .hero-glow:first-child h1 {
     );
     overflow: hidden;
     padding: 1.25rem 0;
-}
-
-.home-perfume-cta {
-    padding: clamp(2rem, 5vw, 3.5rem) 1rem clamp(3rem, 7vw, 5rem);
-    background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.08), transparent 68%);
 }
 
 .featured-products {
@@ -1692,13 +1789,13 @@ html[lang="ar"] .about-section-title {
 .cart-toggle {
     position: relative;
     display: inline-flex;
-    flex: 0 0 2.75rem;
+    flex: 0 0 2.5rem;
     align-items: center;
     justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    min-width: 2.75rem;
-    min-height: 2.75rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
     padding: 0;
     aspect-ratio: 1;
     color: var(--champagne);

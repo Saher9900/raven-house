@@ -17,12 +17,12 @@ _others_
 _home page_
 
 <!-- * when I go to products it goes there immediately. -->
-* featured products shouldn't be there when the admin don't have any products added in that section.
-* remove شاهد المزيد من المنتجات
+<!-- * featured products shouldn't be there when the admin don't have any products added in that section. -->
+<!-- * remove شاهد المزيد من المنتجات -->
 
 _navbar_
 
-* remove the dropdown from perfumes.
+<!-- * remove the dropdown from perfumes. -->
 
 _top bar_
 

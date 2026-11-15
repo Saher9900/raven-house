@@ -35,7 +35,6 @@ return [
         'intro' => 'تفاصيل تُختار بعناية، لتعكس شخصية متفردة وحضورًا لا يُنسى.',
         'check_perfumes' => 'اكشتف عالم Raven House',
         'featured_title' => 'مختارة لك',
-        'see_more_products' => 'شاهد المزيد من المنتجات',
         'previous_products' => 'المنتجات المختارة السابقة',
         'next_products' => 'المنتجات المختارة التالية',
         'raven_alt' => 'غراب Raven House على رمال القاهرة.',

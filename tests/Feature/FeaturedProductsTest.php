@@ -23,7 +23,8 @@ it('shows selected perfumes and sunglasses in order on the homepage', function (
         ->assertSee('Featured Sunglasses')
         ->assertSee(route('perfumes.show', $perfume), false)
         ->assertSee(route('sunglasses.show', $sunglasses), false)
-        ->assertSee('See More Products')
+        ->assertDontSee('See More Products')
+        ->assertDontSee('class="home-perfume-cta text-center"', false)
         ->assertSee('data-featured-products-swiper', false)
         ->assertSee('data-featured-direction="-1"', false)
         ->assertDontSee('Stock');
@@ -34,10 +35,10 @@ it('hides the featured products carousel when none are selected', function () {
         ->assertOk()
         ->assertDontSee('Selected for You')
         ->assertDontSee('data-featured-products-swiper', false)
-        ->assertSee('See More Products');
+        ->assertDontSee('See More Products');
 });
 
-it('localizes featured product labels and the shop button in Arabic', function () {
+it('localizes featured product labels in Arabic', function () {
     $perfume = Perfume::factory()->create(['name' => 'عطر مميز']);
     FeaturedProduct::query()->create(['perfume_id' => $perfume->id]);
 
@@ -46,7 +47,6 @@ it('localizes featured product labels and the shop button in Arabic', function (
         ->assertOk()
         ->assertSee('<html lang="ar" dir="rtl">', false)
         ->assertSee('مختارة لك')
-        ->assertSee('شاهد المزيد من المنتجات')
         ->assertSee('عطر مميز');
 });
 

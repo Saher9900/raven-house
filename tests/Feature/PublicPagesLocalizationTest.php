@@ -22,14 +22,14 @@ it('persists the selected language and renders the arabic about page right to le
         ->assertDontSee('Crafted With Care');
 });
 
-it('shows the raven portrait, marquee, and updated homepage calls to action', function () {
+it('shows the raven portrait and hero call to action without the lower products button', function () {
     $this->get(route('home'))
         ->assertOk()
         ->assertSee('We waited for his arrival, and captured the moment.')
         ->assertSee('A living portrait of the Raven House raven')
         ->assertSee('A signature of presence')
         ->assertSee('Discover the World of Raven House')
-        ->assertSee('See More Products')
+        ->assertDontSee('See More Products')
         ->assertDontSee('Why Raven House')
         ->assertSee(route('perfumes.page'), false)
         ->assertDontSee('The Raven House Manifesto')

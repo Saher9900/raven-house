@@ -35,7 +35,6 @@ return [
         'intro' => 'Details chosen with care, to reflect a distinctive personality and an unforgettable presence.',
         'check_perfumes' => 'Discover the World of Raven House',
         'featured_title' => 'Selected for You',
-        'see_more_products' => 'See More Products',
         'previous_products' => 'Previous featured products',
         'next_products' => 'Next featured products',
         'raven_alt' => 'The Raven House raven on the sands of Cairo.',
