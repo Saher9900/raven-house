@@ -52,6 +52,26 @@ it('does not display stock counts on perfume pages', function () {
         ->assertDontSeeText('Stock');
 });
 
+it('removes price sorting and keeps newest perfumes first for legacy sort links', function () {
+    $olderAffordablePerfume = Perfume::factory()->create([
+        'name' => 'Older Affordable Perfume',
+        'price' => 10,
+        'created_at' => now()->subDay(),
+    ]);
+    $newerPremiumPerfume = Perfume::factory()->create([
+        'name' => 'Newer Premium Perfume',
+        'price' => 100,
+        'created_at' => now(),
+    ]);
+
+    $this->get(route('perfumes.page', ['sort' => 'price_asc']))
+        ->assertOk()
+        ->assertDontSee('Sort by price')
+        ->assertDontSee('الترتيب حسب السعر')
+        ->assertDontSee('name="sort"', false)
+        ->assertSeeInOrder([$newerPremiumPerfume->name, $olderAffordablePerfume->name]);
+});
+
 it('offers perfume type filtering in both navigation menus', function () {
     $this->get(route('home'))
         ->assertOk()

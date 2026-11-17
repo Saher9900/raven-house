@@ -8,7 +8,7 @@ uses(RefreshDatabase::class);
 
 it('persists the selected language and renders the arabic about page right to left', function () {
     $this->from(route('about.page'))
-        ->post(route('language.update', 'ar'))
+        ->get(route('language.update', 'ar'))
         ->assertRedirect(route('about.page'))
         ->assertSessionHas('locale', 'ar');
 
@@ -74,7 +74,7 @@ it('shows the updated contact details without the boutique, email, or message fo
 it('switches back to english from the language control', function () {
     $this->withSession(['locale' => 'ar'])
         ->from(route('contact.page'))
-        ->post(route('language.update', 'en'))
+        ->get(route('language.update', 'en'))
         ->assertRedirect(route('contact.page'))
         ->assertSessionHas('locale', 'en');
 
@@ -84,7 +84,7 @@ it('switches back to english from the language control', function () {
 });
 
 it('does not allow unsupported locales', function () {
-    $this->post(route('language.update', 'fr'))
+    $this->get(route('language.update', 'fr'))
         ->assertNotFound();
 });
 
@@ -104,6 +104,10 @@ it('translates the perfume listing chrome but leaves catalogue data untouched', 
         ->assertOk()
         ->assertSee('العطور')
         ->assertSee('تصفية المجموعة')
+        ->assertSee('name="category"', false)
+        ->assertSee('name="name"', false)
+        ->assertDontSee('name="sort"', false)
+        ->assertDontSee('الترتيب حسب السعر')
         ->assertSee('تطبيق التصفية')
         ->assertSee('أضف إلى السلة')
         ->assertSee('عرض التفاصيل')

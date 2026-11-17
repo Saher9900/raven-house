@@ -33,7 +33,7 @@ Route::view('about', 'website.pages.about')->name('about.page');
 Route::view('coming-soon', 'website.pages.coming-soon')->name('coming-soon.page');
 Route::view('shop', 'website.pages.shop-type')->name('shop.page');
 
-Route::post('language/{locale}', function (Request $request, string $locale): RedirectResponse {
+Route::get('language/{locale}', function (Request $request, string $locale): RedirectResponse {
     $request->session()->put('locale', $locale);
 
     return redirect()->back();

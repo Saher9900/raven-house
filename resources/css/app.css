@@ -447,11 +447,6 @@ body::after {
     box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
 }
 
-.navbar-mobile-language-form {
-    margin: 0;
-    line-height: 0;
-}
-
 .navbar-raven .navbar-brand,
 .navbar-raven .nav-link {
     color: var(--raven-muted);
@@ -467,12 +462,15 @@ body::after {
 }
 
 .language-switch__button {
+    display: inline-flex;
+    align-items: center;
     color: var(--gold-light);
     background: transparent;
     border: 1px solid rgba(212, 175, 55, 0.45);
     border-radius: 999px;
     font-size: 0.75rem;
     padding: 0.45rem 0.8rem;
+    text-decoration: none;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -1683,39 +1681,67 @@ html[lang="ar"] .about-section-title {
 }
 
 .filter-bar__title {
-    font-size: 0.7rem;
-    letter-spacing: 0.45em;
-    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
     color: var(--gold);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
 .filter-bar .form-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.01em;
+    color: var(--raven-muted);
     font-weight: 500;
-    margin-bottom: 0.65rem;
-    opacity: 0.85;
+    margin-bottom: 0.45rem;
 }
 
-.filter-bar .input-group-text {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-right: none;
+.filter-bar__search {
+    position: relative;
+}
+
+.filter-bar__search-icon {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 1rem;
     color: var(--gold);
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
-.filter-bar .input-group .form-control.input-dark {
-    border-left: none;
+.filter-bar__search .form-control.input-dark {
+    min-height: 2.9rem;
+    padding-inline-start: 2.85rem;
 }
 
-.filter-bar .input-group:focus-within .form-control.input-dark,
-.filter-bar .input-group:focus-within .input-group-text {
-    border-color: rgba(212, 175, 55, 0.5);
-    box-shadow: none;
+.filter-bar .form-select.input-dark {
+    min-height: 2.9rem;
+}
+
+.filter-bar__actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-bar__actions .btn {
+    min-height: 2.9rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+    .filter-bar .row {
+        row-gap: 1rem;
+    }
+
+    .filter-bar__actions .btn {
+        flex: 1 1 auto;
+    }
+}
+
+@media (max-width: 359.98px) {
+    .filter-bar__actions {
+        flex-direction: column;
+    }
 }
 
 .filter-bar .input-group:focus-within {

@@ -30,11 +30,7 @@ class PerfumeController extends Controller
             $query->where('name', 'like', '%'.$request->string('name').'%');
         }
 
-        match ($request->string('sort')->toString()) {
-            'price_asc' => $query->orderBy('price', 'asc'),
-            'price_desc' => $query->orderBy('price', 'desc'),
-            default => $query->latest(),
-        };
+        $query->latest();
 
         $perfumes = $query->paginate(12)->withQueryString();
         $categories = PerfumesCategory::orderBy('name')->get();

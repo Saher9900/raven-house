@@ -104,18 +104,15 @@
                         </svg>
                     </a>
                 @endguest
-                <form class="navbar-mobile-language-form d-xxl-none"
-                    action="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="navbar-header-action"
-                        aria-label="{{ __('website.switch_language') }}">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="12" cy="12" r="9" />
-                            <path d="M3 12h18M12 3c2.4 2.5 3.5 5.5 3.5 9S14.4 18.5 12 21m0-18c-2.4 2.5-3.5 5.5-3.5 9S9.6 18.5 12 21" />
-                        </svg>
-                    </button>
-                </form>
+                <a class="navbar-header-action d-xxl-none"
+                    href="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}"
+                    aria-label="{{ __('website.switch_language') }}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M3 12h18M12 3c2.4 2.5 3.5 5.5 3.5 9S14.4 18.5 12 21m0-18c-2.4 2.5-3.5 5.5-3.5 9S9.6 18.5 12 21" />
+                    </svg>
+                </a>
                 <button type="button" class="btn cart-toggle" data-bs-toggle="offcanvas"
                     data-bs-target="#cartDrawer" aria-controls="cartDrawer" aria-label="Open shopping cart">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
@@ -133,12 +130,10 @@
                 <ul class="navbar-nav navbar-desktop-actions d-none d-xxl-flex align-items-center gap-lg-2">
                     @include('website.layout.auth-nav')
                     <li class="nav-item">
-                        <form action="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="language-switch__button language-switch__button--desktop">
-                                {{ __('website.switch_language') }}
-                            </button>
-                        </form>
+                        <a href="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}"
+                            class="language-switch__button language-switch__button--desktop">
+                            {{ __('website.switch_language') }}
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -150,9 +145,22 @@
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->routeIs('about.page')) active @endif" href="{{ route("about.page") }}">{{ __('website.navigation.about') }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link site-nav-link @if(request()->routeIs('perfumes.*')) active @endif"
-                            href="{{ route('perfumes.page') }}">{{ __('website.navigation.perfumes') }}</a>
+                    <li class="nav-item dropdown">
+                        <button type="button" class="nav-link site-nav-link dropdown-toggle @if(request()->routeIs('perfumes.*') || request()->routeIs('shop.page')) active @endif"
+                            data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                            {{ __('website.navigation.perfumes') }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-raven" aria-label="Perfume collections">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('perfumes.page') }}">{{ __('website.navigation.all_perfumes') }}</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('perfumes.page', ['perfume_type' => 'box']) }}">{{ __('website.navigation.boxes') }}</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('perfumes.page', ['perfume_type' => 'fragrance']) }}">{{ __('website.navigation.fragrances') }}</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->routeIs('sunglasses.page')) active @endif" href="{{ route("sunglasses.page") }}">{{ __('website.navigation.sunglasses') }}</a>
@@ -187,8 +195,21 @@
                     <a class="nav-link @if(request()->routeIs('about.page')) active @endif" href="{{ route("about.page") }}">{{ __('website.navigation.about') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(request()->routeIs('perfumes.*')) active @endif"
-                        href="{{ route('perfumes.page') }}">{{ __('website.navigation.perfumes') }}</a>
+                    <button type="button" class="nav-link btn btn-link text-start p-0 @if(request()->routeIs('perfumes.*') || request()->routeIs('shop.page')) active @endif"
+                        data-bs-toggle="collapse" data-bs-target="#mobilePerfumeOptions" aria-expanded="false"
+                        aria-controls="mobilePerfumeOptions">
+                        {{ __('website.navigation.perfumes') }}
+                    </button>
+                    <div class="collapse mt-2 ps-3" id="mobilePerfumeOptions">
+                        <div class="d-flex flex-column gap-2">
+                            <a class="nav-link @if(request()->routeIs('perfumes.page') && !request()->filled('perfume_type')) active @endif"
+                                href="{{ route('perfumes.page') }}">{{ __('website.navigation.all_perfumes') }}</a>
+                            <a class="nav-link @if(request()->routeIs('perfumes.page') && request('perfume_type') === 'box') active @endif"
+                                href="{{ route('perfumes.page', ['perfume_type' => 'box']) }}">{{ __('website.navigation.boxes') }}</a>
+                            <a class="nav-link @if(request()->routeIs('perfumes.page') && request('perfume_type') === 'fragrance') active @endif"
+                                href="{{ route('perfumes.page', ['perfume_type' => 'fragrance']) }}">{{ __('website.navigation.fragrances') }}</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->routeIs('sunglasses.page')) active @endif" href="{{ route("sunglasses.page") }}">{{ __('website.navigation.sunglasses') }}</a>
@@ -201,11 +222,11 @@
                 </li>
                 @include('website.layout.auth-nav-mobile')
             </ul>
-            <form class="mobile-language-switch" action="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}" method="POST">
-                @csrf
-                <button type="submit" class="language-switch__button language-switch__button--mobile">
+            <div class="mobile-language-switch">
+                <a href="{{ route('language.update', app()->isLocale('en') ? 'ar' : 'en') }}"
+                    class="language-switch__button language-switch__button--mobile">
                     {{ __('website.switch_language') }}
-                </button>
-            </form>
+                </a>
+            </div>
         </div>
     </div>

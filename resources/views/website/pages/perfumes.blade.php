@@ -11,13 +11,13 @@
         <section class="pb-5">
             <div class="container">
                 <form action="{{ route('perfumes.page') }}" method="GET"
-                    class="card-raven filter-bar rounded-4 p-4 p-lg-5 mb-5">
+                    class="card-raven filter-bar rounded-4 p-3 p-md-4 mb-4">
                     <p class="filter-bar__title mb-0">{{ __('website.perfumes.refine') }}</p>
-                    <div class="row g-4 align-items-end">
+                    <div class="row g-3 align-items-end">
                         @if (request()->filled('perfume_type'))
                             <input type="hidden" name="perfume_type" value="{{ request('perfume_type') }}">
                         @endif
-                        <div class="col-md-4">
+                        <div class="col-12 col-md-4">
                             <label for="category" class="form-label">{{ __('website.perfumes.filter_category') }}</label>
                             <select class="form-select input-dark rounded-3" id="category" name="category">
                                 <option value="">{{ __('website.perfumes.all_categories') }}</option>
@@ -28,38 +28,31 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-12 col-md-5">
                             <label for="name" class="form-label">{{ __('website.perfumes.filter_name') }}</label>
-                            <div class="input-group">
-                                <span class="input-group-text rounded-start-3">
-                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
-                                        aria-hidden="true">
-                                        <path
-                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242 1.06a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z" />
-                                    </svg>
-                                </span>
-                                <input type="search" class="form-control input-dark rounded-end-3" id="name"
-                                    name="name" value="{{ request('name') }}"
+                            <div class="filter-bar__search">
+                                <svg class="filter-bar__search-icon" width="16" height="16" fill="currentColor"
+                                    viewBox="0 0 16 16" aria-hidden="true">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242 1.06a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z" />
+                                </svg>
+                                <input type="search" class="form-control input-dark rounded-3" id="name" name="name"
+                                    value="{{ request('name') }}"
                                     placeholder="{{ __('website.perfumes.search_placeholder') }}">
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label for="sort" class="form-label">{{ __('website.perfumes.sort_by_price') }}</label>
-                            <select class="form-select input-dark rounded-3" id="sort" name="sort">
-                                <option value="">{{ __('website.perfumes.default_order') }}</option>
-                                <option value="price_asc" @selected(request('sort') === 'price_asc')>
-                                    {{ __('website.perfumes.price_low_high') }}</option>
-                                <option value="price_desc" @selected(request('sort') === 'price_desc')>
-                                    {{ __('website.perfumes.price_high_low') }}</option>
-                            </select>
-                        </div>
-                        <div class="col-12 d-flex flex-wrap gap-2 pt-1">
-                            <button type="submit"
-                                class="btn btn-gold rounded-pill px-4">{{ __('website.perfumes.apply_filters') }}</button>
-                            @if (request()->hasAny(['perfume_type', 'category', 'name', 'sort']))
-                                <a href="{{ route('perfumes.page') }}"
-                                    class="btn btn-filter rounded-pill px-4">{{ __('website.perfumes.clear_filters') }}</a>
-                            @endif
+                        <div class="col-12 col-md-3">
+                            <div class="filter-bar__actions">
+                                <button type="submit" class="btn btn-gold rounded-pill px-4">
+                                    {{ __('website.perfumes.apply_filters') }}
+                                </button>
+                                @if (request()->hasAny(['perfume_type', 'category', 'name']))
+                                    <a href="{{ route('perfumes.page') }}"
+                                        class="btn btn-filter rounded-pill px-4">
+                                        {{ __('website.perfumes.clear_filters') }}
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -143,7 +136,7 @@
                     @empty
                         <div class="col-12 text-center py-5">
                             <p class="text-muted-raven">
-                                @if (request()->hasAny(['perfume_type', 'category', 'name', 'sort']))
+                                @if (request()->hasAny(['perfume_type', 'category', 'name']))
                                     {{ __('website.perfumes.no_results') }}
                                 @else
                                     {{ __('website.perfumes.no_products') }}

@@ -26,7 +26,7 @@ _navbar_
 
 _top bar_
 
-* add translation / signin
+<!-- * add translation / signin -->
 
 _perfumes page_
 
