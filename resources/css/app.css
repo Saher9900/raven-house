@@ -1507,6 +1507,15 @@ html[lang="ar"] .about-section-title {
 }
 
 /* Buttons */
+.btn-unavailable:disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .btn-gold {
     position: relative;
     overflow: hidden;

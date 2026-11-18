@@ -93,15 +93,20 @@
                         @endif
 
                         <!-- Add to Cart -->
-                        <button type="button"
-                            class="btn btn-gold btn-lg rounded-pill px-5 w-100 add-to-cart-btn"
-                            data-product-type="sunglasses"
-                            data-product-id="{{ $sunglasses->id }}"
-                            @disabled($sunglasses->stock < 1)>
-                            <span class="fs-5">
-                                {{ $sunglasses->stock < 1 ? __('website.product.out_of_stock') : __('website.product.add_to_cart') }}
-                            </span>
-                        </button>
+                        @if ($sunglasses->stock < 1)
+                            <button type="button"
+                                class="btn btn-secondary btn-lg rounded-pill px-5 w-100 btn-unavailable"
+                                disabled>
+                                <span class="fs-5">{{ __('website.product.out_of_stock') }}</span>
+                            </button>
+                        @else
+                            <button type="button"
+                                class="btn btn-gold btn-lg rounded-pill px-5 w-100 add-to-cart-btn"
+                                data-product-type="sunglasses"
+                                data-product-id="{{ $sunglasses->id }}">
+                                <span class="fs-5">{{ __('website.product.add_to_cart') }}</span>
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -155,7 +160,14 @@
                                             <a href="{{ route('sunglasses.show', $product) }}" class="btn btn-outline-gold btn-sm rounded-pill flex-grow-1">
                                                 {{ __('website.product.view_details') }}
                                             </a>
-                                            @auth
+                                            @if ($product->stock < 1)
+                                                <button type="button"
+                                                    class="btn btn-secondary btn-sm rounded-pill flex-grow-1 btn-unavailable"
+                                                    disabled>
+                                                    {{ __('website.product.out_of_stock') }}
+                                                </button>
+                                            @else
+                                                @auth
                                                 <button type="button"
                                                     class="btn btn-gold btn-sm rounded-pill add-to-cart-btn"
                                                     data-product-type="sunglasses"
@@ -177,7 +189,8 @@
                                                         <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2z"/>
                                                     </svg>
                                                 </button>
-                                            @endauth
+                                                @endauth
+                                            @endif
                                         </div>
                                     </div>
                                 </article>

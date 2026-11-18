@@ -145,22 +145,9 @@
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->routeIs('about.page')) active @endif" href="{{ route("about.page") }}">{{ __('website.navigation.about') }}</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <button type="button" class="nav-link site-nav-link dropdown-toggle @if(request()->routeIs('perfumes.*') || request()->routeIs('shop.page')) active @endif"
-                            data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-                            {{ __('website.navigation.perfumes') }}
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-raven" aria-label="Perfume collections">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('perfumes.page') }}">{{ __('website.navigation.all_perfumes') }}</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('perfumes.page', ['perfume_type' => 'box']) }}">{{ __('website.navigation.boxes') }}</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('perfumes.page', ['perfume_type' => 'fragrance']) }}">{{ __('website.navigation.fragrances') }}</a>
-                            </li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link site-nav-link @if(request()->routeIs('perfumes.*') || request()->routeIs('shop.page')) active @endif"
+                            href="{{ route('perfumes.page') }}">{{ __('website.navigation.perfumes') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->routeIs('sunglasses.page')) active @endif" href="{{ route("sunglasses.page") }}">{{ __('website.navigation.sunglasses') }}</a>
@@ -195,21 +182,8 @@
                     <a class="nav-link @if(request()->routeIs('about.page')) active @endif" href="{{ route("about.page") }}">{{ __('website.navigation.about') }}</a>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="nav-link btn btn-link text-start p-0 @if(request()->routeIs('perfumes.*') || request()->routeIs('shop.page')) active @endif"
-                        data-bs-toggle="collapse" data-bs-target="#mobilePerfumeOptions" aria-expanded="false"
-                        aria-controls="mobilePerfumeOptions">
-                        {{ __('website.navigation.perfumes') }}
-                    </button>
-                    <div class="collapse mt-2 ps-3" id="mobilePerfumeOptions">
-                        <div class="d-flex flex-column gap-2">
-                            <a class="nav-link @if(request()->routeIs('perfumes.page') && !request()->filled('perfume_type')) active @endif"
-                                href="{{ route('perfumes.page') }}">{{ __('website.navigation.all_perfumes') }}</a>
-                            <a class="nav-link @if(request()->routeIs('perfumes.page') && request('perfume_type') === 'box') active @endif"
-                                href="{{ route('perfumes.page', ['perfume_type' => 'box']) }}">{{ __('website.navigation.boxes') }}</a>
-                            <a class="nav-link @if(request()->routeIs('perfumes.page') && request('perfume_type') === 'fragrance') active @endif"
-                                href="{{ route('perfumes.page', ['perfume_type' => 'fragrance']) }}">{{ __('website.navigation.fragrances') }}</a>
-                        </div>
-                    </div>
+                    <a class="nav-link @if(request()->routeIs('perfumes.*') || request()->routeIs('shop.page')) active @endif"
+                        href="{{ route('perfumes.page') }}">{{ __('website.navigation.perfumes') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->routeIs('sunglasses.page')) active @endif" href="{{ route("sunglasses.page") }}">{{ __('website.navigation.sunglasses') }}</a>

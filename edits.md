@@ -30,8 +30,8 @@ _top bar_
 
 _perfumes page_
 
-* remove filter three
-* the problem in the middle row button.
+<!-- * remove filter three -->
+<!-- * the problem in the middle row button. -->
 
 _contact_
 
@@ -43,7 +43,7 @@ _buying senario_
 * add list of govs to define shipment fee
 * the go to payment button doesn't work when there are details.
 * when the person places the order it takes him to success page not to the perfumes with label.
-* when we click order a product it takes an order page fpr this product that has all details and payment and countaty.
+* when we click order a product it takes an order page fpr this product that has all details and payment and quantity.
 # **things to add**
 
 ***

@@ -87,7 +87,7 @@ That is why we do not simply offer products. We curate details that give their o
     'product' => [
         'view_details' => 'View Details',
         'add_to_cart' => 'Add to Cart',
-        'out_of_stock' => 'Out of Stock',
+        'out_of_stock' => 'Not Available',
         'uncategorized' => 'Uncategorized',
         'gender' => 'Gender',
         'perfume_type' => 'Perfume type',

@@ -102,34 +102,30 @@
                                             class="btn btn-outline-gold btn-sm rounded-pill flex-grow-1">
                                             {{ __('website.product.view_details') }}
                                         </a>
-                                        @auth
-                                            <button type="button" class="btn btn-gold btn-sm rounded-pill add-to-cart-btn"
-                                                data-product-type="perfume" data-product-id="{{ $perfume->id }}"
-                                                @disabled($perfume->stock < 1)
-                                                title="{{ $perfume->stock < 1 ? __('website.product.out_of_stock') : __('website.product.add_to_cart') }}">
-                                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2z" />
-                                                </svg>
+                                        @if ($perfume->stock < 1)
+                                            <button type="button"
+                                                class="btn btn-secondary btn-sm rounded-pill flex-grow-1 btn-unavailable"
+                                                disabled>
+                                                {{ __('website.product.out_of_stock') }}
                                             </button>
                                         @else
                                             <button type="button" class="btn btn-gold btn-sm rounded-pill add-to-cart-btn"
                                                 data-product-type="perfume" data-product-id="{{ $perfume->id }}"
-                                                @disabled($perfume->stock < 1)
-                                                title="{{ $perfume->stock < 1 ? __('website.product.out_of_stock') : __('website.product.add_to_cart') }}">
+                                                title="{{ __('website.product.add_to_cart') }}">
                                                 <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
                                                     <path
                                                         d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2z" />
                                                 </svg>
                                             </button>
-                                        @endauth
+                                        @endif
                                     </div>
-                                    <button type="button"
-                                        class="btn btn-outline-gold btn-sm rounded-pill w-100 mt-2 order-now-btn"
-                                        data-product-type="perfume" data-product-id="{{ $perfume->id }}"
-                                        @disabled($perfume->stock < 1)>
-                                        {{ __('website.general.order_now') }}
-                                    </button>
+                                    @if ($perfume->stock > 0)
+                                        <button type="button"
+                                            class="btn btn-outline-gold btn-sm rounded-pill w-100 mt-2 order-now-btn"
+                                            data-product-type="perfume" data-product-id="{{ $perfume->id }}">
+                                            {{ __('website.general.order_now') }}
+                                        </button>
+                                    @endif
                                 </div>
                             </article>
                         </div>
