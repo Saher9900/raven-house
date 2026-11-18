@@ -119,11 +119,6 @@ return [
         'similar_eyebrow' => 'أنماط قريبة',
     ],
     'contact' => [
-        'title' => 'تواصل معنا',
-        'subtitle' => 'تواصل معنا',
-        'reach_out' => 'بيانات التواصل',
-        'phone' => 'الهاتف',
-        'hours' => 'ساعات العمل',
         'available_24_hours' => 'متاحون على مدار ٢٤ ساعة',
         'instagram' => 'إنستغرام',
         'facebook' => 'فيسبوك',
@@ -182,6 +177,8 @@ return [
         'sign_in_link' => 'تسجيل الدخول',
     ],
     'footer' => [
+        'navigation' => 'روابط',
+        'categories' => 'الفئات',
         'copyright' => '© :year Raven House. جميع الحقوق محفوظة.',
     ],
 ];

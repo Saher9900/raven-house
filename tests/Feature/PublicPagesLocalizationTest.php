@@ -58,29 +58,32 @@ it('shows the raven story, vision, and why Raven House only on the about page', 
         ->assertSee('لكل رجل شخصية تستحق أن تنعكس في أدق تفاصيله');
 });
 
-it('shows the updated contact details without the boutique, email, or message form', function () {
-    $this->get(route('contact.page'))
+it('shows footer navigation, categories, and contact links without a contact page', function () {
+    $this->get(route('home'))
         ->assertOk()
-        ->assertSee('Reach Out to Us')
-        ->assertDontSee('+20 106 204 4462')
+        ->assertSee('aria-label="Navigation"', false)
+        ->assertSee('aria-label="Categories"', false)
+        ->assertSee(route('perfumes.page'), false)
+        ->assertSee(route('sunglasses.page'), false)
+        ->assertSee(route('coming-soon.page'), false)
         ->assertSee('Available 24 hours')
-        ->assertSee('Instagram')
-        ->assertSee('Facebook')
-        ->assertDontSee('Visit the Boutique')
-        ->assertDontSee('hello@ravenhouse.com')
-        ->assertDontSee('Send a Message');
+        ->assertSee('aria-label="Instagram"', false)
+        ->assertSee('aria-label="Facebook"', false)
+        ->assertDontSee('href="/contact"', false);
+
+    $this->get('/contact')->assertNotFound();
 });
 
 it('switches back to english from the language control', function () {
     $this->withSession(['locale' => 'ar'])
-        ->from(route('contact.page'))
+        ->from(route('about.page'))
         ->get(route('language.update', 'en'))
-        ->assertRedirect(route('contact.page'))
+        ->assertRedirect(route('about.page'))
         ->assertSessionHas('locale', 'en');
 
-    $this->get(route('contact.page'))
+    $this->get(route('about.page'))
         ->assertSee('<html lang="en" dir="ltr">', false)
-        ->assertSee('Reach Out to Us');
+        ->assertSee('Why the Raven?');
 });
 
 it('does not allow unsupported locales', function () {

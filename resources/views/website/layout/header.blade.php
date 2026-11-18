@@ -155,9 +155,6 @@
                     <li class="nav-item">
                         <a class="nav-link site-nav-link @if(request()->routeIs('coming-soon.page')) active @endif" href="{{ route('coming-soon.page') }}">{{ __('website.navigation.coming_soon') }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link site-nav-link @if(request()->routeIs('contact.page')) active @endif" href="{{ route("contact.page") }}">{{ __('website.navigation.contact') }}</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -190,9 +187,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->routeIs('coming-soon.page')) active @endif" href="{{ route('coming-soon.page') }}">{{ __('website.navigation.coming_soon') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @if(request()->routeIs('contact.page')) active @endif" href="{{ route("contact.page") }}">{{ __('website.navigation.contact') }}</a>
                 </li>
                 @include('website.layout.auth-nav-mobile')
             </ul>

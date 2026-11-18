@@ -119,11 +119,6 @@ That is why we do not simply offer products. We curate details that give their o
         'similar_eyebrow' => 'Similar Styles',
     ],
     'contact' => [
-        'title' => 'Contact Us',
-        'subtitle' => 'Reach Out to Us',
-        'reach_out' => 'Reach Out to Us',
-        'phone' => 'Phone',
-        'hours' => 'Hours',
         'available_24_hours' => 'Available 24 hours',
         'instagram' => 'Instagram',
         'facebook' => 'Facebook',
@@ -182,6 +177,8 @@ That is why we do not simply offer products. We curate details that give their o
         'sign_in_link' => 'Sign in',
     ],
     'footer' => [
+        'navigation' => 'Navigation',
+        'categories' => 'Categories',
         'copyright' => '© :year Raven House. All rights reserved.',
     ],
 ];

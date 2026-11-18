@@ -28,7 +28,6 @@ Route::get('perfumes/{perfume}', [PerfumeController::class, 'show'])->name('perf
 Route::get('sunglasses', [SunglassesController::class, 'index'])->name('sunglasses.page');
 Route::get('sunglasses/{sunglasses}', [SunglassesController::class, 'show'])->name('sunglasses.show');
 
-Route::view('contact', 'website.pages.contact')->name('contact.page');
 Route::view('about', 'website.pages.about')->name('about.page');
 Route::view('coming-soon', 'website.pages.coming-soon')->name('coming-soon.page');
 Route::view('shop', 'website.pages.shop-type')->name('shop.page');

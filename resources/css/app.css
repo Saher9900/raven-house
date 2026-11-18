@@ -2139,38 +2139,81 @@ html[lang="ar"] .about-section-title {
 /* Footer */
 .footer-raven {
     position: relative;
-    background: linear-gradient(
-        to top,
-        #040405,
-        var(--raven-bg)
-    ) !important;
-}
-
-.footer-raven::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(90%, 600px);
-    height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(212, 175, 55, 0.5),
-        transparent
-    );
+    background: linear-gradient(180deg, var(--raven-bg) 0%, #040405 100%);
+    padding-block: 4rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-raven a {
-    color: #71717a;
+    color: var(--raven-muted);
     text-decoration: none;
-    letter-spacing: 0.06em;
     transition: color 0.25s ease;
 }
 
 .footer-raven a:hover {
     color: var(--gold-light);
+}
+
+.footer-raven__content {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3rem 2rem;
+    padding-bottom: 3rem;
+}
+
+.footer-raven__brand-lockup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.footer-raven__brand-name {
+    color: var(--gold-light);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.footer-raven__brand-lockup:hover .footer-raven__brand-name {
+    color: #fff;
+}
+
+.footer-raven__heading {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.footer-raven__links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.footer-raven__links a {
+    width: fit-content;
+    line-height: 1.6;
+}
+
+.footer-raven__contact-hours {
+    color: var(--raven-muted);
+    margin-bottom: 1.25rem;
+}
+
+.footer-raven__copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--raven-muted);
+    padding-top: 1.5rem;
+}
+
+.footer-raven__socials .social-btn {
+    color: var(--raven-muted);
+}
+
+.footer-raven__socials .social-btn:hover {
+    color: var(--gold);
 }
 
 .social-btn {
@@ -2188,6 +2231,29 @@ html[lang="ar"] .about-section-title {
     border-color: rgba(212, 175, 55, 0.5);
     color: var(--gold);
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+@media (max-width: 991.98px) {
+    .footer-raven__content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2.75rem 2rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .footer-raven {
+        padding-block: 3rem 1.25rem;
+    }
+
+    .footer-raven__content {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.25rem;
+        padding-bottom: 2.25rem;
+    }
+
+    .footer-raven__heading {
+        margin-bottom: 1rem;
+    }
 }
 
 /* Scroll reveal */
