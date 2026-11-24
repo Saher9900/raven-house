@@ -95,7 +95,7 @@
                                                     {{ $featuredProduct->perfume ? __('website.navigation.perfumes') : __('website.navigation.sunglasses') }}
                                                 </span>
                                                 <h3 class="font-display">{{ $product->name }}</h3>
-                                                <p class="featured-product-card__price">${{ number_format($product->effectivePrice(), 2) }}</p>
+                                                <p class="featured-product-card__price">{{ number_format($product->effectivePrice(), 2) }} EGP</p>
                                             </div>
                                         </a>
                                     </div>
