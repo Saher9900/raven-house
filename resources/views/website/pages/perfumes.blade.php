@@ -80,12 +80,12 @@
                                         @if ($perfume->sale)
                                             <p class="text-gold fs-5 fw-medium mb-0">
                                                 <span
-                                                    class="text-decoration-line-through text-muted-raven small">${{ number_format($perfume->price, 2) }}</span>
-                                                <span class="ms-2">${{ number_format($perfume->sale, 2) }}</span>
+                                                    class="text-decoration-line-through text-muted-raven small">{{ number_format($perfume->price, 2) }} EGP</span>
+                                                <span class="ms-2">{{ number_format($perfume->sale, 2) }} EGP</span>
                                             </p>
                                         @else
                                             <p class="text-gold fs-5 fw-medium mb-0">
-                                                ${{ number_format($perfume->price, 2) }}</p>
+                                                {{ number_format($perfume->price, 2) }} EGP</p>
                                         @endif
                                     </div>
                                     <p class="text-muted-raven small mt-2 mb-0">

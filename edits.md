@@ -35,7 +35,7 @@ _perfumes page_
 
 _contact_
 
-* remove the contact page and add its necessary elements in the footer.
+<!-- * remove the contact page and add its necessary elements in the footer. -->
 
 _buying senario_
 
